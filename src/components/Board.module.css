@@ -1,0 +1,239 @@
+/* ----------------------------------------------------
+   PREMIUM CARD — GLASSMORPHISM VARIANT
+----------------------------------------------------- */
+
+.premium-card {
+  position: relative;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding-top: 6rem !important;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  min-height: 460px;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+/* ----------------------------------------------------
+   PREMIUM AVATAR
+----------------------------------------------------- */
+
+.avatar-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.7)
+  );
+  padding: 6px;
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18),
+    0 0 14px rgba(255, 255, 255, 0.6) inset;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+}
+
+.avatar-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+/* Make grid cells stretch to same height and center cards */
+.board-grid {
+  align-items: start; /* ensure consistent stacking */
+}
+
+@media (min-width: 768px) {
+  .premium-card {
+    min-height: 480px;
+  }
+}
+
+.premium-card:hover .avatar-image {
+  transform: scale(1.08) rotate(2deg);
+}
+
+.premium-card:hover .avatar-wrapper {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 16px rgba(255, 255, 255, 0.7) inset;
+}
+
+/* ----------------------------------------------------
+   TEXT STYLING
+----------------------------------------------------- */
+
+.premium-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
+.premium-title {
+  font-size: 0.95rem;
+  color: #555555;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  padding: 0 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.premium-intro {
+  font-size: 0.9rem;
+  color: #777777;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 0 0.25rem;
+}
+
+.premium-bio {
+  font-size: 0.9rem;
+  color: #777777;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  padding: 0 0.25rem;
+}
+
+/* ----------------------------------------------------
+   LINKEDIN BUTTON
+----------------------------------------------------- */
+
+.linkedin-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary-rgb), 0.15),
+    rgba(var(--primary-rgb), 0.05)
+  );
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+}
+
+.linkedin-button:hover {
+  /* Keep a soft background, but make the icon itself the primary/accent color */
+  background: rgba(var(--primary-rgb), 0.12);
+  color: var(--primary);
+  box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.12);
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(var(--primary-rgb), 0.18);
+}
+
+/* ----------------------------------------------------
+   TOGGLE BUTTON
+----------------------------------------------------- */
+
+.premium-toggle {
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  transition: all 0.25s ease;
+  border-radius: 0.5rem;
+  background: rgba(var(--primary-rgb), 0.08);
+  border: none;
+}
+
+.premium-toggle:hover {
+  background: rgba(var(--primary-rgb), 0.15);
+  color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
+}
+
+/* ----------------------------------------------------
+   ANIMATION DELAYS
+----------------------------------------------------- */
+.delay-0 {
+  animation-delay: 0ms;
+}
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+.delay-600 {
+  animation-delay: 600ms;
+}
+.delay-700 {
+  animation-delay: 700ms;
+}
+.delay-800 {
+  animation-delay: 800ms;
+}
+.delay-900 {
+  animation-delay: 900ms;
+}
+
+/* Center lone last card in the grid so 7th item appears centered */
+@media (min-width: 768px) {
+  .board-grid > :last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: start;
+  }
+}

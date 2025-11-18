@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Design System Definition
+  All colors use HSL for better maintainability and theme support
+  Gradients, shadows, and transitions defined as CSS variables
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 237 80% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 242 75% 45%;
+
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 180 78% 58%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 237 80% 58%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients - optimized for performance */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(237 80% 58%) 0%,
+      hsl(262 83% 58%) 100%
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(237 80% 58%) 0%,
+      hsl(242 75% 45%) 50%,
+      hsl(262 83% 58%) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      hsl(0 0% 100%) 0%,
+      hsl(237 80% 98%) 100%
+    );
+
+    /* Optimized shadows with reduced blur for performance */
+    --shadow-soft: 0 4px 6px -1px hsl(237 80% 58% / 0.1),
+      0 2px 4px -1px hsl(237 80% 58% / 0.06);
+    --shadow-medium: 0 10px 15px -3px hsl(237 80% 58% / 0.15),
+      0 4px 6px -2px hsl(237 80% 58% / 0.05);
+    --shadow-large: 0 20px 25px -5px hsl(237 80% 58% / 0.2),
+      0 10px 10px -5px hsl(237 80% 58% / 0.1);
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 237 80% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 180 78% 58%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 237 80% 58%;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(237 80% 58%) 0%,
+      hsl(262 83% 58%) 100%
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(237 80% 58%) 0%,
+      hsl(242 75% 45%) 50%,
+      hsl(262 83% 58%) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      hsl(222 47% 11%) 0%,
+      hsl(237 80% 15%) 100%
+    );
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Optimize rendering performance */
+  img {
+    @apply block;
+  }
+}
+
+/* Performance optimization: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  button,
+  [role="button"],
+  a,
+  input[type="submit"] {
+    @apply transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  a {
+    @apply hover:text-primary hover:underline;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .panorama-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+  }
+
+  .panorama-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .panorama-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .panorama-scroll::-webkit-scrollbar-thumb {
+    background-color: hsla(var(--primary) / 0.6);
+    border-radius: 9999px;
+  }
+
+  @media (pointer: coarse) {
+    .panorama-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .panorama-scroll::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
