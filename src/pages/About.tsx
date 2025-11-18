@@ -114,21 +114,24 @@ const About = () => {
       <Header />
 
       {/* -------------------------------------------------------------------- */}
-      {/* ⭐ HERO SECTION — EXACT FROM FIRST FILE (NO CHANGES) ⭐ */}
+      {/* ⭐ ENHANCED HERO SECTION ⭐ */}
       {/* -------------------------------------------------------------------- */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-subtle">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-subtle overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.1),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.1),transparent_50%)]" />
+        <div className="container relative mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
-            <Building2 className="w-16 h-16 text-primary mx-auto mb-6" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-2xl mb-8 shadow-large">
+              <Building2 className="w-10 h-10 text-primary-foreground" />
+            </div>
 
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 leading-tight">
               About{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
                 IIT Gandhinagar CDF
               </span>
             </h1>
 
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               IITGN-CDF is a Section 8 initiative that transforms IIT
               Gandhinagar's research excellence into immersive residential
               programs, aligning talent with next-generation industry demands.
@@ -138,29 +141,33 @@ const About = () => {
       </section>
 
       {/* -------------------------------------------------------------------- */}
-      {/* ⭐ DESCRIPTION SECTION — EXACT FROM FIRST FILE (NO CHANGES) ⭐ */}
+      {/* ⭐ ENHANCED DESCRIPTION SECTION ⭐ */}
       {/* -------------------------------------------------------------------- */}
-      <section className="py-12">
+      <section className="py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-base leading-relaxed text-muted-foreground space-y-6">
-            <p>
-              The IIT Gandhinagar Competency Development Foundation (CDF) is a
-              Section 8 company established under the aegis of the Indian
-              Institute of Technology Gandhinagar to strengthen the bridge
-              between academic excellence and industry application.
-            </p>
-            <p>
-              These programs, pioneered by IIT Gandhinagar through CDF, bring
-              together the institute’s academic rigor, research expertise, and a
-              strong network of industry collaborators to create meaningful
-              pathways for upskilling and talent development.
-            </p>
-            <p>
-              Guided by IIT Gandhinagar’s values of integrity, innovation, and
-              impact, CDF is committed to shaping the next generation of skilled
-              professionals.
-            </p>
-          </div>
+          <Card className="max-w-4xl mx-auto border-2 shadow-large bg-card/50 backdrop-blur-sm">
+            <CardContent className="p-8 lg:p-12">
+              <div className="space-y-6 text-base lg:text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  The IIT Gandhinagar Competency Development Foundation (CDF) is a
+                  Section 8 company established under the aegis of the Indian
+                  Institute of Technology Gandhinagar to strengthen the bridge
+                  between academic excellence and industry application.
+                </p>
+                <p>
+                  These programs, pioneered by IIT Gandhinagar through CDF, bring
+                  together the institute's academic rigor, research expertise, and a
+                  strong network of industry collaborators to create meaningful
+                  pathways for upskilling and talent development.
+                </p>
+                <p>
+                  Guided by IIT Gandhinagar's values of integrity, innovation, and
+                  impact, CDF is committed to shaping the next generation of skilled
+                  professionals.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -169,9 +176,13 @@ const About = () => {
       {/* -------------------------------------------------------------------- */}
 
       {/* Videos */}
-      <section className="py-16 lg:py-24 bg-background">
+      <section className="py-16 lg:py-24 bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4" />
+              Campus Experience
+            </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Experience{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
@@ -183,46 +194,49 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {/* Campus Tour */}
-            <Card className="shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 group">
+            <Card className="group shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 hover:-translate-y-1">
               <div className="relative">
-                <CardContent className="p-0 aspect-video">
+                <CardContent className="p-0 aspect-video rounded-t-lg overflow-hidden">
                   <iframe
                     className="w-full h-full"
                     src="https://www.youtube.com/embed/fK9y8wiHUsk"
                     allowFullScreen
+                    title="IIT Gandhinagar Campus Tour"
                   ></iframe>
                 </CardContent>
-                <div className="absolute top-4 right-4 bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm rounded-full p-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Eye className="w-4 h-4 text-white" />
                 </div>
               </div>
-              <CardHeader className="p-6">
-                <CardTitle className="text-xl font-bold">
+              <CardHeader className="p-6 bg-card/95">
+                <CardTitle className="text-xl font-bold text-foreground">
                   IIT Gandhinagar Campus Tour
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground mt-2">
                   Explore our cutting-edge campus and culture
                 </p>
               </CardHeader>
             </Card>
 
             {/* Student Life */}
-            <Card className="shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 group">
+            <Card className="group shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 hover:-translate-y-1">
               <div className="relative">
-                <CardContent className="p-0 aspect-video bg-muted flex items-center justify-center">
+                <CardContent className="p-0 aspect-video bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center rounded-t-lg">
                   <div className="text-center p-8">
-                    <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">Video coming soon</p>
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-8 h-8 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground font-medium">Video coming soon</p>
                   </div>
                 </CardContent>
               </div>
-              <CardHeader className="p-6">
-                <CardTitle className="text-xl font-bold">
+              <CardHeader className="p-6 bg-card/95">
+                <CardTitle className="text-xl font-bold text-foreground">
                   Student Life at IIT Gandhinagar
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground mt-2">
                   A glimpse into our vibrant learning community
                 </p>
               </CardHeader>
@@ -232,19 +246,19 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-16 lg:py-24 bg-muted/30">
+      <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
 
           {/* Vision */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-6">
-              <Eye className="w-8 h-8 text-primary-foreground" />
+          <div className="text-center mb-16 lg:mb-20">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-2xl mb-6 shadow-large">
+              <Eye className="w-10 h-10 text-primary-foreground" />
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold">Our Vision</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">Our Vision</h2>
 
-            <Card className="max-w-3xl mx-auto mt-6 shadow-large">
-              <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+            <Card className="max-w-3xl mx-auto border-2 shadow-large bg-card/80 backdrop-blur-sm">
+              <CardContent className="p-8 lg:p-10">
+                <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
                   To create a globally recognized platform for competency-based
                   learning, innovation, and professional excellence.
                 </p>
@@ -253,11 +267,11 @@ const About = () => {
           </div>
 
           {/* Mission */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-6">
-              <Rocket className="w-8 h-8 text-primary-foreground" />
+          <div className="text-center mb-12 lg:mb-16">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-2xl mb-6 shadow-large">
+              <Rocket className="w-10 h-10 text-primary-foreground" />
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-2">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Our Mission
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -265,20 +279,21 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {missions.map((mission, index) => (
               <Card
                 key={index}
-                className="hover:shadow-large transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/20"
+                className="group hover:shadow-large transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/30 bg-card/80 backdrop-blur-sm"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center mb-5">
-                    {mission.icon}
+                <CardContent className="p-6 lg:p-8">
+                  <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center mb-5 shadow-soft group-hover:scale-110 transition-transform">
+                    <div className="text-primary-foreground">{mission.icon}</div>
                   </div>
                   <h3 className="font-bold text-foreground mb-3 text-lg">
                     {mission.title}
                   </h3>
-                  <p className="text-muted-foreground">{mission.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{mission.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -287,31 +302,39 @@ const About = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 lg:py-24 bg-background">
+      <section className="py-16 lg:py-24 bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+          <div className="text-center mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4" />
+              Why Us
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Why Choose{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
                 IITGN-CDF?
               </span>
             </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover what makes our programs unique and transformative
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {whyChooseUs.map((reason, index) => (
               <Card
                 key={index}
-                className="hover:shadow-large transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/20 group"
+                className="group hover:shadow-large transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/30 bg-card/80 backdrop-blur-sm"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-8">
-                  <div className="w-12 h-12 bg-gradient-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gradient-primary">
-                    <Zap className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
+                <CardContent className="p-6 lg:p-8">
+                  <div className="w-12 h-12 bg-gradient-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-gradient-primary shadow-soft group-hover:scale-110 transition-all">
+                    <Zap className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
                   </div>
                   <h3 className="font-bold text-foreground mb-3 text-lg">
                     {reason.title}
                   </h3>
-                  <p className="text-muted-foreground">{reason.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{reason.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -325,39 +348,52 @@ const About = () => {
       </section>
 
       {/* IIT Advantage */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-20 lg:py-28 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-16 lg:mb-20">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-semibold mb-4">
+              <Award className="w-4 h-4" />
+              Exclusive Benefits
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              The{" "}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                IIT Advantage
+              </span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Experience the unique benefits of learning at IIT Gandhinagar
+            </p>
+          </div>
 
-          <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
-            The IIT Advantage
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left */}
-            <div className="space-y-6">
-              {advantageHighlights.map((highlight) => (
+            <div className="space-y-4 lg:space-y-6">
+              {advantageHighlights.map((highlight, index) => (
                 <div
                   key={highlight.title}
-                  className="flex items-start gap-4 rounded-2xl border border-border/80 bg-card/80 p-5 shadow-soft hover:shadow-large transition"
+                  className="group flex items-start gap-4 rounded-2xl border-2 border-border/80 bg-card/80 backdrop-blur-sm p-5 lg:p-6 shadow-soft hover:shadow-large hover:border-primary/30 transition-all hover:-translate-y-1"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    {highlight.icon}
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-gradient-primary group-hover:scale-110 transition-all shadow-soft">
+                    <div className="group-hover:text-primary-foreground">{highlight.icon}</div>
                   </div>
 
-                  <div>
-                    <h3 className="text-xl font-semibold">{highlight.title}</h3>
-                    <p className="text-muted-foreground">{highlight.description}</p>
+                  <div className="flex-1">
+                    <h3 className="text-lg lg:text-xl font-semibold text-foreground mb-2">{highlight.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{highlight.description}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Right */}
-            <div className="rounded-xl overflow-hidden shadow-xl">
+            <div className="rounded-2xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/30 transition-all">
               <img
                 src="/images/IIT.avif"
                 alt="IIT Gandhinagar Classroom"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -365,26 +401,28 @@ const About = () => {
       </section>
 
       {/* Commitment */}
-      <section className="py-16 lg:py-24 bg-muted/30">
+      <section className="py-16 lg:py-24 bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-5xl mx-auto">
-
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-6">
-                <Heart className="w-8 h-8 text-primary-foreground" />
+            <div className="text-center mb-12 lg:mb-16">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-2xl mb-6 shadow-large">
+                <Heart className="w-10 h-10 text-primary-foreground" />
               </div>
 
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                 Our Commitment to{" "}
                 <span className="bg-gradient-primary bg-clip-text text-transparent">
                   Excellence
                 </span>
               </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Core values that drive everything we do
+              </p>
             </div>
 
-            <Card className="shadow-large border-2">
-              <CardContent className="p-10">
-                <div className="space-y-4">
+            <Card className="shadow-large border-2 bg-card/80 backdrop-blur-sm">
+              <CardContent className="p-8 lg:p-10">
+                <div className="space-y-3 lg:space-y-4">
                   {[
                     {
                       title: "Academic Integrity",
@@ -414,15 +452,16 @@ const About = () => {
                   ].map((commitment, index) => (
                     <div
                       key={index}
-                      className="flex items-start space-x-4 p-5 rounded-xl hover:bg-muted/50 transition-all hover:shadow-md group"
+                      className="group flex items-start gap-4 p-5 lg:p-6 rounded-xl border border-border/50 hover:border-primary/30 hover:bg-muted/30 transition-all hover:shadow-md bg-card/50"
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center text-primary-foreground group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center text-primary-foreground group-hover:scale-110 transition-transform shadow-soft flex-shrink-0">
                         {commitment.icon}
                       </div>
 
-                      <div>
-                        <h4 className="font-bold text-lg">{commitment.title}</h4>
-                        <p className="text-muted-foreground">{commitment.desc}</p>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-lg text-foreground mb-1">{commitment.title}</h4>
+                        <p className="text-muted-foreground leading-relaxed">{commitment.desc}</p>
                       </div>
                     </div>
                   ))}
