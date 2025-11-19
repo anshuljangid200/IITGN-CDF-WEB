@@ -45,9 +45,12 @@ const Header = () => {
       <div className="container relative mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center group -ml-3 sm:-ml-5 md:-ml-6 lg:-ml-7 flex-shrink-0">
+          <Link
+            to="/"
+            className="flex items-center group -ml-3 sm:-ml-5 md:-ml-6 lg:-ml-7 flex-shrink-0 hover:no-underline focus-visible:no-underline"
+          >
             <div className="flex items-center">
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 sm:gap-2 relative -left-1 sm:-left-1.5 pl-1 sm:pl-1.5">
                 {/* Left Circle Logo */}
                 <div
                   className="w-10 h-10 sm:w-[52px] sm:h-[52px] md:w-[60px] md:h-[60px] lg:w-[66px] lg:h-[66px] rounded-full bg-white shadow-soft group-hover:shadow-medium transition-all duration-300 overflow-hidden flex items-center justify-center"
@@ -97,10 +100,10 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background hover:no-underline focus-visible:no-underline ${
                   isActive(link.path)
-                    ? "bg-primary text-primary-foreground shadow-soft"
-                    : "text-foreground hover:bg-primary/10 hover:text-primary"
+                    ? "bg-gradient-primary text-primary-foreground shadow-soft ring-1 ring-primary/40 hover:text-primary-foreground hover:brightness-[1.08]"
+                    : "text-foreground/80 hover:bg-primary/10 hover:text-primary"
                 }`}
               >
                 {link.label}
@@ -145,10 +148,10 @@ const Header = () => {
               key={link.path}
               to={link.path}
               onClick={() => setIsMenuOpen(false)}
-              className={`block rounded-2xl px-4 py-3 text-base font-semibold transition ${
+              className={`block rounded-2xl px-4 py-3 text-base font-semibold transition hover:no-underline focus-visible:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                 isActive(link.path)
-                  ? "bg-primary text-primary-foreground shadow-soft"
-                  : "text-foreground hover:bg-primary/10 hover:text-primary"
+                  ? "bg-gradient-primary text-primary-foreground shadow-soft ring-1 ring-primary/30 hover:text-primary-foreground hover:brightness-[1.08]"
+                  : "text-foreground/80 hover:bg-primary/10 hover:text-primary"
               }`}
             >
               {link.label}

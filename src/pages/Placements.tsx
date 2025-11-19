@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TestimonialCard from "@/components/TestimonialCard";
 import styles from "./Placements.module.css";
 import LogoMarquee from "@/components/LogoMarquee";
-import { hiringPartnerLogos, trustedCompanyLogos } from "@/data/partnerLogos";
+import { hiringPartnerLogos } from "@/data/partnerLogos";
 
 const careerSupport = [
   {
@@ -190,27 +190,6 @@ const Placements = () => {
         </div>
       </section>
 
-      {/* Trusted by Leading Companies Section */}
-      <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16 animate-fade-in">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
-              Trusted by Leading Companies
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our graduates are trusted by these industry leaders.
-            </p>
-          </div>
-
-          <LogoMarquee
-            trusted={{
-              logos: trustedCompanyLogos,
-              leftToRight: false,
-              duration: 18,
-            }}
-          />
-        </div>
-      </section>
 
       {/* Career Outcomes */}
       <section className="py-16 lg:py-24">

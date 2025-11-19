@@ -8,6 +8,7 @@ type HeroSectionProps = {
   description?: ReactNode;
   align?: "center" | "left";
   className?: string;
+  backgroundImage?: string;
 };
 
 const HeroSection = ({
@@ -17,18 +18,32 @@ const HeroSection = ({
   description,
   align = "center",
   className,
+  backgroundImage,
 }: HeroSectionProps) => {
   return (
     <section
       className={cn(
-        "pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-subtle",
+        "relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-subtle",
         className
       )}
     >
+      {backgroundImage && (
+        <>
+          <img
+            src={backgroundImage}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-hero opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+        </>
+      )}
       <div className="container mx-auto px-4 lg:px-8">
         <div
           className={cn(
-            "max-w-4xl mx-auto animate-fade-in-up",
+            "relative max-w-4xl mx-auto animate-fade-in-up",
             align === "center" ? "text-center" : "text-left"
           )}
         >

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import Board from "@/components/Board";
 import LogoMarquee from "@/components/LogoMarquee";
 import CarouselBackground from "@/components/CarouselBackground";
-import { hiringPartnerLogos, trustedCompanyLogos } from "@/data/partnerLogos";
+import { hiringPartnerLogos } from "@/data/partnerLogos";
 
 import ProgramHighlights from "../components/ProgramHighlights";
 
@@ -81,40 +81,21 @@ const Index = () => {
       {/* Hiring Partners */}
       <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="space-y-8">
-            <div className="bg-card rounded-2xl p-6">
-              <h3 className="text-center text-3xl lg:text-4xl font-extrabold text-foreground/90 mb-4">
-                Our Hiring Partners
-              </h3>
-              <p className="text-center text-sm text-muted-foreground mb-4">
-                Organizations that collaborate with IIT Gandhinagar to empower future-ready talent.
-              </p>
+          <div className="bg-card rounded-2xl p-6">
+            <h3 className="text-center text-3xl lg:text-4xl font-extrabold text-foreground/90 mb-4">
+              Our Hiring Partners
+            </h3>
+            <p className="text-center text-sm text-muted-foreground mb-4">
+              Organizations that collaborate with IIT Gandhinagar to empower future-ready talent.
+            </p>
 
-              <LogoMarquee
-                hiringTop={{
-                  logos: hiringPartnerLogos,
-                  leftToRight: true,
-                  duration: 22,
-                }}
-              />
-            </div>
-
-            <div className="bg-card rounded-2xl p-6">
-              <h3 className="text-center text-3xl lg:text-4xl font-extrabold text-foreground/90 mb-4">
-                Trusted by Leading Companies
-              </h3>
-              <p className="text-center text-sm text-muted-foreground mb-4">
-                Our graduates are trusted by these industry leaders.
-              </p>
-
-              <LogoMarquee
-                trusted={{
-                  logos: trustedCompanyLogos,
-                  leftToRight: false,
-                  duration: 12,
-                }}
-              />
-            </div>
+            <LogoMarquee
+              hiringTop={{
+                logos: hiringPartnerLogos,
+                leftToRight: true,
+                duration: 22,
+              }}
+            />
           </div>
         </div>
       </section>

@@ -166,6 +166,7 @@ const CampusLife = () => {
         title="Experience"
         highlight="IIT Gandhinagar"
         description="Live, build, and collaborate on a riverfront campus designed for maker culture—labs that run late, festivals that light up the quad, and sports arenas that keep energy high."
+        backgroundImage="/images/ExperienceBackground.png"
       />
 
 
