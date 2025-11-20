@@ -77,7 +77,8 @@ const Contact = () => {
                 icon={<Mail className="w-6 h-6" />}
                 title="Email"
                 content={[
-                  "Mail: cdf@iitgn.ac.in",
+                  "Info: cdf@iitgn.ac.in",
+                  "Admission: admission.cdf@iitgn.ac.in",
                 ]}
               />
               <ContactCard

@@ -47,19 +47,19 @@ const admissionsFAQs = [
 const programFAQs = [
   {
     question: "Can I work while pursuing these programs?",
-    answer: "No. These are full-time, residential programs requiring on-campus presence throughout the 6-month duration. They are not compatible with full-time employment.",
+    answer: "No. These are full-time, intensive residential programs with a demanding schedule (lectures, labs, projects, and evening sessions). Participants are required to stay on campus and fully commit to the coursework, so working alongside the program is not permitted.",
   },
   {
     question: "What is the medium of instruction?",
-    answer: "All programs are taught in English.",
+    answer: "English",
   },
   {
     question: "What is the typical class size?",
-    answer: "We maintain small batch sizes (typically 30-50 students) to ensure personalized attention, effective learning, and strong peer interaction.",
+    answer: "The typical size is 60.",
   },
   {
     question: "Will I receive an IIT Gandhinagar certificate?",
-    answer: "Yes. Upon successful completion, you will receive a Competency Development Foundation Program certificate from IIT Gandhinagar.",
+    answer: "Yes. All learners who successfully complete the program will receive a Joint Postgraduate Diploma certificate awarded by IIT Gandhinagar and IITGN-CDF. This certification reflects IITGN’s academic oversight and CDF’s industry-aligned training framework.",
   },
   {
     question: "Are there any prerequisites I should complete before joining?",
@@ -73,8 +73,12 @@ const feeFAQs = [
   //   answer: "Please contact our admissions office for detailed fee structure. Fee includes tuition, accommodation, meals, learning resources, and career support.",
   // },
   {
-    question: "Are installment payment options available?",
-    answer: "Yes. We offer flexible payment plans including installments and EMI options through partner financial institutions.",
+    question: "Are loan and EMI options available for payment?",
+    answer: "Yes, education finance partners are typically available for eligible candidates, allowing the fee to be paid via EMI plans through these partners.",
+  },
+  {
+    question: "Are loans or EMIs available?",
+    answer: "Financial aid is available for eligible candidates through loan and EMI (Equated Monthly Installment) options offered in partnership with established education financing institutions such as Propelld, Avanse, IDFC, and ICICI. To apply for financing, candidates typically need to provide basic documentation including their Aadhaar Card, PAN Card, bank statements, payslips if employed, academic records, and a recent photograph.",
   },
   // {
   //   question: "Are scholarships available?",
@@ -82,22 +86,22 @@ const feeFAQs = [
   // },
   {
     question: "Does the fee include accommodation and food?",
-    answer: "Yes. The program fee is all-inclusive, covering tuition, hostel accommodation, mess facilities (meals), learning materials, and career support.",
+    answer: "Yes. Accommodation and meals are included, but billed separately from the tuition fee.",
   },
 ];
 
 const campusFAQs = [
   {
     question: "Is accommodation mandatory?",
-    answer: "Since these are residential programs, on-campus accommodation is mandatory for the full 6-month duration to ensure immersive learning.",
+    answer: "Yes. The accommodation is mandatory.",
   },
   {
     question: "What type of accommodation is provided?",
-    answer: "Students are provided hostel rooms (single or shared based on availability) with basic furnishings, internet access, and 24/7 security.",
+    answer: "Students are provided hostel rooms (double accomodation) with basic furnishings, internet access, and 24/7 security.",
   },
   {
     question: "Are meals included?",
-    answer: "Yes. The program fee includes breakfast, lunch, and dinner at the campus mess. Both vegetarian and non-vegetarian options are available.",
+    answer: "Yes. The accommodation fee includes breakfast, lunch, evening snacks, and dinner (vegetarian) throughout the program. A non-vegetarian meal option is available at an additional cost.",
   },
   {
     question: "Is the campus safe?",
@@ -108,11 +112,11 @@ const campusFAQs = [
 const placementsFAQs = [
   {
     question: "Are placements guaranteed?",
-    answer: "While placements are not guaranteed, we provide comprehensive career support including resume building, mock interviews, industry connections, and placement assistance. Final placement depends on individual performance, market conditions, and recruiter demand.",
+    answer: "Yes. Students with a CGPA of 7.0 or higher receive guaranteed placement assistance.",
   },
   {
     question: "What is the average salary package?",
-    answer: "Average salary packages vary by program and individual profile, typically ranging from ₹6-15 LPA for entry-level roles. Top performers secure offers of ₹15-30 LPA+ from leading companies.",
+    answer: "Average salary packages vary by program and individual profile, typically ranging from ₹7-20 LPA for entry-level roles.",
   },
   // {
   //   question: "Will I get help with interview preparation?",
@@ -133,24 +137,24 @@ const technicalFAQs = [
     question: "Will I work on real-world projects?",
     answer: "Yes. Each program includes 3-4 major hands-on projects culminating in a comprehensive capstone project addressing real-world challenges.",
   },
-  {
-    question: "Will I get access to cloud computing resources?",
-    answer: "Yes. Students receive cloud credits for AWS, Azure, and/or GCP to practice deployment and work on projects.",
-  },
+  // {
+  //   question: "Will I get access to cloud computing resources?",
+  //   answer: "Yes. Students receive cloud credits for AWS, Azure, and/or GCP to practice deployment and work on projects.",
+  // },
 ];
 
 const postProgramFAQs = [
   {
     question: "What happens after I complete the program?",
-    answer: "You receive: IIT Gandhinagar Competency Development Foundation Program certificate, access to alumni network, continued career support for job search and career transitions, and certification exam vouchers (for AWS/Azure/GCP certifications).",
+    answer: "You receive: IIT Gandhinagar Competency Development Foundation Program certificate, access to alumni network.",
   },
-  {
-    question: "Can I pursue further studies after this program?",
-    answer: "Yes. Many graduates go on to pursue Master's degrees (M.Tech, MS) or specialized certifications. The Competency Development Foundation Program strengthens your profile for higher studies.",
-  },
+  // {
+  //   question: "Can I pursue further studies after this program?",
+  //   answer: "Yes. Many graduates go on to pursue Master's degrees (M.Tech, MS) or specialized certifications. The Competency Development Foundation Program strengthens your profile for higher studies.",
+  // },
   {
     question: "Will I remain part of the IIT Gandhinagar community?",
-    answer: "Yes. As an alumnus of IITGN-CDF, you'll have lifelong access to the alumni network, events, and continued learning opportunities.",
+    answer: "Yes, graduates receive IIT Gandhinagar Executive Alumni Status.",
   },
 ];
 
