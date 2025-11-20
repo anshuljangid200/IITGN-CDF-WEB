@@ -47,7 +47,7 @@ const admissionsFAQs = [
 const programFAQs = [
   {
     question: "Can I work while pursuing these programs?",
-    answer: "No. These are full-time, residential programs requiring on-campus presence throughout the 6-month duration. They are not compatible with full-time employment.",
+    answer: "No. These are full-time, intensive residential programs with a demanding schedule (lectures, labs, projects, and evening sessions). Participants are required to stay on campus and fully commit to the coursework, so working alongside the program is not permitted.",
   },
   {
     question: "What is the medium of instruction?",
