@@ -17,6 +17,33 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+const admissionRounds = [
+  {
+    title: "All India National Proficiency Test (AINPT · IITGN)",
+    subheading: "Round 1",
+    description: "A 120-minute online proctored test that evaluates:",
+    highlights: [
+      "Quantitative aptitude",
+      "Logical reasoning",
+      "Technical concepts (DSA basics, programming fundamentals)",
+      "Coding challenges (Python/Java based on your chosen track)",
+    ],
+    note: "Results are declared within 48 hours of the test.",
+  },
+  {
+    title: "Personal Interview",
+    subheading: "Round 2",
+    description:
+      "Shortlisted candidates appear for a panel interview with IIT faculty and industry mentors. The conversation assesses:",
+    highlights: [
+      "Technical capability and clarity of fundamentals",
+      "Problem-solving approach and ability to learn fast",
+      "Motivation, commitment, and fit for the residential program",
+    ],
+    note: "Panel feedback decides the final offer and track allocation.",
+  },
+];
+
 const steps = [
   {
     icon: <PenLine className="w-6 h-6" />,
@@ -112,6 +139,16 @@ const feeBreakdown = [
     amount: "₹3,000",
     description: "One-time non-refundable application processing charge.",
   },
+];
+
+const programRefund = [
+  { period: "Within the first 15 days", amount: "₹2,00,000" },
+  { period: "Beyond 15 days", amount: "NIL" },
+];
+
+const hostelRefund = [
+  { period: "Within the first 15 days", amount: "₹30,000" },
+  { period: "Beyond 15 days", amount: "NIL" },
 ];
 
 const Admissions = () => {
@@ -234,6 +271,50 @@ const Admissions = () => {
         </div>
       </section>
 
+      {/* Admission Evaluation Rounds */}
+      <section className="py-16 lg:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
+            <div className="rounded-[2.5rem] border border-primary/30 bg-card/95 shadow-large p-8 lg:p-10 text-center lg:text-left">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary mb-3">Admission Process</p>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Two Rounds to Evaluate Skill & Potential
+              </h2>
+              <p className="text-muted-foreground mt-4">
+                Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with
+                IIT faculty and industry mentors.
+              </p>
+              <Button asChild size="lg" className="mt-8 bg-gradient-primary hover:opacity-90 shadow-medium">
+                <a href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462" target="_blank" rel="noopener noreferrer">
+                  Apply Now
+                </a>
+              </Button>
+            </div>
+
+            <div className="space-y-6">
+              {admissionRounds.map((round) => (
+                <article key={round.title} className="rounded-[2rem] border border-border/70 bg-card/90 shadow-large p-6 lg:p-8">
+                  <div className="flex flex-col gap-2 mb-4">
+                    <span className="text-xs font-semibold text-primary uppercase tracking-[0.35em]">{round.subheading}</span>
+                    <h3 className="text-2xl font-bold text-foreground">{round.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">{round.description}</p>
+                  <ul className="space-y-2 text-sm text-foreground">
+                    {round.highlights.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-primary mt-1" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-sm font-semibold text-primary">{round.note}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Career Assistance */}
       <section className="py-16 lg:py-24 bg-muted/40">
         <div className="container mx-auto px-4 lg:px-8">
@@ -318,16 +399,66 @@ const Admissions = () => {
         </div>
       </section>
 
-      {/* Refund Placeholder */}
-      <section className="py-12 lg:py-16">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="rounded-[2.5rem] border border-dashed border-primary/40 bg-muted/40 p-8 lg:p-12 text-center shadow-soft">
-            <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">Refund Policy</h3>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              A detailed refund policy document will be published shortly. Stay tuned for the formal schedule and procedural steps shared with every admitted learner.
+      {/* Refund Policy */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8 space-y-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Refund Policy</h3>
+            <p className="text-muted-foreground">
+              Admission and registration fees are non-refundable. If a learner is required to leave because of academic performance,
+              attendance, or disciplinary action, no refunds apply. Voluntary withdrawals follow the slabs below.
             </p>
-            <p className="text-sm text-muted-foreground/80 mt-6 max-w-2xl mx-auto">{feeCards[3].details}</p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
+              <div className="px-6 py-5 border-b border-border/60">
+                <h4 className="text-xl font-semibold text-foreground">Program Fees Refund</h4>
+              </div>
+              <table className="w-full text-sm">
+                <thead className="text-left text-muted-foreground uppercase tracking-wide text-xs bg-muted/50">
+                  <tr>
+                    <th className="px-6 py-3 font-semibold">Period</th>
+                    <th className="px-6 py-3 font-semibold">Refundable Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {programRefund.map((row) => (
+                    <tr key={row.period} className="border-t border-border/60">
+                      <td className="px-6 py-4 font-medium text-foreground">{row.period}</td>
+                      <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
+              <div className="px-6 py-5 border-b border-border/60">
+                <h4 className="text-xl font-semibold text-foreground">Hostel Fees Refund</h4>
+              </div>
+              <table className="w-full text-sm">
+                <thead className="text-left text-muted-foreground uppercase tracking-wide text-xs bg-muted/50">
+                  <tr>
+                    <th className="px-6 py-3 font-semibold">Period</th>
+                    <th className="px-6 py-3 font-semibold">Refundable Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hostelRefund.map((row) => (
+                    <tr key={row.period} className="border-t border-border/60">
+                      <td className="px-6 py-4 font-medium text-foreground">{row.period}</td>
+                      <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground text-center">
+            * Refund processing follows IITGN CDF finance timelines. Any administrative deductions (if applicable) will be communicated in the offer letter.
+          </p>
         </div>
       </section>
 
