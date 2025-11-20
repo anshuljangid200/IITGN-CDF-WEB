@@ -25,8 +25,7 @@ const programs: ProgramHighlight[] = [
     description:
       "Design production-grade LLM workflows, multi-agent pipelines, and responsible AI systems that combine LangChain, LangGraph, AutoGen, and CrewAI.",
     route: "/gen-ai-agentic-aiml",
-    banner:
-      "https://cdn.prod.website-files.com/687e11ae076e4c47d227af38/6911992642e8b3e4d0f79fcc_Gen%20AI-Powered%20AIML_Agentic%20AI%20Engineering.avif",
+    banner: "/images/IIT Gandhinagar - PG Diploma in AI-ML & Agentic AI Engineering(Vertical) (1).png",
     badge: "Gen AI · LLM · Agents",
     stats: [
       { label: "Duration", value: "6 Months" },
@@ -69,8 +68,7 @@ const programs: ProgramHighlight[] = [
     description:
       "Ship AI-augmented full-stack products with Java/Spring, React/Next.js, DevOps, and continuous delivery across AWS/Azure.",
     route: "/gen-ai-software-cloud",
-    banner:
-      "https://cdn.prod.website-files.com/687e11ae076e4c47d227af38/69119927bd0a30acc1f7ee2d_AI-Powered%20Software%20Engineering%20with%20Cloud.avif",
+    banner: "/images/IIT Gandhinagar - PG Diploma in AI Driven Cloud based Software Development.png",
     badge: "Software · Cloud · DevOps",
     stats: [
       { label: "Duration", value: "6 Months" },
