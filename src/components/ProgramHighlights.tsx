@@ -30,7 +30,7 @@ const programs: ProgramHighlight[] = [
     stats: [
       { label: "Duration", value: "6 Months" },
       { label: "Mentored Hours", value: "600+" },
-      { label: "Certification", value: "IITGN-CDF PG Diploma" },
+      { label: "Certification", value: "PG Diploma" },
     ],
     skills: [
       "Multi-agent orchestration & tool usage",
@@ -52,7 +52,7 @@ const programs: ProgramHighlight[] = [
     stats: [
       { label: "Duration", value: "6 Months" },
       { label: "Mentored Hours", value: "540+" },
-      { label: "Certification", value: "IITGN-CDF PG Diploma" },
+      { label: "Certification", value: "PG Diploma" },
     ],
     skills: [
       "Modern ETL with Airflow, Spark & Kafka",
@@ -73,7 +73,7 @@ const programs: ProgramHighlight[] = [
     stats: [
       { label: "Duration", value: "6 Months" },
       { label: "Mentored Hours", value: "520+" },
-      { label: "Certification", value: "IITGN-CDF PG Diploma" },
+      { label: "Certification", value: "PG Diploma" },
     ],
     skills: [
       "Full-stack SDLC with React, Next.js & Spring Boot",
