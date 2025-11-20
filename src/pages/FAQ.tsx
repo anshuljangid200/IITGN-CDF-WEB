@@ -51,15 +51,15 @@ const programFAQs = [
   },
   {
     question: "What is the medium of instruction?",
-    answer: "All programs are taught in English.",
+    answer: "English",
   },
   {
     question: "What is the typical class size?",
-    answer: "We maintain small batch sizes (typically 30-50 students) to ensure personalized attention, effective learning, and strong peer interaction.",
+    answer: "The typical size is 60.",
   },
   {
     question: "Will I receive an IIT Gandhinagar certificate?",
-    answer: "Yes. Upon successful completion, you will receive a Competency Development Foundation Program certificate from IIT Gandhinagar.",
+    answer: "Yes. All learners who successfully complete the program will receive a Joint Postgraduate Diploma certificate awarded by IIT Gandhinagar and IITGN-CDF. This certification reflects IITGN’s academic oversight and CDF’s industry-aligned training framework.",
   },
   {
     question: "Are there any prerequisites I should complete before joining?",
