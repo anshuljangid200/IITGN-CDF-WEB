@@ -1,3 +1,4 @@
+import type { FormEvent } from "react";
 import { MapPin, Mail, Phone, Clock, Plane, Train, Car, Linkedin, Twitter, Facebook, Instagram, Youtube, SendIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,6 +13,28 @@ import { toast } from "@/components/ui/use-toast";
 import HeroSection from "@/components/HeroSection";
 
 const Contact = () => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const phoneInput = ((formData.get("phone") as string) ?? "").replace(/\s+/g, "");
+
+    if (!/^\+\d{11,13}$/.test(phoneInput)) {
+      toast({
+        title: "Invalid mobile number",
+        description: "Please include your country code (e.g., +91) followed by a valid mobile number.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    form.reset();
+    toast({
+      title: "Message sent successfully",
+      description: "We'll get back to you within 24-48 hours.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -116,18 +139,13 @@ const Contact = () => {
               <p className="text-muted-foreground text-center mb-8">
                 Have a question about our programs? Fill out the form below and we'll get back to you as soon as possible.
               </p>
-              <form onSubmit={(e) => {
-                e.preventDefault();
-                toast({
-                  title: "Message sent successfully",
-                  description: "We'll get back to you within 24-48 hours.",
-                });
-              }} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
                     <Input
                       id="name"
+                      name="name"
                       placeholder="Enter your full name"
                       required
                     />
@@ -136,10 +154,24 @@ const Contact = () => {
                     <Label htmlFor="email">Email Address</Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="Enter your email"
                       required
                     />
+                  </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <Label htmlFor="phone">Mobile Number</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      placeholder="+91 98765 43210"
+                      pattern="^\+\d{11,13}$"
+                      required
+                    />
+                    <p className="text-xs text-muted-foreground">Include the country code prefix (e.g., +91) followed by your 10-digit number.</p>
                   </div>
                 </div>
 
@@ -147,6 +179,7 @@ const Contact = () => {
                   <Label htmlFor="subject">Subject</Label>
                   <Input
                     id="subject"
+                    name="subject"
                     placeholder="What is your message about?"
                     required
                   />
@@ -156,6 +189,7 @@ const Contact = () => {
                   <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Type your message here..."
                     className="min-h-[150px]"
                     required
