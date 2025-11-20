@@ -47,7 +47,7 @@ const programs: ProgramHighlight[] = [
       "Build cloud-native data stacks, govern petabyte-scale pipelines, and operationalize analytics with MLOps-grade reliability.",
     route: "/gen-ai-data-science",
     banner:
-      "https://cdn.prod.website-files.com/687e11ae076e4c47d227af38/69119927017cadc993288827_Gen%20AI-Powered%20Data%20Science%20Engineering.avif",
+      "/images/IIT Gandhinagar - PG Diploma in GenAI-Powered Data Science & Engineering.png",
     badge: "Data · Cloud · MLOps",
     stats: [
       { label: "Duration", value: "6 Months" },
