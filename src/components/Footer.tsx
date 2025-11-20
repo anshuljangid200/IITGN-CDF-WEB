@@ -14,7 +14,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="font-bold text-foreground text-base">IITGN CDF</h3>
-                <p className="text-xs text-muted-foreground">Competency Foundation</p>
+                <p className="text-xs text-muted-foreground">Competency Development Foundation</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -75,12 +75,12 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/gen-ai-software-cloud" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium flex items-center space-x-1 group">
-                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in AI-Powered Software Engineering with Cloud</span>
+                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in AI Driven Cloud based Software Development</span>
                 </Link>
               </li>
               <li>
                 <Link to="/gen-ai-agentic-aiml" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium flex items-center space-x-1 group">
-                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering</span>
+                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in AI-ML & Agentic AI Engineering</span>
                 </Link>
               </li>
             </ul>
