@@ -137,10 +137,10 @@ const technicalFAQs = [
     question: "Will I work on real-world projects?",
     answer: "Yes. Each program includes 3-4 major hands-on projects culminating in a comprehensive capstone project addressing real-world challenges.",
   },
-  {
-    question: "Will I get access to cloud computing resources?",
-    answer: "Yes. Students receive cloud credits for AWS, Azure, and/or GCP to practice deployment and work on projects.",
-  },
+  // {
+  //   question: "Will I get access to cloud computing resources?",
+  //   answer: "Yes. Students receive cloud credits for AWS, Azure, and/or GCP to practice deployment and work on projects.",
+  // },
 ];
 
 const postProgramFAQs = [
