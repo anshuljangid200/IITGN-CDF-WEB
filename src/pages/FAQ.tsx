@@ -9,15 +9,15 @@ import HeroSection from "@/components/HeroSection";
 const generalFAQs = [
   {
     question: "What is IIT Gandhinagar Competency Development Foundation?",
-    answer: "IITGN-CDF is a Section 8 (not-for-profit) company established under IIT Gandhinagar to offer professional education and advanced training programs in emerging technologies like AI, Data Science, and Software Development.",
+    answer: "IIT Gandhinagar Competency Development Foundation (IITGN CDF) is a Section-8, not-for-profit company established by IIT Gandhinagar to deliver high-quality, industry-aligned training programs in advanced and emerging technologies.",
   },
   {
     question: "Are these programs recognized?",
-    answer: "Yes. These are Competency Development Foundation Programs offered by IIT Gandhinagar, one of India's premier institutions. While not equivalent to a Master's degree, they are highly valued by employers for their practical, skill-oriented curriculum.",
+    answer: "Yes. These programs are jointly awarded by IIT Gandhinagar and IITGN Competency Development Foundation as official Postgraduate Diploma programs",
   },
   {
     question: "What is the difference between a Competency Development Foundation Program and a Master's degree?",
-    answer: "A Competency Development Foundation Program (PG-level professional program) is a focused, industry-oriented offering (typically 6-12 months) emphasizing practical skills and job readiness, whereas a Master's degree is a longer academic program (2 years) with more emphasis on theory and research. These programs are ideal for quick career transitions and upskilling.",
+    answer: "A CDF Postgraduate Diploma is an intensive, 6-month, skills-focused professional program designed to make learners immediately deployable in next-generation tech roles. It emphasizes hands-on training, industry tools, real-world projects, and job readiness whereas a Master’s Degree, in contrast, is a longer academic program (1–2 years) focused on research, theoretical depth, and broader scholastic outcomes.",
   },
 ];
 
@@ -36,11 +36,11 @@ const admissionsFAQs = [
   },
   {
     question: "Can I apply to multiple programs?",
-    answer: "Yes, you may apply to more than one program. Indicate your order of preference in the application form.",
+    answer: "No. Applicants may apply to only one program at a time. Since each program has a rigorous and specialized curriculum, candidates are required to choose the track that best aligns with their skills and career goals.",
   },
   {
     question: "Is there an entrance exam?",
-    answer: "There is no formal entrance exam. Admissions are based on academic credentials, programming proficiency, and (if required) a technical interview.",
+    answer: "Yes the exam is called All India National Proficiency Test (AINPT - IITGN), A 120-minute online proctored test evaluating Quantitative Aptitude, Logical Reasoning, Technical Concepts (DSA basics, programming fundamentals), and Coding Challenges (Python/Java), with results declared within 48 hours.",
   },
 ];
 
@@ -68,18 +68,18 @@ const programFAQs = [
 ];
 
 const feeFAQs = [
-  {
-    question: "What is the program fee?",
-    answer: "Please contact our admissions office for detailed fee structure. Fee includes tuition, accommodation, meals, learning resources, and career support.",
-  },
+  // {
+  //   question: "What is the program fee?",
+  //   answer: "Please contact our admissions office for detailed fee structure. Fee includes tuition, accommodation, meals, learning resources, and career support.",
+  // },
   {
     question: "Are installment payment options available?",
     answer: "Yes. We offer flexible payment plans including installments and EMI options through partner financial institutions.",
   },
-  {
-    question: "Are scholarships available?",
-    answer: "Yes. We offer limited merit-based and need-based scholarships for deserving candidates. Indicate your interest in the application form.",
-  },
+  // {
+  //   question: "Are scholarships available?",
+  //   answer: "Yes. We offer limited merit-based and need-based scholarships for deserving candidates. Indicate your interest in the application form.",
+  // },
   {
     question: "Does the fee include accommodation and food?",
     answer: "Yes. The program fee is all-inclusive, covering tuition, hostel accommodation, mess facilities (meals), learning materials, and career support.",
@@ -114,10 +114,10 @@ const placementsFAQs = [
     question: "What is the average salary package?",
     answer: "Average salary packages vary by program and individual profile, typically ranging from ₹6-15 LPA for entry-level roles. Top performers secure offers of ₹15-30 LPA+ from leading companies.",
   },
-  {
-    question: "Will I get help with interview preparation?",
-    answer: "Yes. We provide extensive interview preparation including technical mock interviews, HR coaching, aptitude training, and certification exam preparation.",
-  },
+  // {
+  //   question: "Will I get help with interview preparation?",
+  //   answer: "Yes. We provide extensive interview preparation including technical mock interviews, HR coaching, aptitude training, and certification exam preparation.",
+  // },
 ];
 
 const technicalFAQs = [
