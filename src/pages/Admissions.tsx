@@ -405,8 +405,8 @@ const Admissions = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Refund Policy</h3>
             <p className="text-muted-foreground">
-              Admission and registration fees are non-refundable. If a learner is required to leave because of academic performance,
-              attendance, or disciplinary action, no refunds apply. Voluntary withdrawals follow the slabs below.
+            Admission fee and registration fee are non-refundable.  In case the student is forced to leave due to reasons of academic performance, attendance or disciplinary action at any stage of the program no refunds will be applicable.
+             In the event of students dropping out of the program voluntarily applicable refunds will be as follows:
             </p>
           </div>
 
@@ -457,7 +457,7 @@ const Admissions = () => {
           </div>
 
           <p className="text-xs text-muted-foreground text-center">
-            * Refund processing follows IITGN CDF finance timelines. Any administrative deductions (if applicable) will be communicated in the offer letter.
+            * Refund and Withdrawal requests will be according to the IIT Gandhinagar Refund Policy.
           </p>
         </div>
       </section>
