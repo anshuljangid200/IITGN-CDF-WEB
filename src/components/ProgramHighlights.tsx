@@ -200,14 +200,10 @@ const ProgramHighlights = () => {
                   <figure className="relative overflow-hidden rounded-[1.75rem] border border-border/70 bg-muted/20 shadow-soft min-h-[320px]">
                     <img
                       src={program.banner}
-                      alt={`${program.title} certificate preview`}
+                      alt={`${program.title} certificate`}
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-6 py-4 text-primary-foreground">
-                      <p className="text-sm font-semibold uppercase tracking-[0.2em]">IITGN · Futurense</p>
-                      <p className="text-base">Program Certificate Preview</p>
-                    </figcaption>
                   </figure>
                 </div>
               </article>

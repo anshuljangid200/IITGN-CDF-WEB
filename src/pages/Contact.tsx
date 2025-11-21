@@ -13,7 +13,7 @@ import { toast } from "@/components/ui/use-toast";
 import HeroSection from "@/components/HeroSection";
 
 const Contact = () => {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -28,11 +28,57 @@ const Contact = () => {
       return;
     }
 
-    form.reset();
-    toast({
-      title: "Message sent successfully",
-      description: "We'll get back to you within 24-48 hours.",
-    });
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: phoneInput,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      // Show loading state
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span class="animate-spin mr-2">⏳</span>Sending...';
+
+      // Call API endpoint
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        form.reset();
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24-48 hours.",
+        });
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Failed to send message",
+        description: error instanceof Error ? error.message : "Please try again later or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      // Reset button state
+      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<SendIcon className="w-4 h-4 mr-2" /> Get in Touch!';
+      }
+    }
   };
 
   return (

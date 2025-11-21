@@ -52,11 +52,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://sites.iitgn.ac.in/iitgnx/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium hover:translate-x-1 inline-block">
-                  IITGNX
-                </a>
-              </li>
-              <li>
                 <a href="https://iitgn.ac.in" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium hover:translate-x-1 inline-block">
                   IITGN Website
                 </a>

@@ -73,10 +73,6 @@ const feeFAQs = [
   //   answer: "Please contact our admissions office for detailed fee structure. Fee includes tuition, accommodation, meals, learning resources, and career support.",
   // },
   {
-    question: "Are loan and EMI options available for payment?",
-    answer: "Yes, education finance partners are typically available for eligible candidates, allowing the fee to be paid via EMI plans through these partners.",
-  },
-  {
     question: "Are loans or EMIs available?",
     answer: "Financial aid is available for eligible candidates through loan and EMI (Equated Monthly Installment) options offered in partnership with established education financing institutions such as Propelld, Avanse, IDFC, and ICICI. To apply for financing, candidates typically need to provide basic documentation including their Aadhaar Card, PAN Card, bank statements, payslips if employed, academic records, and a recent photograph.",
   },
@@ -146,7 +142,7 @@ const technicalFAQs = [
 const postProgramFAQs = [
   {
     question: "What happens after I complete the program?",
-    answer: "You receive: IIT Gandhinagar Competency Development Foundation Program certificate, access to alumni network.",
+    answer: "You receive a certificate issued by Competency Advancement Academy AND IITGN, access to executive alumni network",
   },
   // {
   //   question: "Can I pursue further studies after this program?",
