@@ -49,7 +49,7 @@ const members: Member[] = [
   {
     id: "sam-placid",
     name: "Shri Sam Placid",
-    title: "Chief Executive Officer, IITGN Competency Development Foundation\nFormer Chief - Executive Education & Corporate Relations",
+    title: "Chief Executive Officer, IITGN Competency Development Foundation\nFormer Chief - Executive Education & Corporate Relations, XLRI",
     bio: "Shri Sam Placid serves as CEO of IITGN CDF, bringing deep experience in executive education and corporate partnership development. He leads program delivery, industry engagement, and strategic operations for the foundation.",
     imgSrc: "/images/Board_4.jpg",
     linkedin: "https://www.linkedin.com/in/psam01/",

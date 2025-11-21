@@ -82,7 +82,7 @@ const Header = () => {
               {/* TEXT GROUP */}
               <div className="ml-3 sm:ml-4 flex flex-col justify-center leading-tight font-sans">
                 <span className="text-base sm:text-lg md:text-xl font-semibold tracking-tight text-foreground">
-                  IITG CDF
+                  IITGN CDF
                 </span>
                 <span className="text-[0.70rem] sm:text-xs md:text-sm font-medium tracking-tight text-muted-foreground">
                   Competency Development
