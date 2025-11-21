@@ -119,7 +119,7 @@ const feeCards = [
     icon: <RefreshCw className="w-6 h-6" />,
     title: "Refund Policy",
     details:
-      "Refunds follow institutional guidelines. Any withdrawal requests are processed as per IITGN CDF’s published timelines.",
+      "Refunds follow institutional guidelines. Any withdrawal requests are processed as per IITGN CAA's published timelines.",
   },
 ];
 

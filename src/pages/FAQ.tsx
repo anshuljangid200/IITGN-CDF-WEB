@@ -54,7 +54,7 @@ const programFAQs = [
     answer: "English",
   },
   {
-    question: "What is the typical class size?",
+    question: "What is the TYPICAL CLASS size?",
     answer: "The typical size is 60.",
   },
   {
