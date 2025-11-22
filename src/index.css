@@ -150,7 +150,7 @@
   }
 
   a {
-    @apply hover:text-primary hover:underline;
+    @apply hover:text-primary no-underline;
   }
 }
 
