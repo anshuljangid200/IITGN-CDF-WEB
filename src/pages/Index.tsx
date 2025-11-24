@@ -1,10 +1,4 @@
-import {
-  ArrowRight,
-  Brain,
-  Database,
-  Cloud,
-  Code,
-} from "lucide-react";
+import { ArrowRight, Brain, Database, Cloud, Code, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Header from "@/components/Header";
@@ -29,7 +23,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
 
         <div className="container relative mx-auto px-4 lg:px-8 text-center">
-          <div className="inline-flex items-center space-x-2 bg-black/40 text-primary-foreground px-4 py-2 rounded-full mb-4 backdrop-blur-lg border border-white/20 shadow-md mx-auto">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-5 py-2 text-sm font-semibold mb-4 shadow-sm border border-primary/20">
+            <Sparkles className="w-4 h-4" aria-hidden="true" />
             <span>Experience World-Class Education</span>
           </div>
 
