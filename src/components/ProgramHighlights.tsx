@@ -21,7 +21,7 @@ type ProgramHighlight = {
 const programs: ProgramHighlight[] = [
   {
     value: "aiml",
-    title: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
+    title: "PG Diploma in AI-ML & Agentic AI Engineering",
     description:
       "Design production-grade LLM workflows, multi-agent pipelines, and responsible AI systems that combine LangChain, LangGraph, AutoGen, and CrewAI.",
     route: "/gen-ai-agentic-aiml",
