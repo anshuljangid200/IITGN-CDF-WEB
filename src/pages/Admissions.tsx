@@ -147,7 +147,7 @@ const programRefund = [
 ];
 
 const hostelRefund = [
-  { period: "Within the first 15 days", amount: "₹30,000" },
+  { period: "Within the first 15 days", amount: "NIL" },
   { period: "Beyond 15 days", amount: "NIL" },
 ];
 
