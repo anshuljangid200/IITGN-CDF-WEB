@@ -62,7 +62,7 @@ const whyChooseUs = [
   {
     title: "Applied Learning Focus",
     description:
-      "50-60% of program hours devoted to hands-on labs, projects, capstones, and real-world problem-solving.",
+      "60% of program hours devoted to hands-on labs, projects, capstones, and real-world problem-solving.",
   },
   {
     title: "Emerging Technology Specialization",
