@@ -64,7 +64,7 @@ const programs: ProgramHighlight[] = [
   },
   {
     value: "software-cloud",
-    title: "PG Diploma in AI-Powered Software Engineering with Cloud",
+    title: "PG Diploma in AI Drive Cloud based Software Development",
     description:
       "Ship AI-augmented full-stack products with Java/Spring, React/Next.js, DevOps, and continuous delivery across AWS/Azure.",
     route: "/gen-ai-software-cloud",
