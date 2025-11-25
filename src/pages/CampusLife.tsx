@@ -63,7 +63,7 @@ const masonryCategories = [
 
 const gridCategories = [
   {
-    title: "Advanced Labs",
+    // title: "Advance Labs",
     description: "AI pods, clean rooms, and rapid prototyping bays with 24/7 access.",
     media: createGallery("Labs", ["labs-01.jpg", "labs-02.jpg", "labs-03.jpg", "labs-04.jpg", "labs-05.jpg", "labs-06.jpg"]),
   },
@@ -291,7 +291,7 @@ const CampusLife = () => {
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Labs & Library Spotlight</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Library Spotlight</h2>
             <p className="text-lg text-muted-foreground">
               Tap any tile to open a responsive lightbox and explore the academic infrastructure in detail.
             </p>
@@ -407,14 +407,6 @@ const CampusLife = () => {
                   <li className="flex items-start space-x-2">
                     <span className="text-primary mt-1">•</span>
                     <span>Smart classrooms with AV systems and smart boards</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>Dedicated GPU clusters for deep learning workloads</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>Cloud computing credits (AWS, Azure, GCP)</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-primary mt-1">•</span>

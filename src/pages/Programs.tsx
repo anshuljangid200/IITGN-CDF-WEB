@@ -71,7 +71,7 @@ const feeStructure = [
   },
   {
     label: "Residential & Operations Fee",
-    amount: "₹1,25,000 + 5% GST",
+    amount: "₹1,25,000 + Applicable GST",
     description: "Mandatory on-campus stay with hostel, utilities, dining, and student services.",
   },
   {

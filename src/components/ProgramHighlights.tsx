@@ -21,7 +21,7 @@ type ProgramHighlight = {
 const programs: ProgramHighlight[] = [
   {
     value: "aiml",
-    title: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
+    title: "PG Diploma in AI-ML & Agentic AI Engineering",
     description:
       "Design production-grade LLM workflows, multi-agent pipelines, and responsible AI systems that combine LangChain, LangGraph, AutoGen, and CrewAI.",
     route: "/gen-ai-agentic-aiml",
@@ -64,7 +64,7 @@ const programs: ProgramHighlight[] = [
   },
   {
     value: "software-cloud",
-    title: "PG Diploma in AI-Powered Software Engineering with Cloud",
+    title: "PG Diploma in AI Driven Cloud based Software Development",
     description:
       "Ship AI-augmented full-stack products with Java/Spring, React/Next.js, DevOps, and continuous delivery across AWS/Azure.",
     route: "/gen-ai-software-cloud",
