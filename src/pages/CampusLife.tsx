@@ -410,14 +410,6 @@ const CampusLife = () => {
                   </li>
                   <li className="flex items-start space-x-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Dedicated GPU clusters for deep learning workloads</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>Cloud computing credits (AWS, Azure, GCP)</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="text-primary mt-1">•</span>
                     <span>24/7 library with technical collections and digital resources</span>
                   </li>
                   <li className="flex items-start space-x-2">
