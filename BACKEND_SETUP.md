@@ -1,222 +1,171 @@
-# Backend Setup Guide for Contact Form
+# Backend Setup (Fastify + Neon + Drizzle)
 
-This guide will help you set up the backend server to handle contact form submissions and send them to Google Sheets and/or Email.
+This repository now ships with a fully modern Fastify backend dedicated to handling:
 
-## Quick Start
+- Get in Touch submissions
+- Schedule a Campus Visit submissions
+- Admin dashboards for reviewing submissions
 
-### 1. Install Dependencies
+All persistence is managed through Neon Postgres via the Neon Connect VS Code extension, Drizzle ORM, and checked-in migrations.
+
+---
+
+## 1. Install & configure
 
 ```bash
+cd backend
 npm install
 ```
 
-This will install:
-- `express` - Web server framework
-- `cors` - CORS middleware
-- `dotenv` - Environment variables
-- `googleapis` - Google Sheets API
-- `nodemailer` - Email sending
-- `concurrently` - Run frontend and backend together
+Create `backend/.env` (or use the Neon Connect “Create .env” action) using `env.template` as a reference:
 
-### 2. Create Environment File
-
-Create a `.env` file in the root directory:
-
-```env
-# Server Configuration
-PORT=3001
-
-# Google Sheets API Configuration (Optional)
-GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account@project-id.iam.gserviceaccount.com
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour Private Key Here\n-----END PRIVATE KEY-----\n"
-GOOGLE_SHEET_ID=your-google-sheet-id-here
-
-# Email Configuration (Optional)
-EMAIL_SERVICE=gmail
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password-here
-CONTACT_EMAIL=cdf@iitgn.ac.in
+```ini
+NEON_DATABASE_URL=postgres://...
+ADMIN_API_KEY=generate_a_long_random_string
+RATE_LIMIT_MAX=60
+RATE_LIMIT_WINDOW=60
+NODE_ENV=development
 ```
 
-**Important:** Add `.env` to `.gitignore` to keep your credentials safe!
+> Keep the file outside of version control. For production, set the same variables in your hosting provider.
 
-### 3. Configure Google Sheets (Optional)
+---
 
-#### Step 1: Create a Google Cloud Project
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select an existing one
+## 2. Database via Neon Connect
 
-#### Step 2: Enable Google Sheets API
-1. Go to "APIs & Services" > "Library"
-2. Search for "Google Sheets API"
-3. Click "Enable"
+1. Run the Neon Connect “Link Database” command to provision a project and inject the connection string into `.env`.
+2. Execute `npm run drizzle:push` to apply the SQL in `drizzle/0000_init.sql`.
+3. The Drizzle client auto-loads the `contact_messages`, `campus_visits`, and `admin_audit_log` tables from `src/db/schema.ts`.
 
-#### Step 3: Create Service Account
-1. Go to "IAM & Admin" > "Service Accounts"
-2. Click "Create Service Account"
-3. Name it (e.g., "contact-form-service")
-4. Click "Create and Continue"
-5. Grant it "Editor" role (optional)
-6. Click "Done"
+You can inspect generated SQL in the `drizzle` directory at any time.
 
-#### Step 4: Create JSON Key
-1. Click on the created service account
-2. Go to "Keys" tab
-3. Click "Add Key" > "Create new key"
-4. Select "JSON" format
-5. Download the JSON file
+---
 
-#### Step 5: Extract Credentials
-From the downloaded JSON file, copy:
-- `client_email` → `GOOGLE_SERVICE_ACCOUNT_EMAIL` in `.env`
-- `private_key` → `GOOGLE_PRIVATE_KEY` in `.env` (keep the quotes and `\n`)
-
-#### Step 6: Create and Share Google Sheet
-1. Create a new Google Sheet
-2. Add headers in Row 1: `Timestamp`, `Name`, `Email`, `Phone`, `Subject`, `Message`
-3. Click "Share" button
-4. Paste the service account email (from JSON)
-5. Give it "Editor" access
-6. Copy the Sheet ID from URL: `https://docs.google.com/spreadsheets/d/SHEET_ID_HERE/edit`
-7. Paste Sheet ID to `GOOGLE_SHEET_ID` in `.env`
-
-### 4. Configure Gmail (Optional)
-
-#### Step 1: Enable 2-Step Verification
-1. Go to [Google Account Security](https://myaccount.google.com/security)
-2. Enable "2-Step Verification" if not already enabled
-
-#### Step 2: Generate App Password
-1. Go to [App Passwords](https://myaccount.google.com/apppasswords)
-2. Select "Mail" as app
-3. Select "Other (Custom name)" as device
-4. Enter "Contact Form Backend"
-5. Click "Generate"
-6. Copy the 16-character password
-7. Paste to `EMAIL_PASS` in `.env`
-
-#### Step 3: Update Environment Variables
-- `EMAIL_USER` = Your Gmail address (used to send emails)
-- `EMAIL_PASS` = The app password from Step 2
-- `CONTACT_EMAIL` = Where to receive contact form emails (defaults to `cdf@iitgn.ac.in` if not set)
-
-### 5. Run the Server
+## 3. Develop & run
 
 ```bash
-# Run only backend server
-npm run dev:server
-
-# Run both frontend and backend together
-npm run dev:all
-
-# Run only frontend (default)
+# Type-safe dev server with hot reload
 npm run dev
+
+# Production build
+npm run build && npm start
 ```
 
-The backend server will start on `http://localhost:3001`
+The server listens on `http://localhost:3333` by default.
 
-### 6. Test the Setup
+---
 
-Visit `http://localhost:3001/api/health` to check:
-- Server status
-- Which services are configured (Google Sheets, Email)
+## 4. API overview
 
-## API Endpoints
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/api/health` | GET | Readiness probe |
+| `/api/forms/contact` | POST | “Get in Touch” submissions |
+| `/api/forms/visit` | POST | “Schedule a Campus Visit” submissions |
+| `/api/admin/dashboard` | GET | Aggregate stats (API key required) |
+| `/api/admin/contact` | GET | Paginated contact entries (API key required) |
+| `/api/admin/visits` | GET | Paginated visit entries (API key required) |
 
-### POST `/api/contact`
-Submit a contact form.
+### Request bodies
 
-**Request:**
 ```json
+POST /api/forms/contact
 {
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "+919876543210",
-  "subject": "Inquiry",
-  "message": "Hello, I would like to know more..."
+  "fullName": "Aditi Sharma",
+  "email": "aditi@example.com",
+  "phone": "+91 98765 43210",
+  "organization": "Acme Corp",
+  "programInterest": "AI-ML",
+  "message": "Share the detailed brochure please.",
+  "honeypot": ""
 }
 ```
 
-**Response:**
 ```json
+POST /api/forms/visit
 {
-  "success": true,
-  "message": "Your message has been sent successfully!",
-  "results": {
-    "googleSheets": true,
-    "email": true
-  }
+  "visitorName": "Campus Outreach Team",
+  "organization": "IITGN Alumni",
+  "email": "team@example.com",
+  "phone": "+1-555-123-9999",
+  "preferredDate": "2025-01-10",
+  "participants": 5,
+  "notes": "Need projector and EV parking.",
+  "honeypot": ""
 }
 ```
 
-### GET `/api/health`
-Check server health and configuration.
+Both endpoints automatically:
 
-**Response:**
-```json
-{
-  "status": "ok",
-  "timestamp": "2024-01-01T12:00:00.000Z",
-  "services": {
-    "googleSheets": true,
-    "email": true
-  }
+- Validate payloads via Zod
+- Log IP address & user agent
+- Score spam (honeypot + heuristics)
+- Rate-limit requests
+- Store in Neon Postgres
+- Emit structured JSON responses
+
+### Admin access
+
+Supply `x-admin-key: <ADMIN_API_KEY>` header on every `/api/admin/*` request. Responses include pagination metadata and exclude spam unless `?includeSpam=true` is provided.
+
+---
+
+## 5. Frontend fetch helpers
+
+```ts
+// submit contact form
+async function submitContact(payload: ContactPayload) {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/forms/contact`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return res.json();
+}
+
+// submit campus visit
+async function scheduleVisit(payload: VisitPayload) {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/forms/visit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return res.json();
+}
+
+// list submissions for admins
+async function fetchContactAdmin(page = 1) {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/admin/contact?page=${page}`,
+    { headers: { "x-admin-key": import.meta.env.VITE_ADMIN_KEY } }
+  );
+  return res.json();
 }
 ```
 
-## Frontend Configuration
+Keep admin keys outside the public bundle (e.g., supply them via a secure admin dashboard or server-side proxy).
 
-Create or update `.env` in the root (or `src/.env.local`):
+---
 
-```env
-VITE_API_URL=http://localhost:3001
-```
+## 6. Security, spam & observability
 
-For production, set it to your deployed backend URL:
-```env
-VITE_API_URL=https://api.yourdomain.com
-```
+- `@fastify/rate-limit` defends against bursts (configurable via env).
+- Honeypot + heuristic scoring marks suspicious submissions without discarding data.
+- Helmet + CORS locked to GET/POST with credential support.
+- Admin traffic logged into `admin_audit_log`.
+- Structured logging through Fastify’s pino logger.
 
-## Troubleshooting
+Add more controls (JWT, email notifications, reCAPTCHA, etc.) as needed.
 
-### Google Sheets Not Working?
-- ✅ Check service account email has access to the sheet
-- ✅ Verify Sheet ID is correct (the long string in the URL)
-- ✅ Make sure headers are in Row 1 of Sheet1
-- ✅ Check `GOOGLE_PRIVATE_KEY` includes `\n` for line breaks
+---
 
-### Email Not Sending?
-- ✅ Use App Password, not regular Gmail password
-- ✅ Make sure 2-Step Verification is enabled
-- ✅ Check email service is set correctly (`gmail`, `outlook`, etc.)
+## 7. Deployment checklist
 
-### CORS Errors?
-- The server accepts all origins in development
-- For production, update CORS settings in `server/index.js`
+1. Provision Neon project (done through Neon Connect).
+2. Set env vars on the platform (Render, Fly, Railway, etc.).
+3. `npm run build` and start with `node dist/server.js`.
+4. Point the frontend `VITE_API_URL` to the deployed backend.
+5. Rotate `ADMIN_API_KEY` periodically and deliver via secure channel.
 
-### Port Already in Use?
-- Change `PORT` in `.env` to a different port (e.g., 3002)
-- Update `VITE_API_URL` in frontend `.env` accordingly
-
-## Production Deployment
-
-1. **Set Environment Variables** on your hosting platform (Vercel, Railway, Heroku, etc.)
-2. **Update Frontend Build** with your production API URL
-3. **Ensure Backend is Accessible** from your frontend domain
-4. **Use HTTPS** for security in production
-
-## Security Notes
-
-- ⚠️ Never commit `.env` file to git
-- ⚠️ Keep service account keys secure
-- ⚠️ Use environment variables in production
-- ⚠️ Enable HTTPS in production
-- ⚠️ Consider rate limiting for production
-
-## Need Help?
-
-Check the server logs for detailed error messages. The server will log:
-- ✅ Successful submissions to Google Sheets
-- ✅ Successful email sends
-- ❌ Any errors with detailed messages
+You now have a production-ready backend tailored for IITGN’s forms. Extend `src/routes` with additional modules following the existing plugin pattern.
 

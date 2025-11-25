@@ -1,12 +1,13 @@
 import Fastify from "fastify";
-import { env } from "./env";
-import { securityPlugin } from "./plugins/security";
-import { rateLimitPlugin } from "./plugins/rate-limit";
-import { dbPlugin } from "./plugins/db";
-import { contactRoutes } from "./routes/contact";
-import { visitRoutes } from "./routes/visit";
-import { adminRoutes } from "./routes/admin";
-import { healthRoutes } from "./routes/health";
+import { randomUUID } from "node:crypto";
+import { env } from "./env.ts";
+import { securityPlugin } from "./plugins/security.ts";
+import { rateLimitPlugin } from "./plugins/rate-limit.ts";
+import { dbPlugin } from "./plugins/db.ts";
+import { contactRoutes } from "./routes/contact.ts";
+import { visitRoutes } from "./routes/visit.ts";
+import { adminRoutes } from "./routes/admin.ts";
+import { healthRoutes } from "./routes/health.ts";
 
 export const buildApp = () => {
   const app = Fastify({
@@ -17,7 +18,7 @@ export const buildApp = () => {
 
   app.addHook("onRequest", async (request) => {
     request.headers["x-request-id"] =
-      request.headers["x-request-id"] ?? crypto.randomUUID();
+      request.headers["x-request-id"] ?? randomUUID();
   });
 
   app.register(securityPlugin);

@@ -146,11 +146,6 @@ const programRefund = [
   { period: "Beyond 15 days", amount: "NIL" },
 ];
 
-const hostelRefund = [
-  { period: "Within the first 15 days", amount: "₹30,000" },
-  { period: "Beyond 15 days", amount: "NIL" },
-];
-
 const Admissions = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -410,45 +405,34 @@ const Admissions = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
-              <div className="px-6 py-5 border-b border-border/60">
-                <h4 className="text-xl font-semibold text-foreground">Program Fees Refund</h4>
+          <div className="grid grid-cols-1 gap-8">
+            <div className="rounded-[1.75rem] border border-border/60 bg-gradient-to-br from-card via-card/95 to-card shadow-soft overflow-hidden max-w-3xl mx-auto">
+              <div className="px-5 py-4 border-b border-border/50 flex items-center gap-3 bg-muted/30">
+                <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-semibold">
+                  ₹
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-foreground">Program Fees Refund</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Applicable when a participant voluntarily withdraws from the program.
+                  </p>
+                </div>
               </div>
-              <table className="w-full text-sm">
-                <thead className="text-left text-muted-foreground uppercase tracking-wide text-xs bg-muted/50">
+              <table className="w-full text-xs sm:text-sm">
+                <thead className="text-left text-muted-foreground uppercase tracking-wide text-[0.65rem] sm:text-xs bg-muted/40">
                   <tr>
-                    <th className="px-6 py-3 font-semibold">Period</th>
-                    <th className="px-6 py-3 font-semibold">Refundable Amount</th>
+                    <th className="px-4 py-3 font-semibold">Period</th>
+                    <th className="px-4 py-3 font-semibold text-right">Refundable Amount</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {programRefund.map((row) => (
-                    <tr key={row.period} className="border-t border-border/60">
-                      <td className="px-6 py-4 font-medium text-foreground">{row.period}</td>
-                      <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
-              <div className="px-6 py-5 border-b border-border/60">
-                <h4 className="text-xl font-semibold text-foreground">Hostel Fees Refund</h4>
-              </div>
-              <table className="w-full text-sm">
-                <thead className="text-left text-muted-foreground uppercase tracking-wide text-xs bg-muted/50">
-                  <tr>
-                    <th className="px-6 py-3 font-semibold">Period</th>
-                    <th className="px-6 py-3 font-semibold">Refundable Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {hostelRefund.map((row) => (
-                    <tr key={row.period} className="border-t border-border/60">
-                      <td className="px-6 py-4 font-medium text-foreground">{row.period}</td>
-                      <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
+                  {programRefund.map((row, index) => (
+                    <tr
+                      key={row.period}
+                      className={`border-t border-border/40 ${index % 2 === 0 ? "bg-card/60" : "bg-card/40"}`}
+                    >
+                      <td className="px-4 py-3 font-medium text-foreground">{row.period}</td>
+                      <td className="px-4 py-3 text-primary font-semibold text-right">{row.amount}</td>
                     </tr>
                   ))}
                 </tbody>
