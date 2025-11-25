@@ -146,10 +146,10 @@ const programRefund = [
   { period: "Beyond 15 days", amount: "NIL" },
 ];
 
-const hostelRefund = [
-  { period: "Within the first 15 days", amount: "NIL" },
-  { period: "Beyond 15 days", amount: "NIL" },
-];
+// const hostelRefund = [
+//   { period: "Within the first 15 days", amount: "NIL" },
+//   { period: "Beyond 15 days", amount: "NIL" },
+// ];
 
 const Admissions = () => {
   return (
@@ -433,7 +433,7 @@ const Admissions = () => {
               </table>
             </div>
 
-            <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
+            {/* <div className="rounded-[2rem] border border-border/70 bg-card/95 shadow-soft overflow-hidden">
               <div className="px-6 py-5 border-b border-border/60">
                 <h4 className="text-xl font-semibold text-foreground">Hostel Fees Refund</h4>
               </div>
@@ -454,7 +454,7 @@ const Admissions = () => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> */}
 
           <p className="text-xs text-muted-foreground text-center">
             * Refund and Withdrawal requests will be according to the IIT Gandhinagar Refund Policy.
