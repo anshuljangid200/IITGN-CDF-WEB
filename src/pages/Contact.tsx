@@ -163,7 +163,7 @@ const Contact = () => {
                 title="Office Hours"
                 content={[
                   "Monday – Friday",
-                  "9:00 AM – 6:00 PM IST"
+                  "10:00 AM – 6:00 PM IST"
                 ]}
               />
             </div>
