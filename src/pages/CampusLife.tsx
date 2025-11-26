@@ -22,11 +22,11 @@ const highlightSlides = [
     description: "Mid-semester showcases, theatre clubs, and design collectives adding color to evenings.",
     image: buildMediaPath("Culturals", "culturals-04.jpg"),
   },
-  {
-    title: "High-Performance Labs",
-    description: "Hands-on experimentation, rapid prototyping, and simulations under faculty mentorship.",
-    image: buildMediaPath("Labs", "labs-02.jpg"),
-  },
+  // {
+  //   title: "High-Performance Labs",
+  //   description: "Hands-on experimentation, rapid prototyping, and simulations under faculty mentorship.",
+  //   image: buildMediaPath("Labs", "labs-02.jpg"),
+  // },
   {
     title: "Sports Complex",
     description: "Indoor arenas, outdoor fields, and aquatics teams training under floodlights.",
@@ -95,8 +95,8 @@ const panoramaShots = [
 const features = [
   {
     icon: <Laptop className="w-6 h-6" />,
-    title: "High-Performance Computing Labs",
-    description: "GPU clusters for deep learning, cloud credits for AWS/Azure/GCP, latest development tools",
+    title: "Smart Classrooms",
+    description: "Modern learning spaces equipped with interactive boards, digital collaboration tools, and flexible seating designed to support engaging teaching and peer learning.",
   },
   {
     icon: <BookOpen className="w-6 h-6" />,
