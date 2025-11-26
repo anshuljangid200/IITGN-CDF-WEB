@@ -62,11 +62,11 @@ const masonryCategories = [
 ];
 
 const gridCategories = [
-  {
-    // title: "Advance Labs",
-    description: "AI pods, clean rooms, and rapid prototyping bays with 24/7 access.",
-    media: createGallery("Labs", ["labs-01.jpg", "labs-02.jpg", "labs-03.jpg", "labs-04.jpg", "labs-05.jpg", "labs-06.jpg"]),
-  },
+  // {
+  //   // title: "Advance Labs",
+  //   description: "AI pods, clean rooms, and rapid prototyping bays with 24/7 access.",
+  //   media: createGallery("Labs", ["labs-01.jpg", "labs-02.jpg", "labs-03.jpg", "labs-04.jpg", "labs-05.jpg", "labs-06.jpg"]),
+  // },
   {
     title: "Library & Learning Commons",
     description: "Sunlit reading decks, multilingual collections, and digital archives with collaborative pods.",
