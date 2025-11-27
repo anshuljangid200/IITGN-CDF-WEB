@@ -54,3 +54,15 @@ export const adminAuditLog = pgTable("admin_audit_log", {
     .default(sql`now()`),
 });
 
+export const partnerApplications = pgTable("partner_applications", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  fullName: varchar("full_name", { length: 120 }).notNull(),
+  email: varchar("email", { length: 160 }).notNull(),
+  expertise: varchar("expertise", { length: 120 }),
+  linkedinUrl: varchar("linkedin_url", { length: 320 }).notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .default(sql`now()`),
+});
+

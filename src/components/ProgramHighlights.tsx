@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Sparkles, Info } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type ProgramHighlight = {
@@ -111,25 +112,35 @@ const ProgramHighlights = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 lg:space-y-12">
-          <TabsList
-            aria-label="Select a program to review highlights"
-            className="flex w-full snap-x snap-mandatory overflow-x-auto gap-3 rounded-2xl bg-muted/80 p-3 mb-8 sm:mb-10 backdrop-blur supports-[backdrop-filter]:bg-muted/70 no-scrollbar scroll-pb-4 scroll-pl-2 sm:grid sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {programs.map((program) => (
-              <TabsTrigger
-                key={program.value}
-                value={program.value}
-                className={cn(
-                  "flex h-full w-full items-center justify-center rounded-2xl border px-5 py-4 text-center text-sm font-semibold transition-all snap-center",
-                  "min-h-[74px] min-w-[240px] sm:min-w-0 sm:min-h-[90px] lg:min-h-[110px]",
-                  "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-large data-[state=active]:border-primary/40",
-                  "data-[state=inactive]:text-muted-foreground data-[state=inactive]:border-transparent hover:text-primary hover:border-primary/20"
-                )}
+          <div className="relative -mx-4 mb-6 sm:mx-0 sm:mb-8">
+            <div
+              className="panorama-scroll no-scrollbar overflow-x-auto px-1 py-1 scroll-smooth snap-x snap-mandatory touch-pan-x sm:overflow-visible"
+              role="presentation"
+              aria-label="Program highlights navigation"
+            >
+              <TabsList
+                aria-label="Select a program to review highlights"
+                className="flex min-w-max gap-3 rounded-2xl bg-muted/80 p-3 backdrop-blur supports-[backdrop-filter]:bg-muted/70 sm:min-w-full sm:grid sm:grid-cols-2 lg:grid-cols-3"
               >
-                <span className="block text-sm sm:text-base leading-snug">{program.title}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
+                {programs.map((program) => (
+                  <TabsTrigger
+                    key={program.value}
+                    value={program.value}
+                    className={cn(
+                      "flex h-full w-full items-center justify-center rounded-2xl border px-5 py-4 text-center text-sm font-semibold transition-all snap-center",
+                      "min-h-[74px] min-w-[240px] sm:min-w-0 sm:min-h-[90px] lg:min-h-[110px]",
+                      "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-large data-[state=active]:border-primary/40",
+                      "data-[state=inactive]:text-muted-foreground data-[state=inactive]:border-transparent hover:text-primary hover:border-primary/20"
+                    )}
+                  >
+                    <span className="block text-sm sm:text-base leading-snug">{program.title}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
+            <div className="pointer-events-none absolute inset-y-4 left-0 w-6 bg-gradient-to-r from-background to-transparent sm:hidden" />
+            <div className="pointer-events-none absolute inset-y-4 right-0 w-6 bg-gradient-to-l from-background to-transparent sm:hidden" />
+          </div>
 
           {programs.map((program) => (
             <TabsContent key={program.value} value={program.value} className="mt-8 lg:mt-10">
@@ -174,12 +185,13 @@ const ProgramHighlights = () => {
                       ))}
                     </ul>
 
-                    <Link
-                      to={program.route}
-                      className="inline-flex items-center justify-center rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-medium transition hover:opacity-90"
+                    <Button
+                      asChild
+                      variant="cta"
+                      className="rounded-full px-6 text-sm font-semibold"
                     >
-                      Explore Program
-                    </Link>
+                      <Link to={program.route}>Explore Program</Link>
+                    </Button>
 
                     {/* Common Foundation Info */}
                     <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-4">

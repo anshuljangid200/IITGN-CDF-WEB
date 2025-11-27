@@ -41,24 +41,15 @@ const Index = () => {
             Development with Generative AI and Cloud.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-3">
-            <Button
-              asChild
-              size="sm"
-              className="bg-gradient-primary hover:opacity-90 shadow-medium group px-5 py-2 text-sm font-medium rounded-full"
-            >
+          <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+            <Button asChild variant="cta" size="lg" className="group rounded-full px-6">
               <Link to="/admissions" className="flex items-center space-x-2">
                 <span>Apply Now</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
 
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              className="border-2 hover:bg-muted px-5 py-2 text-sm font-medium rounded-full"
-            >
+            <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
               <Link to="/programs">Explore Programs</Link>
             </Button>
           </div>
@@ -109,17 +100,10 @@ const Index = () => {
               Engineer, Cloud Data Engineer, and more.
             </p>
 
-            <Button
-              asChild
-              size="sm"
-              className="bg-white text-primary hover:bg-white/90 shadow-large group px-6 py-2 text-sm font-semibold rounded-full"
-            >
-              <Link
-                to="/admissions"
-                className="flex items-center justify-center space-x-2"
-              >
+            <Button asChild size="lg" variant="ctaOnDark" className="group rounded-full px-8">
+              <Link to="/admissions" className="flex items-center justify-center space-x-2">
                 <span>Apply Now</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

@@ -174,11 +174,7 @@ const Admissions = () => {
             </p>
 
             {/* CTA */}
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-primary hover:opacity-90 shadow-medium"
-            >
+            <Button asChild size="lg" variant="cta" className="rounded-full px-8">
               <a
                 href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462"
                 target="_blank"
@@ -279,7 +275,7 @@ const Admissions = () => {
                 Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with
                 IIT faculty and industry mentors.
               </p>
-              <Button asChild size="lg" className="mt-8 bg-gradient-primary hover:opacity-90 shadow-medium">
+              <Button asChild size="lg" variant="cta" className="mt-8 rounded-full px-8">
                 <a href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462" target="_blank" rel="noopener noreferrer">
                   Apply Now
                 </a>
@@ -400,8 +396,8 @@ const Admissions = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Refund Policy</h3>
             <p className="text-muted-foreground">
-            Admission fee and registration fee are non-refundable.  In case the student is forced to leave due to reasons of academic performance, attendance or disciplinary action at any stage of the program no refunds will be applicable.
-             In the event of students dropping out of the program voluntarily applicable refunds will be as follows:
+              Admission fee and registration fee are non-refundable. In case the student is forced to leave due to reasons of academic performance, attendance or disciplinary action at any stage of the program no refunds will be applicable.
+              In the event of students dropping out of the program voluntarily, applicable refunds will be as follows:
             </p>
           </div>
 

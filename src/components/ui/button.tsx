@@ -15,6 +15,11 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        cta: "bg-gradient-primary text-primary-foreground shadow-soft ring-1 ring-primary/40 transition-all duration-300 hover:-translate-y-0.5 hover:brightness-[1.08] focus-visible:ring-primary/60 focus-visible:ring-offset-background focus-visible:ring-offset-2 active:translate-y-0",
+        ctaOutline:
+          "border border-primary/40 bg-transparent text-primary shadow-soft ring-1 ring-transparent transition-all duration-300 hover:bg-primary/5 hover:-translate-y-0.5 focus-visible:ring-primary/50 focus-visible:ring-offset-background focus-visible:ring-offset-2 active:translate-y-0",
+        ctaOnDark:
+          "bg-white text-primary shadow-large ring-1 ring-white/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-medium focus-visible:ring-white/70 focus-visible:ring-offset-background focus-visible:ring-offset-2 active:translate-y-0",
       },
       size: {
         default: "h-10 px-4 py-2",

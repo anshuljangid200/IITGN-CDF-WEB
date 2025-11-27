@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -291,12 +292,9 @@ const GenAIPoweredDataScience = () => {
 
       {/* CTA */}
       <section className="py-20 text-center">
-        <a
-          href="/admissions"
-          className="px-8 py-4 text-lg rounded-xl bg-gradient-primary text-primary-foreground font-semibold hover:opacity-90 transition"
-        >
-          Apply Now
-        </a>
+        <Button asChild size="lg" variant="cta" className="rounded-full px-10">
+          <Link to="/admissions">Apply Now</Link>
+        </Button>
       </section>
 
       <Footer />

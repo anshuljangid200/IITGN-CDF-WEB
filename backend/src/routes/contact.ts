@@ -5,9 +5,43 @@ import { getClientMetadata } from "../utils/request.ts";
 import { evaluateSpam } from "../services/spamGuard.ts";
 import { notifySubmission } from "../services/notification.ts";
 
+const pickString = (value: unknown) =>
+  typeof value === "string" ? value.trim() || undefined : undefined;
+
+const normalizePhone = (value?: string) => {
+  if (!value) return undefined;
+  const digits = value.replace(/[^\d+]/g, "");
+  if (!digits) return undefined;
+  return digits.startsWith("+") ? digits : `+${digits}`;
+};
+
+const normalizeContactPayload = (body: unknown) => {
+  if (!body || typeof body !== "object") return {};
+
+  const raw = body as Record<string, unknown>;
+  const phoneCandidate =
+    pickString(raw.phone) ??
+    pickString(raw.mobile) ??
+    pickString(raw.phoneNumber);
+
+  return {
+    fullName: pickString(raw.fullName) ?? pickString(raw.name),
+    email: pickString(raw.email),
+    phone: normalizePhone(phoneCandidate),
+    organization: pickString(raw.organization) ?? pickString(raw.company),
+    programInterest:
+      pickString(raw.programInterest) ?? pickString(raw.subject) ?? pickString(raw.track),
+    message: pickString(raw.message) ?? pickString(raw.notes),
+    honeypot:
+      pickString(raw.honeypot) ?? pickString(raw.website) ?? pickString(raw.botField),
+  };
+};
+
 export const contactRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post("/forms/contact", async (request, reply) => {
-    const payload = contactPayloadSchema.parse(request.body);
+    const payload = contactPayloadSchema.parse(
+      normalizeContactPayload(request.body),
+    );
     const client = getClientMetadata(request);
     const spamResult = evaluateSpam({
       message: payload.message,
@@ -38,9 +72,15 @@ export const contactRoutes: FastifyPluginAsync = async (fastify) => {
       spamScore: spamResult.score,
     });
 
+    const createdAt =
+      (record.createdAt instanceof Date ? record.createdAt : undefined) ??
+      new Date();
+
     return reply.status(201).send({
+      success: true,
       id: record.id,
       status: spamResult.isSpam ? "queued_for_review" : "accepted",
+      receivedAt: createdAt.toISOString(),
     });
   });
 };

@@ -14,6 +14,19 @@ interface CTABannerProps {
   className?: string;
 }
 
+type CTAStyleVariant = "cta" | "ctaOutline" | "ctaOnDark";
+
+const resolveVariant = (variant?: CTAButton["variant"]): CTAStyleVariant => {
+  switch (variant) {
+    case "outline":
+      return "ctaOutline";
+    case "secondary":
+      return "ctaOnDark";
+    default:
+      return "cta";
+  }
+};
+
 const CTABanner = ({ title, description, buttons, className = "" }: CTABannerProps) => {
   return (
     <div className={`bg-gradient-hero rounded-2xl p-8 lg:p-12 text-center shadow-large ${className}`}>
@@ -29,12 +42,8 @@ const CTABanner = ({ title, description, buttons, className = "" }: CTABannerPro
             key={index}
             asChild
             size="lg"
-            variant={button.variant}
-            className={
-              button.variant === "outline"
-                ? "border-white text-white hover:bg-white/10"
-                : "bg-white text-primary hover:bg-white/90 shadow-large"
-            }
+            variant={resolveVariant(button.variant)}
+            className="rounded-full px-8"
           >
             <Link to={button.href}>{button.text}</Link>
           </Button>

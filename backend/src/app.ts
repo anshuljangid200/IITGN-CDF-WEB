@@ -8,6 +8,7 @@ import { contactRoutes } from "./routes/contact.ts";
 import { visitRoutes } from "./routes/visit.ts";
 import { adminRoutes } from "./routes/admin.ts";
 import { healthRoutes } from "./routes/health.ts";
+import { partnerRoutes } from "./routes/partner.ts";
 
 export const buildApp = () => {
   const app = Fastify({
@@ -28,6 +29,7 @@ export const buildApp = () => {
   app.register(healthRoutes, { prefix: "/api" });
   app.register(contactRoutes, { prefix: "/api" });
   app.register(visitRoutes, { prefix: "/api" });
+  app.register(partnerRoutes, { prefix: "/api" });
   app.register(adminRoutes, { prefix: "/api" });
 
   app.setNotFoundHandler((request, reply) => {

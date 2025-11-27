@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,12 +110,15 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button
-              asChild
-              className="ml-4 bg-gradient-primary hover:opacity-90 transition-opacity shadow-soft"
+            <Link
+              to="/admissions"
+              className={cn(
+                buttonVariants({ variant: "cta", size: "lg" }),
+                "ml-4 hidden rounded-full px-6 py-2 md:inline-flex",
+              )}
             >
-              <Link to="/admissions">Apply Now</Link>
-            </Button>
+              Apply Now
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -159,7 +163,9 @@ const Header = () => {
           ))}
           <Button
             asChild
-            className="w-full rounded-2xl bg-gradient-primary py-3 text-base font-semibold hover:opacity-90 transition"
+            size="lg"
+            variant="cta"
+            className="w-full rounded-2xl py-3 text-base font-semibold"
           >
             <Link to="/admissions" onClick={() => setIsMenuOpen(false)}>
               Apply Now

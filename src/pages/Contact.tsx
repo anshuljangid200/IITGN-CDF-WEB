@@ -1,5 +1,20 @@
-import type { FormEvent } from "react";
-import { MapPin, Mail, Phone, Clock, Plane, Train, Car, Linkedin, Twitter, Facebook, Instagram, Youtube, SendIcon } from "lucide-react";
+import { FormEvent, useState } from "react";
+import {
+  MapPin,
+  Mail,
+  Phone,
+  Clock,
+  Plane,
+  Train,
+  Car,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+  Youtube,
+  SendIcon,
+  Loader2,
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactCard from "@/components/ContactCard";
@@ -12,72 +27,181 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import HeroSection from "@/components/HeroSection";
 
+const CONTACT_PROGRAM_OPTIONS = [
+  {
+    value: "aiml",
+    label: "PG Diploma in AI-ML & Agentic AI Engineering",
+  },
+  {
+    value: "data-science",
+    label: "PG Diploma in GenAI-Powered Data Science & Engineering",
+  },
+  {
+    value: "software-cloud",
+    label: "PG Diploma in AI Driven Cloud based Software Development",
+  },
+  {
+    value: "not-sure",
+    label: "I'm still exploring my options",
+  },
+];
+
+const API_TIMEOUT_MS = 12000;
+
+const sanitizeText = (value: FormDataEntryValue | null) => {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed.length ? trimmed : undefined;
+};
+
+const normalizePhoneNumber = (value: string) => {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length < 10 || digits.length > 15) {
+    return null;
+  }
+  return value.trim().startsWith("+") ? `+${digits}` : `+${digits}`;
+};
+
+const resolveApiBaseUrl = () => {
+  const envUrl = (import.meta.env.VITE_API_URL as string | undefined)?.trim();
+  if (envUrl) {
+    return envUrl.replace(/\/$/, "");
+  }
+
+  if (typeof window !== "undefined" && window.location?.origin) {
+    const isLocalHost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+
+    if (isLocalHost) {
+      return "http://localhost:3333";
+    }
+
+    return window.location.origin.replace(/\/$/, "");
+  }
+
+  return "http://localhost:3333";
+};
+
+type SubmissionFeedback = {
+  type: "success" | "error";
+  message: string;
+};
+
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionFeedback, setSubmissionFeedback] = useState<SubmissionFeedback | null>(null);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting) return;
+
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const phoneInput = ((formData.get("phone") as string) ?? "").replace(/\s+/g, "");
 
-    if (!/^\+\d{11,13}$/.test(phoneInput)) {
+    const fullName = sanitizeText(formData.get("fullName"));
+    const email = sanitizeText(formData.get("email"));
+    const organization = sanitizeText(formData.get("organization"));
+    const message = sanitizeText(formData.get("message"));
+    const programSelection = sanitizeText(formData.get("programInterest"));
+    const programInterest =
+      programSelection &&
+      CONTACT_PROGRAM_OPTIONS.find((option) => option.value === programSelection)?.label;
+    const normalizedPhone = normalizePhoneNumber((formData.get("phone") as string) ?? "");
+    const honeypot = sanitizeText(formData.get("honeypot"));
+
+    if (!fullName || !email) {
       toast({
-        title: "Invalid mobile number",
-        description: "Please include your country code (e.g., +91) followed by a valid mobile number.",
+        title: "Missing information",
+        description: "Please provide both your full name and email address.",
         variant: "destructive",
       });
       return;
     }
 
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: phoneInput,
-      subject: formData.get("subject") as string,
-      message: formData.get("message") as string,
+    if (!normalizedPhone) {
+      toast({
+        title: "Invalid mobile number",
+        description: "Include your country code (e.g., +91) followed by 10-15 digits.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!message || message.length < 20) {
+      toast({
+        title: "Message is too short",
+        description: "Please share at least 20 characters so we can guide you properly.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const payload = {
+      fullName,
+      email,
+      phone: normalizedPhone,
+      organization,
+      programInterest: programInterest ?? programSelection ?? undefined,
+      message,
+      honeypot,
     };
 
-    try {
-      // Show loading state
-      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-      const originalText = submitButton.innerHTML;
-      submitButton.disabled = true;
-      submitButton.innerHTML = '<span class="animate-spin mr-2">⏳</span>Sending...';
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), API_TIMEOUT_MS);
 
-      // Call API endpoint
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
+    try {
+      setIsSubmitting(true);
+      setSubmissionFeedback(null);
+
+      const response = await fetch(`${resolveApiBaseUrl()}/api/forms/contact`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
-      const result = await response.json();
+      clearTimeout(timeoutId);
 
-      if (response.ok && result.success) {
-        form.reset();
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you within 24-48 hours.",
-        });
-      } else {
-        throw new Error(result.error || 'Failed to send message');
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message ?? "Unable to send your message right now.");
       }
+
+      const successMessage =
+        result.status === "queued_for_review"
+          ? "We received your submission and queued it for a quick manual review."
+          : "Thank you! Our team will reach out within 24–48 hours.";
+
+      setSubmissionFeedback({ type: "success", message: successMessage });
+      toast({
+        title: "Message sent successfully!",
+        description: successMessage,
+      });
+
+      form.reset();
     } catch (error) {
-      console.error('Error submitting form:', error);
+      clearTimeout(timeoutId);
+      const isAbortError = error instanceof DOMException && error.name === "AbortError";
+      const fallbackMessage = isAbortError
+        ? "The request timed out. Please check your connection and try again."
+        : "Please try again shortly or reach out by phone/email.";
+      const description =
+        error instanceof Error && error.message ? error.message : fallbackMessage;
+
+      setSubmissionFeedback({ type: "error", message: description });
       toast({
         title: "Failed to send message",
-        description: error instanceof Error ? error.message : "Please try again later or contact us directly.",
+        description,
         variant: "destructive",
       });
     } finally {
-      // Reset button state
-      const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<SendIcon className="w-4 h-4 mr-2" /> Get in Touch!';
-      }
+      setIsSubmitting(false);
+      clearTimeout(timeoutId);
     }
   };
 
@@ -109,11 +233,11 @@ const Contact = () => {
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap justify-center gap-4 mt-2">
-              <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90 shadow-medium">
+              <Button asChild size="lg" variant="cta" className="rounded-full px-6">
                 <a href="mailto:cdf@iitgn.ac.in">Email IITGN-CDF</a>
               </Button>
 
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
                 <Link to="/faq">Browse FAQs</Link>
               </Button>
             </div>
@@ -185,12 +309,20 @@ const Contact = () => {
                 Have a question about our programs? Fill out the form below and we'll get back to you as soon as possible.
               </p>
               <form onSubmit={handleSubmit} className="space-y-6">
+                <input
+                  type="text"
+                  name="honeypot"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  className="hidden"
+                  autoComplete="off"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Full Name</Label>
+                    <Label htmlFor="fullName">Full Name</Label>
                     <Input
-                      id="name"
-                      name="name"
+                      id="fullName"
+                      name="fullName"
                       placeholder="Enter your full name"
                       required
                     />
@@ -213,21 +345,38 @@ const Contact = () => {
                       type="tel"
                       inputMode="tel"
                       placeholder="+91 98765 43210"
-                      pattern="^\+\d{11,13}$"
                       required
                     />
-                    <p className="text-xs text-muted-foreground">Include the country code prefix (e.g., +91) followed by your 10-digit number.</p>
+                    <p className="text-xs text-muted-foreground">Include your country code (e.g., +91) followed by 10–15 digits so we can reach you internationally.</p>
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    placeholder="What is your message about?"
-                    required
-                  />
+                  <div className="space-y-2">
+                    <Label htmlFor="organization">Organization (optional)</Label>
+                    <Input
+                      id="organization"
+                      name="organization"
+                      placeholder="Current company or institution"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="programInterest">Program of Interest</Label>
+                    <div className="relative">
+                      <select
+                        id="programInterest"
+                        name="programInterest"
+                        defaultValue=""
+                        className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm font-medium text-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      >
+                        <option value="" disabled>
+                          Select a program
+                        </option>
+                        {CONTACT_PROGRAM_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -241,10 +390,36 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-gradient-primary hover:opacity-90" size="lg">
-                  <SendIcon className="w-4 h-4 mr-2" />
-                  Get in Touch!
+                <Button
+                  type="submit"
+                  className="w-full rounded-full py-6"
+                  size="lg"
+                  variant="cta"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <SendIcon className="mr-2 h-4 w-4" />
+                      Get in Touch!
+                    </>
+                  )}
                 </Button>
+                {submissionFeedback && (
+                  <p
+                    className={`text-sm text-center ${
+                      submissionFeedback.type === "success" ? "text-emerald-600" : "text-destructive"
+                    }`}
+                    role="status"
+                    aria-live="assertive"
+                  >
+                    {submissionFeedback.message}
+                  </p>
+                )}
               </form>
             </div>
           </div>
@@ -304,10 +479,10 @@ const Contact = () => {
                   Campus visits are available by prior appointment only (Monday–Friday)
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button asChild size="lg" className="bg-gradient-primary hover:opacity-90">
+                  <Button asChild size="lg" variant="cta" className="rounded-full px-6">
                     <a href="mailto:visit@iitgncdf.ac.in">Email to Schedule Visit</a>
                   </Button>
-                  <Button asChild size="lg" variant="outline">
+                  <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
                     <a href="tel:+917923950000">Call to Schedule</a>
                   </Button>
                 </div>
@@ -389,7 +564,7 @@ const Contact = () => {
                 { to: "/faq", text: "FAQ" },
                 { to: "/about", text: "About Us" },
               ].map((link, index) => (
-                <Button key={index} asChild variant="outline" className="w-full">
+                <Button key={index} asChild variant="ctaOutline" className="w-full rounded-full">
                   <Link to={link.to}>{link.text}</Link>
                 </Button>
               ))}

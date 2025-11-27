@@ -1,11 +1,14 @@
+import { FormEvent, useState } from "react";
 import { FileText, Code, MessageSquare, Calculator, Award, Users, Briefcase } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import TestimonialCard from "@/components/TestimonialCard";
 import styles from "./Placements.module.css";
 import LogoMarquee from "@/components/LogoMarquee";
 import { hiringPartnerLogos } from "@/data/partnerLogos";
+import { toast } from "@/components/ui/use-toast";
 
 const careerSupport = [
   {
@@ -117,7 +120,122 @@ const testimonials = [
   },
 ];
 
+const PARTNER_API_TIMEOUT = 12000;
+
+const resolveApiBaseUrl = () => {
+  const envUrl = (import.meta.env.VITE_API_URL as string | undefined)?.trim();
+  if (envUrl) {
+    return envUrl.replace(/\/$/, "");
+  }
+
+  if (typeof window !== "undefined" && window.location?.origin) {
+    const isLocalHost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+    if (isLocalHost) {
+      return "http://localhost:3333";
+    }
+    return window.location.origin.replace(/\/$/, "");
+  }
+
+  return "http://localhost:3333";
+};
+
 const Placements = () => {
+  const [isSubmittingPartnerForm, setIsSubmittingPartnerForm] = useState(false);
+  const [partnerFormFeedback, setPartnerFormFeedback] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+
+  const handlePartnerSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmittingPartnerForm) return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const fullName = (data.get("fullName") as string)?.trim();
+    const email = (data.get("email") as string)?.trim();
+    const expertise = (data.get("expertise") as string)?.trim();
+    const linkedinUrl = (data.get("linkedinUrl") as string)?.trim();
+    const message = (data.get("message") as string)?.trim();
+
+    if (!fullName || !email || !linkedinUrl || !message) {
+      toast({
+        title: "Missing information",
+        description: "Full name, email, LinkedIn URL, and message are required.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (message.length < 20) {
+      toast({
+        title: "Message too short",
+        description: "Please add at least 20 characters so we can review your expertise.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), PARTNER_API_TIMEOUT);
+
+    try {
+      setIsSubmittingPartnerForm(true);
+      setPartnerFormFeedback(null);
+
+      const response = await fetch(`${resolveApiBaseUrl()}/api/forms/partner`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          expertise: expertise || undefined,
+          linkedinUrl,
+          message,
+        }),
+        signal: controller.signal,
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message ?? "Unable to send your application right now.");
+      }
+
+      setPartnerFormFeedback({
+        type: "success",
+        message: "Thank you! Our partnerships team will get in touch soon.",
+      });
+      toast({
+        title: "Application received",
+        description: "Our partnerships team will reach out shortly.",
+      });
+      form.reset();
+    } catch (error) {
+      const isAbortError = error instanceof DOMException && error.name === "AbortError";
+      const description = isAbortError
+        ? "The request timed out. Please check your connection and try again."
+        : error instanceof Error && error.message
+          ? error.message
+          : "Please try again shortly or email us.";
+
+      setPartnerFormFeedback({ type: "error", message: description });
+      toast({
+        title: "Failed to submit application",
+        description,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmittingPartnerForm(false);
+      window.clearTimeout(timeoutId);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -277,12 +395,13 @@ const Placements = () => {
             </p>
             <Card className="shadow-large">
               <CardContent className="p-8">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handlePartnerSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="fullName" className="text-sm font-medium text-foreground">Full Name</label>
                       <input
                         id="fullName"
+                        name="fullName"
                         type="text"
                         className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                         required
@@ -294,6 +413,7 @@ const Placements = () => {
                       <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
                       <input
                         id="email"
+                        name="email"
                         type="email"
                         className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                         required
@@ -306,6 +426,7 @@ const Placements = () => {
                     <label htmlFor="expertise" className="text-sm font-medium text-foreground">Expertise Area</label>
                     <select 
                       id="expertise"
+                      name="expertise"
                       className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       aria-label="Area of Expertise"
                       title="Select your area of expertise"
@@ -323,6 +444,7 @@ const Placements = () => {
                     <label htmlFor="linkedin" className="text-sm font-medium text-foreground">LinkedIn Profile</label>
                     <input
                       id="linkedin"
+                      name="linkedinUrl"
                       type="url"
                       className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       required
@@ -333,18 +455,32 @@ const Placements = () => {
                   <div>
                     <label className="text-sm font-medium text-foreground">Message</label>
                     <textarea
+                      name="message"
                       rows={4}
                       className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       placeholder="Tell us about your experience and how you'd like to contribute..."
                       required
                     ></textarea>
                   </div>
-                  <button
+                  <Button
                     type="submit"
-                    className="w-full bg-gradient-primary text-primary-foreground rounded-md py-2 px-4 text-sm font-medium hover:opacity-90 transition-opacity"
+                    variant="cta"
+                    className="w-full rounded-full py-3 text-sm font-semibold"
+                    disabled={isSubmittingPartnerForm}
                   >
-                    Submit Application
-                  </button>
+                    {isSubmittingPartnerForm ? "Submitting..." : "Submit Application"}
+                  </Button>
+                  {partnerFormFeedback && (
+                    <p
+                      className={`text-sm text-center ${
+                        partnerFormFeedback.type === "success" ? "text-emerald-600" : "text-destructive"
+                      }`}
+                      role="status"
+                      aria-live="assertive"
+                    >
+                      {partnerFormFeedback.message}
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
