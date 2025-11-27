@@ -72,7 +72,7 @@ const Index = () => {
               Our Hiring Partners
             </h3>
             <p className="text-center text-sm text-muted-foreground mb-4">
-              Organizations that collaborate with IIT Gandhinagar to empower future-ready talent.
+              Organizations that collaborate with IIT Gandhinagar Competency Development Foundation to empower future-ready talent.
             </p>
 
             <LogoMarquee

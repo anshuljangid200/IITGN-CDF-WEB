@@ -33,7 +33,7 @@ const programs: Program[] = [
     ],
   },
   {
-    title: "PG Diploma in AI-Powered Software Engineering with Cloud",
+    title: "PG Diploma in AI Driven Cloud based Software Development",
     imgSrc: "/programs/SEAI.JPG",
     description:
       "Explore generative AI and agentic AI techniques applied to software development life cycles.",

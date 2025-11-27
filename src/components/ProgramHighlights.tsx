@@ -104,7 +104,7 @@ const ProgramHighlights = () => {
             id="program-highlights-heading"
             className="text-3xl lg:text-4xl font-bold text-foreground"
           >
-            IITGN PG Diploma Tracks
+            IITGN CDF PG Diploma Tracks
           </h2>
           <p className="text-muted-foreground text-base lg:text-lg leading-relaxed">
             Explore the residential GenAI-powered diplomas. 
