@@ -1,14 +1,14 @@
 import Fastify from "fastify";
 import { randomUUID } from "node:crypto";
-import { env } from "./env.ts";
-import { securityPlugin } from "./plugins/security.ts";
-import { rateLimitPlugin } from "./plugins/rate-limit.ts";
-import { dbPlugin } from "./plugins/db.ts";
-import { contactRoutes } from "./routes/contact.ts";
-import { visitRoutes } from "./routes/visit.ts";
-import { adminRoutes } from "./routes/admin.ts";
-import { healthRoutes } from "./routes/health.ts";
-import { partnerRoutes } from "./routes/partner.ts";
+import { env } from "./env.js";
+import { securityPlugin } from "./plugins/security.js";
+import { rateLimitPlugin } from "./plugins/rate-limit.js";
+import { dbPlugin } from "./plugins/db.js";
+import { contactRoutes } from "./routes/contact.js";
+import { visitRoutes } from "./routes/visit.js";
+import { adminRoutes } from "./routes/admin.js";
+import { healthRoutes } from "./routes/health.js";
+import { partnerRoutes } from "./routes/partner.js";
 
 export const buildApp = () => {
   const app = Fastify({

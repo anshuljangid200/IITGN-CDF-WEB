@@ -1,9 +1,9 @@
 import { FastifyPluginAsync } from "fastify";
-import { partnerApplicationSchema } from "../schemas/partner.ts";
-import { partnerApplications } from "../db/schema.ts";
-import { getClientMetadata } from "../utils/request.ts";
-import { evaluateSpam } from "../services/spamGuard.ts";
-import { notifySubmission } from "../services/notification.ts";
+import { partnerApplicationSchema } from "../schemas/partner.js";
+import { partnerApplications } from "../db/schema.js";
+import { getClientMetadata } from "../utils/request.js";
+import { evaluateSpam } from "../services/spamGuard.js";
+import { notifySubmission } from "../services/notification.js";
 
 export const partnerRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post("/forms/partner", async (request, reply) => {

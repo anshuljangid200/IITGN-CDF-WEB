@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
-import { env } from "../env.ts";
+import { env } from "../env.js";
 
 const neonClient = neon(env.NEON_DATABASE_URL);
 

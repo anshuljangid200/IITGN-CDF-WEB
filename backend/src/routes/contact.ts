@@ -1,9 +1,9 @@
 import { FastifyPluginAsync } from "fastify";
-import { contactPayloadSchema } from "../schemas/contact.ts";
-import { contactMessages } from "../db/schema.ts";
-import { getClientMetadata } from "../utils/request.ts";
-import { evaluateSpam } from "../services/spamGuard.ts";
-import { notifySubmission } from "../services/notification.ts";
+import { contactPayloadSchema } from "../schemas/contact.js";
+import { contactMessages } from "../db/schema.js";
+import { getClientMetadata } from "../utils/request.js";
+import { evaluateSpam } from "../services/spamGuard.js";
+import { notifySubmission } from "../services/notification.js";
 
 const pickString = (value: unknown) =>
   typeof value === "string" ? value.trim() || undefined : undefined;

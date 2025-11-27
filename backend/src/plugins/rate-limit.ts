@@ -1,6 +1,6 @@
 import fp from "fastify-plugin";
 import rateLimit from "@fastify/rate-limit";
-import { env } from "../env.ts";
+import { env } from "../env.js";
 
 export const rateLimitPlugin = fp(async (fastify) => {
   await fastify.register(rateLimit, {

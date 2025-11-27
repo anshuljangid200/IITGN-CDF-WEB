@@ -1,9 +1,9 @@
 import { FastifyPluginAsync } from "fastify";
-import { visitPayloadSchema } from "../schemas/visit.ts";
-import { campusVisits } from "../db/schema.ts";
-import { getClientMetadata } from "../utils/request.ts";
-import { evaluateSpam } from "../services/spamGuard.ts";
-import { notifySubmission } from "../services/notification.ts";
+import { visitPayloadSchema } from "../schemas/visit.js";
+import { campusVisits } from "../db/schema.js";
+import { getClientMetadata } from "../utils/request.js";
+import { evaluateSpam } from "../services/spamGuard.js";
+import { notifySubmission } from "../services/notification.js";
 
 const normalizeVisitPayload = (body: unknown) => {
   if (!body || typeof body !== "object") return {};

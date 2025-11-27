@@ -1,5 +1,5 @@
-import { buildApp } from "./app.ts";
-import { env } from "./env.ts";
+import { buildApp } from "./app.js";
+import { env } from "./env.js";
 
 const port = Number(process.env.PORT ?? 3333);
 const host = "0.0.0.0";

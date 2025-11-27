@@ -1,5 +1,5 @@
 import fp from "fastify-plugin";
-import { db } from "../db/client.ts";
+import { db } from "../db/client.js";
 
 declare module "fastify" {
   interface FastifyInstance {

@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import { desc, eq, sql } from "drizzle-orm";
-import { env } from "../env.ts";
-import { adminAuditLog, campusVisits, contactMessages } from "../db/schema.ts";
+import { env } from "../env.js";
+import { adminAuditLog, campusVisits, contactMessages } from "../db/schema.js";
 
 const DEFAULT_PAGE_SIZE = 20;
 
