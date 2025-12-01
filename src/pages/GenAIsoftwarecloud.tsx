@@ -1,3 +1,4 @@
+import { ChangeEvent, FormEvent, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -5,6 +6,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Brain, Code, Server, Layers, Cloud, Rocket } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const heroDescription =
   "A hands-on program that blends full-stack development with Generative AI, Agentic AI, DevOps, and cloud-native deployment workflows.";
@@ -90,7 +102,57 @@ const curriculum = [
   },
 ];
 
+type SoftwareCurriculumFormState = {
+  name: string;
+  email: string;
+  phone: string;
+};
+
+const softwareInitialFormState: SoftwareCurriculumFormState = {
+  name: "",
+  email: "",
+  phone: "",
+};
+
+const SOFTWARE_CURRICULUM_PATH =
+  "/images/Curriculum%20%26%20Learning%20Journey%20-%20Cloud%20based%20Software%20Development.pdf";
+const SOFTWARE_CURRICULUM_FILENAME = "IITGN-Cloud-Software-Curriculum.pdf";
+
 const GenAISoftwareEngineering = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<SoftwareCurriculumFormState>(softwareInitialFormState);
+
+  const handleInputChange =
+    (field: keyof SoftwareCurriculumFormState) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    };
+
+  const handleDownloadCurriculum = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setFormError("Please fill out all fields so we can share the curriculum.");
+      return;
+    }
+
+    setFormError(null);
+    setIsSubmitting(true);
+
+    const link = document.createElement("a");
+    link.href = SOFTWARE_CURRICULUM_PATH;
+    link.download = SOFTWARE_CURRICULUM_FILENAME;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setIsSubmitting(false);
+    setFormData(softwareInitialFormState);
+    setIsDialogOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -144,6 +206,72 @@ const GenAISoftwareEngineering = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+      {/* CURRICULUM DOWNLOAD CTA */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl text-center space-y-6">
+          <h2 className="text-3xl lg:text-4xl font-bold">Download the Detailed Curriculum</h2>
+          <p className="text-muted-foreground text-lg">
+            Get the full learning journey, weekly breakdown, capstone details, and faculty information delivered
+            instantly after sharing your contact details.
+          </p>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="rounded-full px-8 py-6 text-base font-semibold">
+                Download Curriculum
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-lg">
+              <DialogHeader>
+                <DialogTitle>Tell us a bit about you</DialogTitle>
+                <DialogDescription>
+                  Fill this short form to unlock the full curriculum PDF for the AI Driven Cloud based Software
+                  Development program.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleDownloadCurriculum} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="software-curriculum-name">Full Name</Label>
+                  <Input
+                    id="software-curriculum-name"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={handleInputChange("name")}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="software-curriculum-email">Email ID</Label>
+                  <Input
+                    id="software-curriculum-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={handleInputChange("email")}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="software-curriculum-phone">Mobile Number</Label>
+                  <Input
+                    id="software-curriculum-phone"
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    value={formData.phone}
+                    onChange={handleInputChange("phone")}
+                    required
+                  />
+                </div>
+                {formError && <p className="text-sm text-destructive">{formError}</p>}
+                <DialogFooter>
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Preparing download..." : "Download PDF"}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
 

@@ -383,6 +383,44 @@ const Placements = () => {
         </div>
       </section>
 
+      {/* Eligibility Criteria for Placement */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <Card className="shadow-large border-2 border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5">
+              <CardContent className="p-8">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-6 text-center">
+                  Eligibility Criteria for Placement
+                </h2>
+                <div className="space-y-4 mb-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold">•</span>
+                    </div>
+                    <p className="text-foreground font-medium">7.0+ CGPA Maintained throughout the program</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold">•</span>
+                    </div>
+                    <p className="text-foreground font-medium">95%+ Attendance Consistent attendance required</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold">•</span>
+                    </div>
+                    <p className="text-foreground font-medium">12+ Projects Deployed with live links</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground text-center mt-6">
+                  *Conditions Apply
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Partner With Us Form */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">

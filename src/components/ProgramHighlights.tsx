@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Sparkles, Info } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import BrochureDownloadButton from "@/components/BrochureDownloadButton";
 
 type ProgramHighlight = {
   value: string;
@@ -22,7 +23,7 @@ type ProgramHighlight = {
 const programs: ProgramHighlight[] = [
   {
     value: "aiml",
-    title: "PG Diploma in AI-ML & Agentic AI Engineering",
+    title: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
     description:
       "Design production-grade LLM workflows, multi-agent pipelines, and responsible AI systems that combine LangChain, LangGraph, AutoGen, and CrewAI.",
     route: "/gen-ai-agentic-aiml",
@@ -52,7 +53,7 @@ const programs: ProgramHighlight[] = [
     badge: "Data · Cloud · MLOps",
     stats: [
       { label: "Duration", value: "6 Months" },
-      { label: "Mentored Hours", value: "540+" },
+      { label: "Mentored Hours", value: "600+" },
       { label: "Certification", value: "PG Diploma" },
     ],
     skills: [
@@ -73,7 +74,7 @@ const programs: ProgramHighlight[] = [
     badge: "Software · Cloud · DevOps",
     stats: [
       { label: "Duration", value: "6 Months" },
-      { label: "Mentored Hours", value: "520+" },
+      { label: "Mentored Hours", value: "600+" },
       { label: "Certification", value: "PG Diploma" },
     ],
     skills: [
@@ -107,7 +108,7 @@ const ProgramHighlights = () => {
             IITGN CDF PG Diploma Tracks
           </h2>
           <p className="text-muted-foreground text-base lg:text-lg leading-relaxed">
-            Explore the residential GenAI-powered diplomas. 
+            Explore The Residential PG Diplomas
           </p>
         </div>
 
@@ -185,27 +186,21 @@ const ProgramHighlights = () => {
                       ))}
                     </ul>
 
-                    <Button
-                      asChild
-                      variant="cta"
-                      className="rounded-full px-6 text-sm font-semibold"
-                    >
-                      <Link to={program.route}>Explore Program</Link>
-                    </Button>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button
+                        asChild
+                        variant="cta"
+                        className="rounded-full px-6 text-sm font-semibold"
+                      >
+                        <Link to={program.route}>Explore Program</Link>
+                      </Button>
 
-                    {/* Common Foundation Info */}
-                    <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-4">
-                      <div className="flex items-start gap-3">
-                        <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                          <Info className="h-3.5 w-3.5" aria-hidden="true" />
-                        </div>
-                        <div className="flex-1 space-y-1">
-                          <p className="text-xs font-semibold text-primary">Common Foundation (First 6 Weeks)</p>
-                          <p className="text-xs leading-relaxed text-muted-foreground">
-                            All learners begin their journey with a common foundation. Based on your performance in the diagnostic phase, you&apos;ll specialize in one of the tracks given above.
-                          </p>
-                        </div>
-                      </div>
+                      <BrochureDownloadButton
+                        size="sm"
+                        variant="outline"
+                        className="rounded-full px-4 text-xs font-semibold"
+                        label="Download Brochure"
+                      />
                     </div>
                   </div>
 

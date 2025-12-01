@@ -30,7 +30,7 @@ import HeroSection from "@/components/HeroSection";
 const CONTACT_PROGRAM_OPTIONS = [
   {
     value: "aiml",
-    label: "PG Diploma in AI-ML & Agentic AI Engineering",
+    label: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
   },
   {
     value: "data-science",

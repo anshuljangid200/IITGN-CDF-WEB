@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import BrochureDownloadButton from "@/components/BrochureDownloadButton";
 
 type Program = {
   title: string;
@@ -33,20 +34,6 @@ const programs: Program[] = [
     ],
   },
   {
-    title: "PG Diploma in AI Driven Cloud based Software Development",
-    imgSrc: "/programs/SEAI.JPG",
-    description:
-      "Explore generative AI and agentic AI techniques applied to software development life cycles.",
-    link: "/gen-ai-software-cloud",
-    highlights: [
-      "Modern DevOps practices",
-      "Cloud-native architectures",
-      "AI-augmented software applications",
-      "Generative AI integration",
-      "Agentic AI systems design",
-    ],
-  },
-  {
     title: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
     imgSrc: "/programs/AIA.jpg",
     description:
@@ -60,24 +47,41 @@ const programs: Program[] = [
       "Scalable AI solutions",
     ],
   },
+  {
+    title: "PG Diploma in AI Driven Cloud based Software Development",
+    imgSrc: "/programs/SEAI.JPG",
+    description:
+      "Explore generative AI and agentic AI techniques applied to software development life cycles.",
+    link: "/gen-ai-software-cloud",
+    highlights: [
+      "Modern DevOps practices",
+      "Cloud-native architectures",
+      "AI-augmented software applications",
+      "Generative AI integration",
+      "Agentic AI systems design",
+    ],
+  },
 ];
 
 
 const feeStructure = [
   {
-    label: "Academic Fee",
-    amount: "₹5,00,000",
-    description: "Includes GST and covers tuition, labs, industry immersions, and academic services.",
+    component: "Tuition Fee",
+    amount: "Rs 5,00,000",
+    details: "All inclusive",
+    payableTo: "IIT Gandhinagar CDF",
   },
   {
-    label: "Residential & Operations Fee",
-    amount: "₹1,25,000 + Applicable GST",
-    description: "Mandatory on-campus stay with hostel, utilities, dining, and student services.",
+    component: "Hostel & Operations Fee",
+    amount: "Rs 1,25,000",
+    details: "GST applicable and includes hostels, meals, labs and admin for 6 months. Non Refundable.",
+    payableTo: "Futurense Technologies",
   },
   {
-    label: "Application Fee",
-    amount: "₹3,000",
-    description: "One-time non-refundable application processing charge.",
+    component: "Application Fee",
+    amount: "Rs 3,000",
+    details: "One-time, Non Refundable",
+    payableTo: "Futurense Technologies",
   },
 ];
 
@@ -121,9 +125,24 @@ const Programs = () => {
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
               Three Immersive PG Diplomas Built with Industry Mentors
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Common Foundation (First 6 Weeks): All learners begin their journey with a common foundation. Based on your performance in the diagnostic phase, you'll specialize in one of the tracks given above.
-            </p>
+          </div>
+
+          {/* Brochure Download Box */}
+          <div className="mt-8 max-w-2xl mx-auto">
+            <Card className="border border-primary/20 bg-primary/5 shadow-soft rounded-2xl">
+              <CardContent className="p-6 flex flex-col items-center gap-3 text-center">
+                <p className="text-sm text-muted-foreground max-w-xl">
+                  Download the consolidated IITGN CDF PG Diploma brochure to explore curriculum highlights,
+                  campus experience, and admission details in one place.
+                </p>
+                <BrochureDownloadButton
+                  size="lg"
+                  variant="cta"
+                  className="rounded-full px-8"
+                  label="Download Brochure"
+                />
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -135,69 +154,84 @@ const Programs = () => {
         <div className="container mx-auto px-4 lg:px-8 relative">
           <div className="space-y-12 lg:space-y-16">
             {programs.map((program, index) => (
-              <Card
-                key={program.title}
-                className="group relative overflow-hidden border border-border/70 bg-card/90 backdrop-blur-sm transition-all duration-500 animate-fade-in hover:shadow-large"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary/0 via-primary/40 to-primary/0" />
+              <div key={program.title}>
+                <Card
+                  className="group relative overflow-hidden border border-border/70 bg-card/90 backdrop-blur-sm transition-all duration-500 animate-fade-in hover:shadow-large"
+                  style={{ animationDelay: `${index * 120}ms` }}
+                >
+                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary/0 via-primary/40 to-primary/0" />
 
-                <div className="grid md:grid-cols-2 items-stretch">
-                  {/* IMAGE */}
-                  <div className="relative min-h-[280px] overflow-hidden">
-                    <img
-                      src={program.imgSrc}
-                      alt={program.title}
-                      className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-smooth group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent opacity-90" />
+                  <div className="grid md:grid-cols-2 items-stretch">
+                    {/* IMAGE */}
+                    <div className="relative min-h-[280px] overflow-hidden">
+                      <img
+                        src={program.imgSrc}
+                        alt={program.title}
+                        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-smooth group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent opacity-90" />
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="flex flex-col h-full">
+                      <CardHeader className="space-y-4">
+                        <div className="flex flex-wrap items-center gap-4">
+                          <CardTitle className="text-2xl lg:text-3xl font-bold text-foreground">
+                            {program.title}
+                          </CardTitle>
+
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="bg-primary/10 border-primary/50 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+                          >
+                            <Link to={program.link} onClick={scrollToTop} className="group flex items-center gap-2">
+                              <span>Know More</span>
+                              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                            </Link>
+                          </Button>
+                        </div>
+
+                        <CardDescription className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                          {program.description}
+                        </CardDescription>
+                      </CardHeader>
+
+                      <CardContent className="mt-auto">
+                        <div className="rounded-2xl border border-border/60 bg-muted/20 p-6 shadow-soft">
+                          <h4 className="font-semibold text-foreground mb-4 tracking-tight">Key Highlights</h4>
+                          <ul className="space-y-3">
+                            {program.highlights.map((highlight) => (
+                              <li key={highlight} className="flex items-start gap-3">
+                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                                  <CheckCircle className="h-4 w-4 text-primary" />
+                                </span>
+                                <span className="text-muted-foreground leading-snug">{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                    </div>
                   </div>
+                </Card>
 
-                  {/* CONTENT */}
-                  <div className="flex flex-col h-full">
-                    <CardHeader className="space-y-4">
-                      <div className="flex flex-wrap items-center gap-4">
-                        <CardTitle className="text-2xl lg:text-3xl font-bold text-foreground">
-                          {program.title}
-                        </CardTitle>
-
-                        <Button
-                          asChild
-                          variant="outline"
-                          size="sm"
-                          className="bg-primary/10 border-primary/50 text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
-                        >
-                          <Link to={program.link} onClick={scrollToTop} className="group flex items-center gap-2">
-                            <span>Know More</span>
-                            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </Link>
-                        </Button>
-                      </div>
-
-                      <CardDescription className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                        {program.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    <CardContent className="mt-auto">
-                      <div className="rounded-2xl border border-border/60 bg-muted/20 p-6 shadow-soft">
-                        <h4 className="font-semibold text-foreground mb-4 tracking-tight">Key Highlights</h4>
-                        <ul className="space-y-3">
-                          {program.highlights.map((highlight) => (
-                            <li key={highlight} className="flex items-start gap-3">
-                              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                                <CheckCircle className="h-4 w-4 text-primary" />
-                              </span>
-                              <span className="text-muted-foreground leading-snug">{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
+                {/* Common Foundation pointer after Data Science program (first program) */}
+                {index === 0 && (
+                  <div className="mt-8 max-w-3xl mx-auto">
+                    <Card className="border border-primary/20 bg-primary/5">
+                      <CardContent className="p-6">
+                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed text-center">
+                          <span className="font-semibold text-primary">Common Foundation (First 6 Weeks):</span>{" "}
+                          All learners begin their journey with a common foundation. Based on your performance in the diagnostic phase, you'll specialize in one of the tracks given above.
+                        </p>
+                      </CardContent>
+                    </Card>
                   </div>
-                </div>
-              </Card>
+                )}
+              </div>
             ))}
           </div>
 
@@ -219,14 +253,16 @@ const Programs = () => {
                     <th className="px-6 py-4 font-semibold">Component</th>
                     <th className="px-6 py-4 font-semibold">Amount</th>
                     <th className="px-6 py-4 font-semibold">Details</th>
+                    <th className="px-6 py-4 font-semibold">Payable to</th>
                   </tr>
                 </thead>
                 <tbody>
                   {feeStructure.map((row) => (
-                    <tr key={row.label} className="border-t border-border/60">
-                      <td className="px-6 py-4 font-semibold text-foreground">{row.label}</td>
+                    <tr key={row.component} className="border-t border-border/60">
+                      <td className="px-6 py-4 font-semibold text-foreground">{row.component}</td>
                       <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
-                      <td className="px-6 py-4 text-muted-foreground">{row.description}</td>
+                      <td className="px-6 py-4 text-muted-foreground">{row.details}</td>
+                      <td className="px-6 py-4 text-muted-foreground">{row.payableTo}</td>
                     </tr>
                   ))}
                 </tbody>

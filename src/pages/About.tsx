@@ -173,6 +173,51 @@ const About = () => {
       {/* ⭐ BELOW THIS POINT → EVERYTHING FROM SECOND FILE (UNCHANGED) ⭐ */}
       {/* -------------------------------------------------------------------- */}
 
+      {/* Director & Leadership Section */}
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-semibold mb-4">
+              <Sparkles className="w-4 h-4" />
+              Leadership
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Message from{" "}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                Director, Prof Sam
+              </span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Hear from our leadership about the vision and mission of IITGN CDF
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            {/* Director Video */}
+            <Card className="group shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30">
+              <div className="relative">
+                <CardContent className="p-0 aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Eye className="w-8 h-8 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground font-medium text-lg">Coming Soon</p>
+                  </div>
+                </CardContent>
+              </div>
+              <CardHeader className="p-6 bg-card/95">
+                <CardTitle className="text-xl font-bold text-foreground">
+                  Message from Director, Prof Sam
+                </CardTitle>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Director's vision for IITGN CDF programs
+                </p>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Videos */}
       <section className="py-16 lg:py-24 bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">

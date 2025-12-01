@@ -47,33 +47,26 @@ const admissionRounds = [
 const steps = [
   {
     icon: <PenLine className="w-6 h-6" />,
-    title: "Create Your Applicant Profile",
-    description:
-      "Gather transcripts, resume, statement of purpose, and evidence of programming proficiency before you begin.",
+    title: "Step 01 · Apply Online",
+    description: "Submit your application form along with required academic and identity documents.",
   },
   {
     icon: <FileCheck className="w-6 h-6" />,
-    title: "Online Application Submission",
+    title: "Step 02 · Round 1: AINPT – IIT GN",
     description:
-      "Fill the IITGN CDF application form, upload verified documents, and select your preferred program track.",
+      "Appear for the 120-minute All India National Proficiency Test evaluating technical aptitude and problem-solving.",
   },
   {
     icon: <UserCheck className="w-6 h-6" />,
-    title: "Academic & Portfolio Review",
+    title: "Step 03 · Round 2: Panel Interview",
     description:
-      "Admissions committee reviews academic performance, project portfolio, and statement of purpose for alignment.",
-  },
-  {
-    icon: <ClipboardList className="w-6 h-6" />,
-    title: "Technical Interaction",
-    description:
-      "Shortlisted applicants may be invited for a technical conversation or coding assignment to validate readiness.",
+      "IIT faculty and industry mentors assess your capability, motivation, and fit for the residential program.",
   },
   {
     icon: <CheckCircle2 className="w-6 h-6" />,
-    title: "Offer, Fee & Onboarding",
+    title: "Step 04 · Offer & Enrollment",
     description:
-      "Receive the formal offer, complete fee formalities as per schedule, and get onboarded to campus-life briefings.",
+      "Selected candidates receive an admission offer from IITGN CDF and confirm their seat by completing fee payment.",
   },
 ];
 
@@ -99,13 +92,13 @@ const careerSupport = [
 const feeCards = [
   {
     icon: <CreditCard className="w-6 h-6" />,
-    title: "Program Fee",
+    title: "Tuition fees",
     details:
       "Shared with shortlisted candidates; covers tuition, learning resources, labs, industry immersions, and academic services.",
   },
   {
     icon: <HomeIcon className="w-6 h-6" />,
-    title: "Hostel & Accommodation",
+    title: "Hostel & Operations Fee",
     details:
       "Residential stay on campus is mandatory. Hostel, utilities, and dining services are coordinated through IITGN CDF.",
   },
@@ -113,37 +106,41 @@ const feeCards = [
     icon: <CalendarDays className="w-6 h-6" />,
     title: "Payment Schedule",
     details:
-      "Structured installments: acceptance advance, pre-program payment, and balance before module two. EMI options available via partners.",
+      "EMI Options are available.",
   },
   {
     icon: <RefreshCw className="w-6 h-6" />,
     title: "Refund Policy",
     details:
-      "Refunds follow institutional guidelines. Any withdrawal requests are processed as per IITGN CAA's published timelines.",
+      "Refunds follow institutional guidelines. Any withdrawal requests are processed as per IITGN CAA's published timelines.",
   },
 ];
 
 const feeBreakdown = [
   {
-    label: "Academic Fee",
-    amount: "₹5,00,000",
-    description: "Includes GST and covers tuition, labs, industry immersions, and academic services.",
+    component: "Tuition Fee",
+    amount: "Rs 5,00,000",
+    details: "All inclusive",
+    payableTo: "IIT Gandhinagar CDF",
   },
   {
-    label: "Residential & Operations Fee",
-    amount: "₹1,25,000 + Applicable GST",
-    description: "Mandatory on-campus stay with hostel, utilities, dining, and student services.",
+    component: "Hostel & Operations Fee",
+    amount: "Rs 1,25,000",
+    details: "GST applicable and includes hostels, meals, labs and admin for 6 months. Non Refundable.",
+    payableTo: "Futurense Technologies",
   },
   {
-    label: "Application Fee",
-    amount: "₹3,000",
-    description: "One-time non-refundable application processing charge.",
+    component: "Application Fee",
+    amount: "Rs 3,000",
+    details: "One-time, Non Refundable",
+    payableTo: "Futurense Technologies",
   },
 ];
 
 const programRefund = [
-  { period: "Within the first 15 days", amount: "₹2,00,000" },
-  { period: "Beyond 15 days", amount: "NIL" },
+  { period: "Before Program Commencement", amount: "Rs 4,00,000" },
+  { period: "After Program Commencement (Within 15 days)", amount: "Rs 2,00,000" },
+  { period: "After Program Commencement (Post 15 days)", amount: "No Refund Possible" },
 ];
 
 const Admissions = () => {
@@ -265,21 +262,32 @@ const Admissions = () => {
       {/* Admission Evaluation Rounds */}
       <section className="py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
-            <div className="rounded-[2.5rem] border border-primary/30 bg-card/95 shadow-large p-8 lg:p-10 text-center lg:text-left">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary mb-3">Admission Process</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                Two Rounds to Evaluate Skill & Potential
-              </h2>
-              <p className="text-muted-foreground mt-4">
-                Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with
-                IIT faculty and industry mentors.
-              </p>
-              <Button asChild size="lg" variant="cta" className="mt-8 rounded-full px-8">
-                <a href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462" target="_blank" rel="noopener noreferrer">
-                  Apply Now
-                </a>
-              </Button>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
+            <div className="space-y-6">
+              <div className="rounded-[2.5rem] border border-primary/30 bg-card/95 shadow-large p-8 lg:p-10 text-center lg:text-left">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary mb-3">Admission Process</p>
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                  Two Rounds to Evaluate Skill & Potential
+                </h2>
+                <p className="text-muted-foreground mt-4">
+                  Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with
+                  IIT faculty and industry mentors.
+                </p>
+                <Button asChild size="lg" variant="cta" className="mt-8 rounded-full px-8">
+                  <a href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462" target="_blank" rel="noopener noreferrer">
+                    Apply Now
+                  </a>
+                </Button>
+              </div>
+              
+              {/* Futurense Description Box */}
+              <Card className="border border-primary/20 bg-primary/5">
+                <CardContent className="p-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Futurense is the Admissions, Industry and Hospitality Partner for the IIT Gandhinagar PG Diploma programs.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
 
             <div className="space-y-6">
@@ -355,14 +363,16 @@ const Admissions = () => {
                   <th className="px-6 py-4 font-semibold">Component</th>
                   <th className="px-6 py-4 font-semibold">Amount</th>
                   <th className="px-6 py-4 font-semibold">Details</th>
+                  <th className="px-6 py-4 font-semibold">Payable to</th>
                 </tr>
               </thead>
               <tbody>
                 {feeBreakdown.map((row) => (
-                  <tr key={row.label} className="border-t border-border/60">
-                    <td className="px-6 py-4 font-semibold text-foreground">{row.label}</td>
+                  <tr key={row.component} className="border-t border-border/60">
+                    <td className="px-6 py-4 font-semibold text-foreground">{row.component}</td>
                     <td className="px-6 py-4 text-primary font-semibold">{row.amount}</td>
-                    <td className="px-6 py-4 text-muted-foreground">{row.description}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{row.details}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{row.payableTo}</td>
                   </tr>
                 ))}
               </tbody>
@@ -393,41 +403,39 @@ const Admissions = () => {
       {/* Refund Policy */}
       <section className="py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8 space-y-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8">
             <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">Refund Policy</h3>
+            <p className="text-muted-foreground mb-4">
+              Application fees and Hostel fees are non-refundable under all circumstances, irrespective of the withdrawal date.
+            </p>
             <p className="text-muted-foreground">
-              Admission fee and registration fee are non-refundable. In case the student is forced to leave due to reasons of academic performance, attendance, or disciplinary action at any stage of the program, no refunds will be applicable.
-              In the event of students dropping out of the program voluntarily, applicable refunds will be as follows:
+              In case of any withdrawal request, only the tuition fee will be refunded depending on the date of withdrawal approval.
             </p>
           </div>
 
           <div className="flex justify-center">
-            <div className="rounded-2xl border border-border/70 bg-card/95 shadow-soft overflow-hidden max-w-md w-full">
-              <div className="px-5 py-4 border-b border-border/60">
-                <h4 className="text-lg font-semibold text-foreground text-center">Program Fees Refund</h4>
+            <div className="rounded-2xl border border-border/70 bg-card/95 shadow-soft overflow-hidden max-w-2xl w-full">
+              <div className="px-5 py-4 border-b border-border/60 bg-muted/50">
+                <h4 className="text-lg font-semibold text-foreground text-center uppercase">REFUND POLICY</h4>
               </div>
               <table className="w-full text-sm">
                 <thead className="text-left text-muted-foreground uppercase tracking-wide text-xs bg-muted/50">
                   <tr>
-                    <th className="px-4 py-2.5 font-semibold">Period</th>
-                    <th className="px-4 py-2.5 font-semibold text-right">Refundable Amount</th>
+                    <th className="px-6 py-3 font-semibold">Period</th>
+                    <th className="px-6 py-3 font-semibold text-right">Refundable Amt</th>
                   </tr>
                 </thead>
                 <tbody>
                   {programRefund.map((row) => (
                     <tr key={row.period} className="border-t border-border/60">
-                      <td className="px-4 py-3 font-medium text-foreground text-sm">{row.period}</td>
-                      <td className="px-4 py-3 text-primary font-semibold text-right">{row.amount}</td>
+                      <td className="px-6 py-4 font-medium text-foreground">{row.period}</td>
+                      <td className="px-6 py-4 text-primary font-semibold text-right">{row.amount}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
-
-          <p className="text-xs text-muted-foreground text-center">
-            * Refund and Withdrawal requests will be according to the IIT Gandhinagar Refund Policy.
-          </p>
         </div>
       </section>
 

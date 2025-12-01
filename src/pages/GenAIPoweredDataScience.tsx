@@ -280,16 +280,6 @@ const GenAIPoweredDataScience = () => {
         </div>
       </section>
 
-      {/* GRADING */}
-      <section className="py-16 bg-muted/50 text-center">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-bold mb-6">Grading & Evaluation</h2>
-          <ul className="space-y-2 text-muted-foreground text-lg">
-            {grading.map((g, idx) => <li key={idx}>{g}</li>)}
-          </ul>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-20 text-center">
         <Button asChild size="lg" variant="cta" className="rounded-full px-10">

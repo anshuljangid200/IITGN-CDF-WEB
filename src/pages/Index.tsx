@@ -10,6 +10,7 @@ import CarouselBackground from "@/components/CarouselBackground";
 import { hiringPartnerLogos } from "@/data/partnerLogos";
 
 import ProgramHighlights from "../components/ProgramHighlights";
+import BrochureDownloadButton from "@/components/BrochureDownloadButton";
 
 const Index = () => {
   return (
@@ -41,6 +42,15 @@ const Index = () => {
             Development with Generative AI and Cloud.
           </p>
 
+          <div className="mb-6 text-center">
+            <p className="text-base lg:text-lg font-semibold text-foreground mb-2">
+              Program Start Date: <span className="text-primary">9th February 2026</span>
+            </p>
+            <p className="text-sm lg:text-base text-muted-foreground">
+              Students will be expected to be available on campus from <span className="font-medium">8th February 2026</span> onwards
+            </p>
+          </div>
+
           <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
             <Button asChild variant="cta" size="lg" className="group rounded-full px-6">
               <Link to="/admissions" className="flex items-center space-x-2">
@@ -52,6 +62,13 @@ const Index = () => {
             <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
               <Link to="/programs">Explore Programs</Link>
             </Button>
+
+            <BrochureDownloadButton
+              size="lg"
+              variant="outline"
+              className="rounded-full px-6"
+              label="Download Brochure"
+            />
           </div>
         </div>
       </section>
