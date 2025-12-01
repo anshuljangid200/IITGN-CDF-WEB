@@ -279,7 +279,7 @@ const Contact = () => {
                 title="Phone"
                 content={[
                   "Main Office: +91-79-2395-2278",
-                  "Admissions Helpline: +91-79-2395-2278"
+                  "Admissions Helpline: ‪+91 9220295236"
                 ]}
               />
               <ContactCard
