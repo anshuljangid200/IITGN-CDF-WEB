@@ -34,7 +34,7 @@ const programs: Program[] = [
     ],
   },
   {
-    title: "PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering",
+    title: "PG Diploma in AI-ML & Agentic AI Engineering",
     imgSrc: "/programs/AIA.jpg",
     description:
       "Deep dive into advanced AI methodologies, agentic systems, ethical AI, and responsible governance.",
@@ -137,7 +137,7 @@ const Programs = () => {
                 </p>
                 <BrochureDownloadButton
                   size="lg"
-                  variant="cta"
+                  variant="ctaOutline"
                   className="rounded-full px-8"
                   label="Download Brochure"
                 />

@@ -36,22 +36,11 @@ const Index = () => {
             </span>
           </h1>
 
-          <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Transform your career with IIT Gandhinagar's Competency Development
-            Foundation Programs in Data Science, AI, Agentic AI, and Software
-            Development with Generative AI and Cloud.
+          <p className="text-lg lg:text-xl text-muted-foreground mb-6 max-w-3xl mx-auto">
+            Transform your career with programs run by Competency Advancement Academy of IITGN Competency Development Foundation programs in Data Science, AI, Agentic AI, and Software Development with Generative AI and Cloud.
           </p>
-
-          <div className="mb-6 text-center">
-            <p className="text-base lg:text-lg font-semibold text-foreground mb-2">
-              Program Start Date: <span className="text-primary">9th February 2026</span>
-            </p>
-            <p className="text-sm lg:text-base text-muted-foreground">
-              Students will be expected to be available on campus from <span className="font-medium">8th February 2026</span> onwards
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+          
+          <div className="flex flex-col items-center justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3 mb-4">
             <Button asChild variant="cta" size="lg" className="group rounded-full px-6">
               <Link to="/admissions" className="flex items-center space-x-2">
                 <span>Apply Now</span>
@@ -65,10 +54,20 @@ const Index = () => {
 
             <BrochureDownloadButton
               size="lg"
-              variant="outline"
+              variant="ctaOutline"
               className="rounded-full px-6"
               label="Download Brochure"
             />
+          </div>
+
+          <div className="mt-2 text-center">
+            <p className="text-base lg:text-lg font-semibold text-foreground mb-1">
+              Program Start Date: <span className="text-primary">9th February 2026</span>
+            </p>
+            <p className="text-sm lg:text-base text-muted-foreground">
+              Students will be expected to be available on campus from{" "}
+              <span className="font-medium">8th February 2026</span> onwards
+            </p>
           </div>
         </div>
       </section>

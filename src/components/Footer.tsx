@@ -75,7 +75,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/gen-ai-agentic-aiml" className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium flex items-center space-x-1 group">
-                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in GenAI-Powered AI-ML & Agentic AI Engineering</span>
+                  <span className="group-hover:translate-x-1 transition-transform">PG Diploma in AI-ML & Agentic AI Engineering</span>
                 </Link>
               </li>
             </ul>
