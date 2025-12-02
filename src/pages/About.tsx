@@ -479,7 +479,7 @@ const About = () => {
                     },
                     {
                       title: "Innovation Leadership",
-                      desc: "Staying At The Forefront of Emerging Technologies and Pedagogical Methods",
+                      desc: "Staying At The Forefront of Emerging Technologies and Pedagogical Methods",
                       icon: <Zap className="w-5 h-5" />,
                     },
                     {
@@ -489,7 +489,7 @@ const About = () => {
                     },
                     {
                       title: "Social Impact",
-                      desc: "Contributing to National Skill Development and Technological Advancement",
+                      desc: "Contributing to National Skill Development and Technological Advancement",
                       icon: <Award className="w-5 h-5" />,
                     },
                   ].map((commitment, index) => (
