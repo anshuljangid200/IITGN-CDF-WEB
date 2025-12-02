@@ -479,12 +479,12 @@ const About = () => {
                     },
                     {
                       title: "Innovation Leadership",
-                      desc: "Staying at the forefront of emerging technologies and pedagogical methods",
+                      desc: "Staying at the forefront of Emerging Technologies and Pedagogical Methods",
                       icon: <Zap className="w-5 h-5" />,
                     },
                     {
                       title: "Ethical Responsibility",
-                      desc: "Promoting responsible AI development and data ethics",
+                      desc: "Promoting responsible AI development and Data Ethics",
                       icon: <Target className="w-5 h-5" />,
                     },
                     {
