@@ -489,7 +489,7 @@ const About = () => {
                     },
                     {
                       title: "Social Impact",
-                      desc: "Contributing to national skill development and technological advancement",
+                      desc: "Contributing to National Skill Development and Technological Advancement",
                       icon: <Award className="w-5 h-5" />,
                     },
                   ].map((commitment, index) => (
