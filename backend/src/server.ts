@@ -4,15 +4,16 @@ import { env } from "./env.js";
 const port = Number(process.env.PORT ?? 3333);
 const host = "0.0.0.0";
 
-const app = buildApp();
-
-app
-  .listen({ port, host })
+buildApp()
+  .then((app) => {
+    return app.listen({ port, host });
+  })
   .then(() => {
-    app.log.info(`Backend listening on http://${host}:${port}`);
+    console.log(`Backend listening on http://${host}:${port}`);
+    console.log(`API endpoints available at http://${host}:${port}/api`);
   })
   .catch((err) => {
-    app.log.error(err);
+    console.error("Failed to start server:", err);
     process.exit(1);
   });
 

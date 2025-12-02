@@ -154,7 +154,10 @@ const Contact = () => {
       setIsSubmitting(true);
       setSubmissionFeedback(null);
 
-      const response = await fetch(`${resolveApiBaseUrl()}/api/forms/contact`, {
+      const apiUrl = `${resolveApiBaseUrl()}/api/forms/contact`;
+      console.log("Submitting contact form to:", apiUrl);
+
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -166,10 +169,13 @@ const Contact = () => {
 
       clearTimeout(timeoutId);
 
+      console.log("Response status:", response.status, response.statusText);
+
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.message ?? "Unable to send your message right now.");
+        console.error("API error:", result);
+        throw new Error(result.message ?? result.error?.message ?? "Unable to send your message right now.");
       }
 
       const successMessage =
@@ -186,9 +192,13 @@ const Contact = () => {
       form.reset();
     } catch (error) {
       clearTimeout(timeoutId);
+      console.error("Contact form submission error:", error);
       const isAbortError = error instanceof DOMException && error.name === "AbortError";
+      const isNetworkError = error instanceof TypeError && error.message.includes("fetch");
       const fallbackMessage = isAbortError
         ? "The request timed out. Please check your connection and try again."
+        : isNetworkError
+        ? "Unable to connect to the server. Please ensure the backend is running."
         : "Please try again shortly or reach out by phone/email.";
       const description =
         error instanceof Error && error.message ? error.message : fallbackMessage;

@@ -39,6 +39,7 @@ const normalizeContactPayload = (body: unknown) => {
 
 export const contactRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.post("/forms/contact", async (request, reply) => {
+    fastify.log.info("Contact form submission received");
     const payload = contactPayloadSchema.parse(
       normalizeContactPayload(request.body),
     );

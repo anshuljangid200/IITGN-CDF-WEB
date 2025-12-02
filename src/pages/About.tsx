@@ -469,27 +469,27 @@ const About = () => {
                   {[
                     {
                       title: "Academic Integrity",
-                      desc: "Maintaining the highest standards of teaching and evaluation",
+                      desc: "Maintaining The Highest Standards of Teaching and Evaluation",
                       icon: <Shield className="w-5 h-5" />,
                     },
                     {
                       title: "Student Success",
-                      desc: "Providing mentorship, career guidance, and lifelong learning opportunities",
+                      desc: "Providing Mentorship, Career Guidance, and Lifelong Learning Opportunities",
                       icon: <Users className="w-5 h-5" />,
                     },
                     {
                       title: "Innovation Leadership",
-                      desc: "Staying at the forefront of emerging technologies and pedagogical methods",
+                      desc: "Staying At The Forefront of Emerging Technologies and Pedagogical Methods",
                       icon: <Zap className="w-5 h-5" />,
                     },
                     {
                       title: "Ethical Responsibility",
-                      desc: "Promoting responsible AI development and data ethics",
+                      desc: "Promoting Responsible AI Development and Data Ethics",
                       icon: <Target className="w-5 h-5" />,
                     },
                     {
                       title: "Social Impact",
-                      desc: "Contributing to national skill development and technological advancement",
+                      desc: "Contributing to National Skill Development and Technological Advancement",
                       icon: <Award className="w-5 h-5" />,
                     },
                   ].map((commitment, index) => (

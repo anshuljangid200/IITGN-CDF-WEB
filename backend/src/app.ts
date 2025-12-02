@@ -10,7 +10,7 @@ import { adminRoutes } from "./routes/admin.js";
 import { healthRoutes } from "./routes/health.js";
 import { partnerRoutes } from "./routes/partner.js";
 
-export const buildApp = () => {
+export const buildApp = async () => {
   const app = Fastify({
     logger: {
       level: env.NODE_ENV === "development" ? "debug" : "info",
@@ -22,15 +22,17 @@ export const buildApp = () => {
       request.headers["x-request-id"] ?? randomUUID();
   });
 
-  app.register(securityPlugin);
-  app.register(rateLimitPlugin);
-  app.register(dbPlugin);
+  await app.register(securityPlugin);
+  await app.register(rateLimitPlugin);
+  await app.register(dbPlugin);
 
-  app.register(healthRoutes, { prefix: "/api" });
-  app.register(contactRoutes, { prefix: "/api" });
-  app.register(visitRoutes, { prefix: "/api" });
-  app.register(partnerRoutes, { prefix: "/api" });
-  app.register(adminRoutes, { prefix: "/api" });
+  await app.register(healthRoutes, { prefix: "/api" });
+  await app.register(contactRoutes, { prefix: "/api" });
+  await app.register(visitRoutes, { prefix: "/api" });
+  await app.register(partnerRoutes, { prefix: "/api" });
+  await app.register(adminRoutes, { prefix: "/api" });
+  
+  app.log.info("Registered routes: /api/health, /api/forms/contact, /api/forms/visit");
 
   app.setNotFoundHandler((request, reply) => {
     reply.status(404).send({
