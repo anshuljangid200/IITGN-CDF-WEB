@@ -182,9 +182,9 @@ const About = () => {
               Leadership
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Message from{" "}
+              Messages from{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Director, Prof Sam
+                Chairman, Director and CEO
               </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
