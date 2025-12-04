@@ -197,7 +197,7 @@ const Placements = () => {
               Career Support & <span className="bg-gradient-primary bg-clip-text text-transparent">Placement Assistance</span>
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              We are committed to your career transformation. Our comprehensive career support services ensure you graduate not just with technical skills, but with the confidence, network, and readiness to succeed in competitive job markets.
+              We are committed to your career transformation. Our comprehensive career support services delivered through our operating partner M/s. Futurense Technologies Pvt. Ltd. ensure you graduate not just with technical skills, but with the confidence, network, and readiness to succeed in competitive job markets.
             </p>
           </div>
         </div>
