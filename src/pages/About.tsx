@@ -206,12 +206,12 @@ const About = () => {
                 </CardContent>
               </div>
               <CardHeader className="p-6 bg-card/95">
-                <CardTitle className="text-xl font-bold text-foreground">
+                {/* <CardTitle className="text-xl font-bold text-foreground">
                   Message from Director, Prof Sam
                 </CardTitle>
                 <p className="text-sm text-muted-foreground mt-2">
                   Director's vision for IITGN CDF programs
-                </p>
+                </p> */}
               </CardHeader>
             </Card>
           </div>
