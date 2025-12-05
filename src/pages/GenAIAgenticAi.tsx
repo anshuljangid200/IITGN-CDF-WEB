@@ -18,6 +18,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+// --- CONFIGURATION ---
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxISXHhQQdF6ZAQ4Ex3bVbLOMvF4x1Xm2ZH7c_D6z1hOpx3xJZ7jo3ujl-WuqhHCt0a/exec";
+
 const overview = `This program equips students and professionals with the skills to build
 real-world AI and Agentic AI systems. It bridges classical machine learning,
 deep learning, and modern generative + agent-based AI frameworks. Students gain
@@ -161,8 +164,20 @@ const GenAIAgenticEngineering = () => {
       setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
-  const handleDownloadCurriculum = (event: FormEvent<HTMLFormElement>) => {
+  // Helper to trigger the actual file download
+  const triggerDownload = () => {
+    const link = document.createElement("a");
+    link.href = AIML_CURRICULUM_PATH;
+    link.download = AIML_CURRICULUM_FILENAME;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadCurriculum = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    // Basic validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
       setFormError("Please fill out all fields so we can share the curriculum.");
       return;
@@ -171,16 +186,32 @@ const GenAIAgenticEngineering = () => {
     setFormError(null);
     setIsSubmitting(true);
 
-    const link = document.createElement("a");
-    link.href = AIML_CURRICULUM_PATH;
-    link.download = AIML_CURRICULUM_FILENAME;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // 1. Send data to Google Sheet
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        // We include the program name manually here since this page is specific to one program
+        body: JSON.stringify({ 
+          ...formData, 
+          program: "AI-ML & Agentic AI Engineering" 
+        }),
+      });
 
-    setIsSubmitting(false);
-    setFormData(aimlInitialFormState);
-    setIsDialogOpen(false);
+      // 2. Trigger Download on success
+      triggerDownload();
+
+      // 3. Reset and Close
+      setFormData(aimlInitialFormState);
+      setIsDialogOpen(false);
+
+    } catch (error) {
+      console.error("Form submission error:", error);
+      // Fallback: If backend fails, still allow download
+      triggerDownload();
+      setIsDialogOpen(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -243,6 +274,7 @@ const GenAIAgenticEngineering = () => {
           </div>
         </div>
       </section>
+      
       {/* CURRICULUM DOWNLOAD CTA */}
       <section className="py-16 lg:py-24 bg-muted/50">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
@@ -301,7 +333,7 @@ const GenAIAgenticEngineering = () => {
                 {formError && <p className="text-sm text-destructive">{formError}</p>}
                 <DialogFooter>
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Preparing download..." : "Download PDF"}
+                    {isSubmitting ? "Processing..." : "Download PDF"}
                   </Button>
                 </DialogFooter>
               </form>
