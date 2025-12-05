@@ -1,10 +1,55 @@
+import { ChangeEvent, FormEvent, useState } from "react";
 import { CheckCircle, ArrowRight, GraduationCap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import BrochureDownloadButton from "@/components/BrochureDownloadButton";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+// --- CONFIGURATION ---
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxISXHhQQdF6ZAQ4Ex3bVbLOMvF4x1Xm2ZH7c_D6z1hOpx3xJZ7jo3ujl-WuqhHCt0a/exec";
+
+// Map selections to specific PDF files
+const programPdfMap: Record<string, { path: string; fileName: string }> = {
+  "data-science": {
+    path: "/images/Data%20Science%20%26%20Engineering.pdf",
+    fileName: "IITGN-Data-Science-Curriculum.pdf"
+  },
+  "aiml": {
+    path: "/images/Curriculum%20%26%20Learning%20Journey%20-%20AI-ML%20%26%20Agentic%20AI%20Engineering.pdf",
+    fileName: "IITGN-AIML-Curriculum.pdf"
+  },
+  "software-cloud": {
+    path: "/images/Curriculum%20%26%20Learning%20Journey%20-%20Cloud%20based%20Software%20Development.pdf",
+    fileName: "IITGN-Cloud-Software-Curriculum.pdf"
+  }
+};
+
+const programOptions = [
+  { value: "data-science", label: "Data Science & Engineering" },
+  { value: "aiml", label: "AI-ML & Agentic AI Engineering" },
+  { value: "software-cloud", label: "Cloud Based Software Development" }
+];
+
+const defaultProgram = "data-science";
 
 type Program = {
   title: string;
@@ -12,6 +57,20 @@ type Program = {
   description: string;
   link: string;
   highlights: string[];
+};
+
+type GeneralFormState = {
+  name: string;
+  email: string;
+  phone: string;
+  program: string;
+};
+
+const initialFormState: GeneralFormState = {
+  name: "",
+  email: "",
+  phone: "",
+  program: defaultProgram
 };
 
 const scrollToTop = () => {
@@ -63,7 +122,6 @@ const programs: Program[] = [
   },
 ];
 
-
 const feeStructure = [
   {
     component: "Tuition Fee",
@@ -86,6 +144,63 @@ const feeStructure = [
 ];
 
 const Programs = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<GeneralFormState>(initialFormState);
+
+  const handleInputChange =
+    (field: keyof GeneralFormState) => (event: ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    };
+
+  const triggerDownload = () => {
+    // Determine which file to download based on selection, or default to Data Science if something goes wrong
+    const pdfMeta = programPdfMap[formData.program] ?? programPdfMap[defaultProgram];
+    
+    const link = document.createElement("a");
+    link.href = pdfMeta.path;
+    link.download = pdfMeta.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadCurriculum = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setFormError("Please fill out all fields so we can share the brochure.");
+      return;
+    }
+
+    setFormError(null);
+    setIsSubmitting(true);
+
+    try {
+      // 1. Send data to Google Sheet
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+
+      // 2. Trigger Download
+      triggerDownload();
+
+      // 3. Reset
+      setFormData(initialFormState);
+      setIsDialogOpen(false);
+    } catch (error) {
+      console.error("Submission failed", error);
+      // Fallback download
+      triggerDownload();
+      setIsDialogOpen(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -135,12 +250,87 @@ const Programs = () => {
                   Download the consolidated IITGN CDF PG Diploma brochure to explore curriculum highlights,
                   campus experience, and admission details in one place.
                 </p>
-                <BrochureDownloadButton
-                  size="lg"
-                  variant="ctaOutline"
-                  className="rounded-full px-8"
-                  label="Download Brochure"
-                />
+                
+                {/* --- FORM DIALOG START --- */}
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+                    >
+                      Download Brochure
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-lg">
+                    <DialogHeader>
+                      <DialogTitle>Tell us a bit about you</DialogTitle>
+                      <DialogDescription>
+                        Fill this short form to unlock the detailed brochure and curriculum details.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleDownloadCurriculum} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="prog-name">Full Name</Label>
+                        <Input
+                          id="prog-name"
+                          placeholder="Your name"
+                          value={formData.name}
+                          onChange={handleInputChange("name")}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="prog-email">Email ID</Label>
+                        <Input
+                          id="prog-email"
+                          type="email"
+                          placeholder="you@example.com"
+                          value={formData.email}
+                          onChange={handleInputChange("email")}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="prog-phone">Mobile Number</Label>
+                        <Input
+                          id="prog-phone"
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          value={formData.phone}
+                          onChange={handleInputChange("phone")}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Program Interest</Label>
+                        <Select
+                          value={formData.program}
+                          onValueChange={(value) => setFormData((prev) => ({ ...prev, program: value }))}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a program" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {programOptions.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      {formError && <p className="text-sm text-destructive">{formError}</p>}
+                      <DialogFooter>
+                        <Button type="submit" className="w-full" disabled={isSubmitting}>
+                          {isSubmitting ? "Processing..." : "Download Brochure"}
+                        </Button>
+                      </DialogFooter>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+                {/* --- FORM DIALOG END --- */}
+
               </CardContent>
             </Card>
           </div>
