@@ -68,6 +68,7 @@ const Index = () => {
               Students will be expected to be available on campus from{" "}
               <span className="font-medium">8th February 2026</span> onwards
             </p>
+            <p className="text-sm lg:text-base text-muted-foreground">M/s. Futurense Technologies Pvt. Ltd. is the Admissions, Industry and Hospitality Partner for the IITGN CDF PG Diploma Programs.</p>
           </div>
         </div>
       </section>
