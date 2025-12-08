@@ -46,7 +46,7 @@ const careerSupport = [
 
 const careerOutcomes = [
   {
-    program: "Gen AI Powered AIML / AgenticAI Engineering",
+    program: "PG Diploma in AI-ML & Agentic AI Engineering",
     roles: [
       "AI Engineer / Machine Learning Engineer",
       "Generative AI Engineer",
@@ -56,7 +56,7 @@ const careerOutcomes = [
     ],
   },
   {
-    program: "Gen AI Powered Software Engineering with Cloud",
+    program: "PG Diploma in AI Driven Cloud based Software Development",
     roles: [
       "Full-Stack Developer",
       "Backend Engineer (Java / Spring Boot)",
@@ -66,7 +66,7 @@ const careerOutcomes = [
     ],
   },
   {
-    program: "Gen AI Powered Data Science and Engineering",
+    program: "PG Diploma in GenAI-Powered Data Science & Engineering",
     roles: [
       "Data Engineer",
       "Data Scientist",
