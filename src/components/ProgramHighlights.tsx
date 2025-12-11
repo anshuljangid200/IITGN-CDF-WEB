@@ -27,7 +27,7 @@ const programs: ProgramHighlight[] = [
     description:
       "Design production-grade LLM workflows, multi-agent pipelines, and responsible AI systems that combine LangChain, LangGraph, AutoGen, and CrewAI.",
     route: "/gen-ai-agentic-aiml",
-    banner: "/images/IIT Gandhinagar - PG Diploma in AI-ML & Agentic AI Engineering(Vertical) (1).png",
+    banner: "/images/Banner-Vertical.png",
     badge: "Gen AI · LLM · Agents",
     stats: [
       { label: "Duration", value: "6 Months" },
