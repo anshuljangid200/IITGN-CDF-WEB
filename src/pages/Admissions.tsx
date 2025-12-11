@@ -284,7 +284,7 @@ const Admissions = () => {
               <Card className="border border-primary/20 bg-primary/5">
                 <CardContent className="p-6">
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Futurense is the Admissions, Industry and Hospitality Partner for the IIT Gandhinagar PG Diploma programs.
+                    M/s. Futurense Technologies Pvt. Ltd. is the Admissions, Industry and Hospitality Partner for the IITGN CDF PG Diploma Programs.
                   </p>
                 </CardContent>
               </Card>

@@ -32,6 +32,10 @@ import {
   SelectValue
 } from "@/components/ui/select";
 
+// --- CONFIGURATION ---
+// PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxISXHhQQdF6ZAQ4Ex3bVbLOMvF4x1Xm2ZH7c_D6z1hOpx3xJZ7jo3ujl-WuqhHCt0a/exec"; 
+
 const heroDescription =
   "A hands-on program to master scalable data pipelines, distributed compute, cloud data warehousing, analytics, MLOps, and production-ready engineering.";
 
@@ -73,14 +77,6 @@ const eligibility = [
   "OR M.Sc. / MCA / Integrated Programs (minimum 50%)",
   "Programming proficiency (Python recommended)",
   "Basic math & statistics understanding"
-];
-
-const grading = [
-  "Weekly quizzes & assignments: 20%",
-  "Mid-term exam/project: 20%",
-  "Attendance & participation (Minimum 80%): 10%",
-  "Capstone Project: 30%",
-  "Final Exam: 20%"
 ];
 
 type CurriculumFormState = {
@@ -132,8 +128,20 @@ const GenAIPoweredDataScience = () => {
       setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
-  const handleDownloadCurriculum = (event: FormEvent<HTMLFormElement>) => {
+  const triggerDownload = () => {
+    const pdfMeta = programPdfMap[formData.program] ?? programPdfMap[defaultProgram];
+    const link = document.createElement("a");
+    link.href = pdfMeta.path;
+    link.download = pdfMeta.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadCurriculum = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    // Basic Validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.program) {
       setFormError("Please fill out all fields so we can share the curriculum.");
       return;
@@ -142,17 +150,31 @@ const GenAIPoweredDataScience = () => {
     setFormError(null);
     setIsSubmitting(true);
 
-    const pdfMeta = programPdfMap[formData.program] ?? programPdfMap[defaultProgram];
-    const link = document.createElement("a");
-    link.href = pdfMeta.path;
-    link.download = pdfMeta.fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // 1. Send data to Google Sheet
+      // We use 'no-cors' approach implicitly by sending JSON string as body 
+      // to avoid Google Apps Script CORS preflight issues
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setFormData(initialFormState);
-    setIsDialogOpen(false);
+      // 2. Trigger Download on success
+      triggerDownload();
+      
+      // 3. Reset and Close
+      setFormData(initialFormState);
+      setIsDialogOpen(false);
+      
+    } catch (error) {
+      console.error("Submission failed", error);
+      // Fallback: If backend fails, still let user download the file
+      // so we don't block their experience.
+      triggerDownload();
+      setIsDialogOpen(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -261,7 +283,7 @@ const GenAIPoweredDataScience = () => {
                 {formError && <p className="text-sm text-destructive">{formError}</p>}
                 <DialogFooter>
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Preparing download..." : "Download PDF"}
+                    {isSubmitting ? "Processing..." : "Download PDF"}
                   </Button>
                 </DialogFooter>
               </form>

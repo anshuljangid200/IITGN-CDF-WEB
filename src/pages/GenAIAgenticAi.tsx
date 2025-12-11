@@ -5,7 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { GraduationCap, Clock, Brain, Layers, Zap, BookOpen } from "lucide-react";
+import { GraduationCap, Clock, Brain } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +18,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+// --- CONFIGURATION ---
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxISXHhQQdF6ZAQ4Ex3bVbLOMvF4x1Xm2ZH7c_D6z1hOpx3xJZ7jo3ujl-WuqhHCt0a/exec";
+
+// Program Specific Config
+const AIML_CURRICULUM_PATH = "/images/Curriculum%20%26%20Learning%20Journey%20-%20AI-ML%20%26%20Agentic%20AI%20Engineering.pdf";
+const AIML_CURRICULUM_FILENAME = "IITGN-AIML-Curriculum.pdf";
+const PROGRAM_NAME = "AI-ML & Agentic AI Engineering";
+
 const overview = `This program equips students and professionals with the skills to build
 real-world AI and Agentic AI systems. It bridges classical machine learning,
 deep learning, and modern generative + agent-based AI frameworks. Students gain
@@ -29,14 +37,6 @@ const eligibility = [
   "OR M.Sc., MCA, Integrated M.Sc./M.Tech, BS-MS (minimum 50%)",
   "Programming proficiency in any language (Python preferred)",
   "Basic understanding of math & statistics",
-];
-
-const grading = [
-  "Weekly Assignments & Quizzes: 20%",
-  "Mid-term Project / Exam: 20%",
-  "Attendance & Participation (Minimum 80%): 10%",
-  "Capstone Project: 30%",
-  "Final Comprehensive Evaluation: 20%",
 ];
 
 const modules = [
@@ -144,10 +144,6 @@ const aimlInitialFormState: AimlCurriculumFormState = {
   phone: "",
 };
 
-const AIML_CURRICULUM_PATH =
-  "/images/Curriculum%20%26%20Learning%20Journey%20-%20AI-ML%20%26%20Agentic%20AI%20Engineering.pdf";
-const AIML_CURRICULUM_FILENAME = "IITGN-AIML-Curriculum.pdf";
-
 const GenAIAgenticEngineering = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -161,8 +157,19 @@ const GenAIAgenticEngineering = () => {
       setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
-  const handleDownloadCurriculum = (event: FormEvent<HTMLFormElement>) => {
+  const triggerDownload = () => {
+    const link = document.createElement("a");
+    link.href = AIML_CURRICULUM_PATH;
+    link.download = AIML_CURRICULUM_FILENAME;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadCurriculum = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    // Basic validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
       setFormError("Please fill out all fields so we can share the curriculum.");
       return;
@@ -171,16 +178,33 @@ const GenAIAgenticEngineering = () => {
     setFormError(null);
     setIsSubmitting(true);
 
-    const link = document.createElement("a");
-    link.href = AIML_CURRICULUM_PATH;
-    link.download = AIML_CURRICULUM_FILENAME;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // 1. Send data to Google Sheet
+      // We explicitly add the program name here since it's not in the visible form
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({ 
+          ...formData, 
+          program: PROGRAM_NAME 
+        }),
+      });
 
-    setIsSubmitting(false);
-    setFormData(aimlInitialFormState);
-    setIsDialogOpen(false);
+      // 2. Trigger Download on success
+      triggerDownload();
+
+      // 3. Reset and Close
+      setFormData(aimlInitialFormState);
+      setIsDialogOpen(false);
+
+    } catch (error) {
+      console.error("Form submission error:", error);
+      // Fallback: If backend fails, still allow download
+      // This ensures the user gets the file even if the script is busy
+      triggerDownload();
+      setIsDialogOpen(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -243,6 +267,7 @@ const GenAIAgenticEngineering = () => {
           </div>
         </div>
       </section>
+      
       {/* CURRICULUM DOWNLOAD CTA */}
       <section className="py-16 lg:py-24 bg-muted/50">
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
@@ -301,7 +326,7 @@ const GenAIAgenticEngineering = () => {
                 {formError && <p className="text-sm text-destructive">{formError}</p>}
                 <DialogFooter>
                   <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Preparing download..." : "Download PDF"}
+                    {isSubmitting ? "Processing..." : "Download PDF"}
                   </Button>
                 </DialogFooter>
               </form>

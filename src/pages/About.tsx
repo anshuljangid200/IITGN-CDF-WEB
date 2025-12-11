@@ -182,9 +182,9 @@ const About = () => {
               Leadership
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Message from{" "}
+              Messages from{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Director, Prof Sam
+                Chairman, Director and CEO
               </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -206,12 +206,12 @@ const About = () => {
                 </CardContent>
               </div>
               <CardHeader className="p-6 bg-card/95">
-                <CardTitle className="text-xl font-bold text-foreground">
+                {/* <CardTitle className="text-xl font-bold text-foreground">
                   Message from Director, Prof Sam
                 </CardTitle>
                 <p className="text-sm text-muted-foreground mt-2">
                   Director's vision for IITGN CDF programs
-                </p>
+                </p> */}
               </CardHeader>
             </Card>
           </div>

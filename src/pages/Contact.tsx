@@ -150,38 +150,72 @@ const Contact = () => {
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => controller.abort(), API_TIMEOUT_MS);
 
+    // try {
+    //   setIsSubmitting(true);
+    //   setSubmissionFeedback(null);
+
+    //   const apiUrl = `${resolveApiBaseUrl()}/api/forms/contact`;
+    //   console.log("Submitting contact form to:", apiUrl);
+
+    //   const response = await fetch(apiUrl, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json",
+    //     },
+    //     body: JSON.stringify(payload),
+    //     signal: controller.signal,
+    //   });
+
+    //   clearTimeout(timeoutId);
+
+    //   console.log("Response status:", response.status, response.statusText);
+
+    //   const result = await response.json().catch(() => ({}));
+
+    //   if (!response.ok) {
+    //     console.error("API error:", result);
+    //     throw new Error(result.message ?? result.error?.message ?? "Unable to send your message right now.");
+    //   }
+
+    //   const successMessage =
+    //     result.status === "queued_for_review"
+    //       ? "We received your submission and queued it for a quick manual review."
+    //       : "Thank you! Our team will reach out within 24–48 hours.";
+
+    //   setSubmissionFeedback({ type: "success", message: successMessage });
+    //   toast({
+    //     title: "Message sent successfully!",
+    //     description: successMessage,
+    //   });
+
+    //   form.reset();
+    // } catch (error) {
     try {
       setIsSubmitting(true);
       setSubmissionFeedback(null);
 
-      const apiUrl = `${resolveApiBaseUrl()}/api/forms/contact`;
-      console.log("Submitting contact form to:", apiUrl);
+      // PASTE YOUR GOOGLE APPS SCRIPT URL HERE
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSHUL3RdqGBxf_7si0PZ3wxtTxMkhXR0BGL97ZE-ubVl22atYx2Nl_1SNj3MntOdhg/exec";
+      
+      console.log("Thanks!");
 
-      const response = await fetch(apiUrl, {
+      // Note: We use 'no-cors' mode for Google Scripts sometimes to avoid CORS errors, 
+      // but sending JSON usually works with the standard method if the script handles OPTIONS.
+      // However, the most reliable way for Google Scripts from React is using fetch normally
+      // but treating the response carefully as Google sends a redirect.
+      
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        // Google Scripts sometimes require 'text/plain' to avoid pre-flight CORS checks,
+        // but the script parses it as JSON.
         body: JSON.stringify(payload),
-        signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
-
-      console.log("Response status:", response.status, response.statusText);
-
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        console.error("API error:", result);
-        throw new Error(result.message ?? result.error?.message ?? "Unable to send your message right now.");
-      }
-
-      const successMessage =
-        result.status === "queued_for_review"
-          ? "We received your submission and queued it for a quick manual review."
-          : "Thank you! Our team will reach out within 24–48 hours.";
+      // Google Script returns a 200 OK on success usually. 
+      // With simple Google Scripts, we assume success if no network error occurred.
+      
+      const successMessage = "Thank you! Our team will reach out within 24–48 hours.";
 
       setSubmissionFeedback({ type: "success", message: successMessage });
       toast({

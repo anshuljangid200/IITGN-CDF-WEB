@@ -4,11 +4,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import TestimonialCard from "@/components/TestimonialCard";
 import styles from "./Placements.module.css";
 import LogoMarquee from "@/components/LogoMarquee";
 import { hiringPartnerLogos } from "@/data/partnerLogos";
 import { toast } from "@/components/ui/use-toast";
+
+// --- STATIC DATA SECTIONS ---
 
 const careerSupport = [
   {
@@ -43,32 +44,9 @@ const careerSupport = [
   },
 ];
 
-const hiringPartners = [
-  {
-    category: "Technology & IT Services",
-    companies: "TCS, Infosys, Wipro, HCL, Tech Mahindra, Capgemini, Accenture",
-  },
-  {
-    category: "Product Companies",
-    companies: "Google, Microsoft, Amazon, Adobe, Oracle, SAP, Salesforce",
-  },
-  {
-    category: "Startups & Unicorns",
-    companies: "Flipkart, Paytm, Ola, Swiggy, Zomato, CRED, Razorpay, Freshworks",
-  },
-  {
-    category: "Consulting Firms",
-    companies: "Deloitte, EY, PwC, KPMG, McKinsey Digital, BCG Gamma",
-  },
-  {
-    category: "Banking & Financial Services",
-    companies: "HDFC Bank, ICICI Bank, Axis Bank, JPMorgan Chase, Goldman Sachs",
-  },
-];
-
 const careerOutcomes = [
   {
-    program: "Gen AI Powered AIML / AgenticAI Engineering",
+    program: "PG Diploma in AI-ML & Agentic AI Engineering",
     roles: [
       "AI Engineer / Machine Learning Engineer",
       "Generative AI Engineer",
@@ -78,7 +56,7 @@ const careerOutcomes = [
     ],
   },
   {
-    program: "Gen AI Powered Software Engineering with Cloud",
+    program: "PG Diploma in AI Driven Cloud based Software Development",
     roles: [
       "Full-Stack Developer",
       "Backend Engineer (Java / Spring Boot)",
@@ -88,7 +66,7 @@ const careerOutcomes = [
     ],
   },
   {
-    program: "Gen AI Powered Data Science and Engineering",
+    program: "PG Diploma in GenAI-Powered Data Science & Engineering",
     roles: [
       "Data Engineer",
       "Data Scientist",
@@ -99,47 +77,13 @@ const careerOutcomes = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Priya Sharma",
-    role: "ML Engineer",
-    company: "Leading Tech Company",
-    quote: "Within 2 months of completing the AI / Agentic AI Engineering program, I landed my dream role. The hands-on projects and career support were game-changers.",
-  },
-  {
-    name: "Arjun Mehta",
-    role: "Full-Stack Developer",
-    company: "Unicorn Startup",
-    quote: "The Software Development program gave me the full-stack skills I needed. I'm now working on production systems, earning more than I ever imagined.",
-  },
-  {
-    name: "Rahul Desai",
-    role: "Data Engineer",
-    company: "Top Consulting Firm",
-    quote: "Coming from a mechanical engineering background, I was nervous about transitioning to data science. IITGN-CDF made it possible.",
-  },
-];
-
 const PARTNER_API_TIMEOUT = 12000;
 
-const resolveApiBaseUrl = () => {
-  const envUrl = (import.meta.env.VITE_API_URL as string | undefined)?.trim();
-  if (envUrl) {
-    return envUrl.replace(/\/$/, "");
-  }
-
-  if (typeof window !== "undefined" && window.location?.origin) {
-    const isLocalHost =
-      window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1";
-    if (isLocalHost) {
-      return "http://localhost:3333";
-    }
-    return window.location.origin.replace(/\/$/, "");
-  }
-
-  return "http://localhost:3333";
-};
+// ------------------------------------------------------------------
+// TODO: PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+// It should look like: https://script.google.com/macros/s/AKfycbx.../exec
+// ------------------------------------------------------------------
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxS4wicIl7V0uDe-nDWHv4kyJOZ5-ol1LY7unZ2Ev9fWAzEuBHGIMOUjDny-V-5Qbz1UA/exec"; 
 
 const Placements = () => {
   const [isSubmittingPartnerForm, setIsSubmittingPartnerForm] = useState(false);
@@ -152,15 +96,28 @@ const Placements = () => {
     event.preventDefault();
     if (isSubmittingPartnerForm) return;
 
+    // 1. Validation
+    if (GOOGLE_SCRIPT_URL === "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE") {
+      toast({
+        title: "Configuration Error",
+        description: "Please configure the Google Script URL in the code.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const form = event.currentTarget;
     const data = new FormData(form);
-    const fullName = (data.get("fullName") as string)?.trim();
-    const email = (data.get("email") as string)?.trim();
-    const expertise = (data.get("expertise") as string)?.trim();
-    const linkedinUrl = (data.get("linkedinUrl") as string)?.trim();
-    const message = (data.get("message") as string)?.trim();
+    
+    const payload = {
+      fullName: (data.get("fullName") as string)?.trim(),
+      email: (data.get("email") as string)?.trim(),
+      expertise: (data.get("expertise") as string)?.trim(),
+      linkedinUrl: (data.get("linkedinUrl") as string)?.trim(),
+      message: (data.get("message") as string)?.trim(),
+    };
 
-    if (!fullName || !email || !linkedinUrl || !message) {
+    if (!payload.fullName || !payload.email || !payload.linkedinUrl || !payload.message) {
       toast({
         title: "Missing information",
         description: "Full name, email, LinkedIn URL, and message are required.",
@@ -169,7 +126,7 @@ const Placements = () => {
       return;
     }
 
-    if (message.length < 20) {
+    if (payload.message.length < 20) {
       toast({
         title: "Message too short",
         description: "Please add at least 20 characters so we can review your expertise.",
@@ -185,28 +142,19 @@ const Placements = () => {
       setIsSubmittingPartnerForm(true);
       setPartnerFormFeedback(null);
 
-      const response = await fetch(`${resolveApiBaseUrl()}/api/forms/partner`, {
+      // 2. Send Data to Google Sheets
+      // We use 'no-cors' behavior by sending text/plain to avoid preflight OPTION requests
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
+        body: JSON.stringify(payload),
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+            "Content-Type": "text/plain;charset=utf-8",
         },
-        body: JSON.stringify({
-          fullName,
-          email,
-          expertise: expertise || undefined,
-          linkedinUrl,
-          message,
-        }),
         signal: controller.signal,
       });
 
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.message ?? "Unable to send your application right now.");
-      }
-
+      // 3. Handle Success
+      // (Note: With Google Scripts & React, we assume success if fetch didn't crash)
       setPartnerFormFeedback({
         type: "success",
         message: "Thank you! Our partnerships team will get in touch soon.",
@@ -216,17 +164,17 @@ const Placements = () => {
         description: "Our partnerships team will reach out shortly.",
       });
       form.reset();
+
     } catch (error) {
+      // 4. Handle Error
       const isAbortError = error instanceof DOMException && error.name === "AbortError";
       const description = isAbortError
-        ? "The request timed out. Please check your connection and try again."
-        : error instanceof Error && error.message
-          ? error.message
-          : "Please try again shortly or email us.";
+        ? "The request timed out. Please check your connection."
+        : "Unable to reach the server. Please try again.";
 
       setPartnerFormFeedback({ type: "error", message: description });
       toast({
-        title: "Failed to submit application",
+        title: "Failed to submit",
         description,
         variant: "destructive",
       });
@@ -249,7 +197,7 @@ const Placements = () => {
               Career Support & <span className="bg-gradient-primary bg-clip-text text-transparent">Placement Assistance</span>
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              We are committed to your career transformation. Our comprehensive career support services ensure you graduate not just with technical skills, but with the confidence, network, and readiness to succeed in competitive job markets.
+              We are committed to your career transformation. Our comprehensive career support services delivered through our operating partner M/s. Futurense Technologies Pvt. Ltd. ensure you graduate not just with technical skills, but with the confidence, network, and readiness to succeed in competitive job markets.
             </p>
           </div>
         </div>
@@ -286,7 +234,7 @@ const Placements = () => {
         </div>
       </section>
 
-      {/* Partner Brands (Replaces 'Our Hiring Partners') */}
+      {/* Partner Brands */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 lg:mb-16 animate-fade-in">
@@ -336,8 +284,6 @@ const Placements = () => {
                         ))}
                       </ul>
                     </div>
-
-                    {/* Salary details removed — showing skill-based outcomes only */}
                   </CardContent>
                 </Card>
               ))}
