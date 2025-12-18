@@ -11,7 +11,7 @@ type ProgramHighlight = {
   title: string;
   description: string;
   route: string;
-  banner: string;
+  banner: string; // Kept in type definition to prevent breaking if used elsewhere
   badge: string;
   stats: {
     label: string;
@@ -70,7 +70,8 @@ const programs: ProgramHighlight[] = [
     description:
       "Ship AI-augmented full-stack products with Java/Spring, React/Next.js, DevOps, and continuous delivery across AWS/Azure.",
     route: "/gen-ai-software-cloud",
-    banner: "/images/IIT Gandhinagar - PG Diploma in AI Driven Cloud based Software Development.png",
+    banner:
+      "/images/IIT Gandhinagar - PG Diploma in AI Driven Cloud based Software Development.png",
     badge: "Software · Cloud · DevOps",
     stats: [
       { label: "Duration", value: "6 Months" },
@@ -112,7 +113,11 @@ const ProgramHighlights = () => {
           </p>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8 lg:space-y-12">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-8 lg:space-y-12"
+        >
           <div className="relative -mx-4 mb-6 sm:mx-0 sm:mb-8">
             <div
               className="panorama-scroll no-scrollbar overflow-x-auto px-1 py-1 scroll-smooth snap-x snap-mandatory touch-pan-x sm:overflow-visible"
@@ -134,7 +139,9 @@ const ProgramHighlights = () => {
                       "data-[state=inactive]:text-muted-foreground data-[state=inactive]:border-transparent hover:text-primary hover:border-primary/20"
                     )}
                   >
-                    <span className="block text-sm sm:text-base leading-snug">{program.title}</span>
+                    <span className="block text-sm sm:text-base leading-snug">
+                      {program.title}
+                    </span>
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -144,9 +151,16 @@ const ProgramHighlights = () => {
           </div>
 
           {programs.map((program) => (
-            <TabsContent key={program.value} value={program.value} className="mt-8 lg:mt-10">
+            <TabsContent
+              key={program.value}
+              value={program.value}
+              className="mt-8 lg:mt-10"
+            >
               <article className="rounded-[2rem] border border-border/70 bg-card/95 shadow-large p-6 sm:p-8 lg:p-10">
-                <div className="grid gap-8 lg:gap-10 lg:grid-cols-2">
+                {/* Removed 'grid lg:grid-cols-2' to allow content to take full width 
+                   since the image column is removed.
+                */}
+                <div>
                   <div className="space-y-6">
                     <div className="space-y-3">
                       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
@@ -156,7 +170,8 @@ const ProgramHighlights = () => {
                         {program.title}
                       </h3>
                       <p className="text-sm font-medium text-primary/90">
-                        Futurense as Admissions, Industry and Hospitality Partner
+                        Futurense as Admissions, Industry and Hospitality
+                        Partner
                       </p>
                       <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
                         {program.description}
@@ -169,24 +184,40 @@ const ProgramHighlights = () => {
                           key={`${program.value}-${stat.label}`}
                           className="rounded-2xl border border-border/80 bg-muted/40 p-4"
                         >
-                          <dt className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</dt>
-                          <dd className="text-xl font-semibold text-foreground mt-1">{stat.value}</dd>
+                          <dt className="text-xs uppercase tracking-wide text-muted-foreground">
+                            {stat.label}
+                          </dt>
+                          <dd className="text-xl font-semibold text-foreground mt-1">
+                            {stat.value}
+                          </dd>
                         </div>
                       ))}
                     </dl>
 
-                    <ul className="space-y-4" aria-label={`${program.title} skill outcomes`}>
+                    <ul
+                      className="grid gap-4 md:grid-cols-2"
+                      aria-label={`${program.title} skill outcomes`}
+                    >
+                      {/* Added md:grid-cols-2 to the list above to use the extra width 
+                          effectively now that the image is gone 
+                      */}
                       {program.skills.map((skill) => (
-                        <li key={skill} className="flex items-start gap-3 text-base leading-relaxed">
-                          <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary">
-                            <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                        <li
+                          key={skill}
+                          className="flex items-start gap-3 text-base leading-relaxed"
+                        >
+                          <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
+                            <CheckCircle2
+                              className="h-4 w-4"
+                              aria-hidden="true"
+                            />
                           </span>
                           <span className="text-muted-foreground">{skill}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
                       <Button
                         asChild
                         variant="cta"
@@ -204,14 +235,7 @@ const ProgramHighlights = () => {
                     </div>
                   </div>
 
-                  <figure className="relative overflow-hidden rounded-[1.75rem] border border-border/70 bg-muted/20 shadow-soft min-h-[320px]">
-                    <img
-                      src={program.banner}
-                      alt={`${program.title} certificate`}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                  </figure>
+                  {/* Image <figure> section completely removed from here */}
                 </div>
               </article>
             </TabsContent>
