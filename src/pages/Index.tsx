@@ -73,7 +73,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Program Banner Section */}
+      {/* Program Banner Section
       <section className="py-10 lg:py-16 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-card rounded-2xl shadow-lg overflow-hidden border border-border">
@@ -85,7 +85,7 @@ const Index = () => {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Program Highlights (Tab Layout) */}
       <ProgramHighlights />
