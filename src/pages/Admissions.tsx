@@ -73,6 +73,8 @@ const steps = [
 const degreeCriteria = [
   "B.Tech / B.E. / B.S. (4-year) with minimum 50% marks or 5.0 CPI/CGPA (10-point scale)",
   "M.Sc., MCA, Integrated M.Sc./M.Tech, BS-MS (5-year programs) with minimum 50% marks or 5.0 CPI/CGPA",
+  ">70% or >7.0 CGPA in Class 12th or equivalent exam",
+  ">60% or >6.0 CGPA in completed previous semesters with no backlogs.",
 ];
 
 const additionalRequirements = [
