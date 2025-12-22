@@ -65,7 +65,7 @@ const members: Member[] = [
   {
     id: "narsimha-mannepalli",
     name: "Narsimha Rao Mannepalli",
-    title: "Director, IITGN Competency Development Foundation\nStrategic Advisor, Cognizant; Former EVP, Infosys",
+    title: "Director, IITGN Competency Development Foundation\nFormer EVP, Infosys; Strategic Advisor and Angel Investor",
     bio: "Shri Narsimha Rao Mannepalli brings strategic advisory experience from leadership roles at major IT services firms and supports IITGN CDF's mission to align programs with industry needs.",
     imgSrc: "/images/Board_6.jpg",
     linkedin: "https://www.linkedin.com/in/narry-mannepalli/",
