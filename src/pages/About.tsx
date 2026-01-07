@@ -127,7 +127,7 @@ const About = () => {
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 leading-tight">
               About{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                IIT Gandhinagar CDF
+                IIT Gandhinagar Competency Development Foundation
               </span>
             </h1>
 
@@ -149,19 +149,17 @@ const About = () => {
             <CardContent className="p-8 lg:p-12">
               <div className="space-y-6 text-base lg:text-lg leading-relaxed text-muted-foreground">
                 <p>
-                The IIT Gandhinagar Competency Development Foundation (CDF) is a Section 8 company established under
-                 the aegis of the Indian Institute of Technology Gandhinagar to strengthen the bridge between academic excellence and industry application.
+                  The IIT Gandhinagar Competency Development Foundation (IITGN CDF) is a Section 8 company established under
+                  the aegis of the Indian Institute of Technology Gandhinagar to strengthen the bridge between academic excellence and industry application.
                 </p>
                 <p>
-                CDF is envisioned as IIT Gandhinagar’s dedicated platform for advancing professional and technical competencies through innovative, hands-on, and industry-aligned programs. 
-                These programs,
-                 pioneered by IIT Gandhinagar through CDF and run by IITGN Competency Advancement Academy (CAA), bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
+                  IITGN CDF is envisioned as IIT Gandhinagar’s dedicated platform for advancing professional and technical competencies through innovative, hands-on, and industry-aligned programs.
+                  These programs by IITGN CDF and run by Competency Advancement Academy at IIT Gandhinagar, bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
                 </p>
                 <p>
-                By offering intensive, residential, and application-driven programs in cutting-edge technology domains such as Artificial Intelligence, 
-                Data Science, Cloud Computing, Cybersecurity, Robotics, and Semiconductor Manufacturing, CDF aims to equip learners with the practical skills, depth of knowledge,
-                 and confidence to meet the evolving needs of modern industries. Guided by IIT Gandhinagar’s values of integrity, innovation, and impact, CDF is committed to shaping the next generation of skilled professionals who can contribute effectively to India’s technological advancement and global competitiveness.
-
+                  By offering intensive, residential, and application-driven programs in cutting-edge technology domains such as Artificial Intelligence,
+                  Data Science, Cloud Computing, Cybersecurity, Robotics, and Semiconductor Manufacturing, IITGN CDF aims to equip learners with the practical skills, depth of knowledge,
+                  and confidence to meet the evolving needs of modern industries. Guided by IIT Gandhinagar’s values of integrity, innovation, and impact, IITGN CDF is committed to shaping the next generation of skilled professionals who can contribute effectively to India’s technological advancement and global competitiveness.
                 </p>
               </div>
             </CardContent>
@@ -355,7 +353,7 @@ const About = () => {
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Why Choose{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                IITGN-CDF?
+                IITGN CDF?
               </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

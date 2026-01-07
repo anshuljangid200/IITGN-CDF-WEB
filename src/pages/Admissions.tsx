@@ -168,7 +168,7 @@ const Admissions = () => {
 
             {/* DESCRIPTION */}
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
-              Submit your IITGN-CDF application, showcase your portfolio, and unlock immersive
+              Submit your IITGN CDF application, showcase your portfolio, and unlock immersive
               residential learning designed for ambitious engineers and technologists.
             </p>
 
@@ -281,7 +281,7 @@ const Admissions = () => {
                   </a>
                 </Button>
               </div>
-              
+
               {/* Futurense Description Box */}
               <Card className="border border-primary/20 bg-primary/5">
                 <CardContent className="p-6">

@@ -197,14 +197,14 @@ const Contact = () => {
 
       // PASTE YOUR GOOGLE APPS SCRIPT URL HERE
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSHUL3RdqGBxf_7si0PZ3wxtTxMkhXR0BGL97ZE-ubVl22atYx2Nl_1SNj3MntOdhg/exec";
-      
+
       console.log("Thanks!");
 
       // Note: We use 'no-cors' mode for Google Scripts sometimes to avoid CORS errors, 
       // but sending JSON usually works with the standard method if the script handles OPTIONS.
       // However, the most reliable way for Google Scripts from React is using fetch normally
       // but treating the response carefully as Google sends a redirect.
-      
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         // Google Scripts sometimes require 'text/plain' to avoid pre-flight CORS checks,
@@ -214,7 +214,7 @@ const Contact = () => {
 
       // Google Script returns a 200 OK on success usually. 
       // With simple Google Scripts, we assume success if no network error occurred.
-      
+
       const successMessage = "Thank you! Our team will reach out within 24–48 hours.";
 
       setSubmissionFeedback({ type: "success", message: successMessage });
@@ -232,8 +232,8 @@ const Contact = () => {
       const fallbackMessage = isAbortError
         ? "The request timed out. Please check your connection and try again."
         : isNetworkError
-        ? "Unable to connect to the server. Please ensure the backend is running."
-        : "Please try again shortly or reach out by phone/email.";
+          ? "Unable to connect to the server. Please ensure the backend is running."
+          : "Please try again shortly or reach out by phone/email.";
       const description =
         error instanceof Error && error.message ? error.message : fallbackMessage;
 
@@ -265,7 +265,7 @@ const Contact = () => {
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6">
               Get in Touch with{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                IITGN-CDF
+                IITGN CDF
               </span>
             </h1>
 
@@ -278,7 +278,7 @@ const Contact = () => {
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap justify-center gap-4 mt-2">
               <Button asChild size="lg" variant="cta" className="rounded-full px-6">
-                <a href="mailto:cdf@iitgn.ac.in">Email IITGN-CDF</a>
+                <a href="mailto:cdf@iitgn.ac.in">Email IITGN CDF</a>
               </Button>
 
               <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
@@ -453,9 +453,8 @@ const Contact = () => {
                 </Button>
                 {submissionFeedback && (
                   <p
-                    className={`text-sm text-center ${
-                      submissionFeedback.type === "success" ? "text-emerald-600" : "text-destructive"
-                    }`}
+                    className={`text-sm text-center ${submissionFeedback.type === "success" ? "text-emerald-600" : "text-destructive"
+                      }`}
                     role="status"
                     aria-live="assertive"
                   >
