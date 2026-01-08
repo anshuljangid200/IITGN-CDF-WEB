@@ -277,16 +277,20 @@ const Contact = () => {
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap justify-center gap-4 mt-2">
-            <Button
+           <Button
   size="lg"
   variant="cta"
   className="rounded-full px-6"
   onClick={() => {
-    window.location.href = "mailto:admission.caa@iitgn.ac.in";
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=admission.caa@iitgn.ac.in",
+      "_blank"
+    );
   }}
 >
   Email IITGN CDF
 </Button>
+
 
 
 
