@@ -193,28 +193,23 @@ const About = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            {/* Director Video */}
-            <Card className="group shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30">
-              <div className="relative">
-                <CardContent className="p-0 aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Eye className="w-8 h-8 text-primary" />
-                    </div>
-                    <p className="text-muted-foreground font-medium text-lg">Coming Soon</p>
-                  </div>
-                </CardContent>
-              </div>
-              <CardHeader className="p-6 bg-card/95">
-                {/* <CardTitle className="text-xl font-bold text-foreground">
-                  Message from Director, Prof Sam
-                </CardTitle>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Director's vision for IITGN CDF programs
-                </p> */}
-              </CardHeader>
-            </Card>
-          </div>
+  {/* Director Video */}
+  <Card className="group shadow-large overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30">
+    <div className="relative">
+      <CardContent className="p-0 aspect-video rounded-t-lg overflow-hidden">
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/embed/_FsoQVOXw20"
+          title="Director Video"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </CardContent>
+    </div>
+  </Card>
+</div>
+
         </div>
       </section>
 
