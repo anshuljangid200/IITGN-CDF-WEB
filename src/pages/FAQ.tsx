@@ -13,11 +13,15 @@ const generalFAQs = [
   },
   {
     question: "Are these programs recognized?",
-    answer: "Yes. These programs are jointly awarded by IIT Gandhinagar and IITGN Competency Development Foundation as official Postgraduate Diploma programs",
+    answer: "Yes. These programs are jointly awarded by IIT Gandhinagar and Competency Advancement Academy (CAA)",
   },
   {
-    question: "What is the difference between a Competency Development Foundation Program and a Master's degree?",
-    answer: "A CDF Postgraduate Diploma is an intensive, 6-month, skills-focused professional program designed to make learners immediately deployable in next-generation tech roles. It emphasizes hands-on training, industry tools, real-world projects, and job readiness whereas a Master’s Degree, in contrast, is a longer academic program (1–2 years) focused on research, theoretical depth, and broader scholastic outcomes.",
+    question: "What is the difference between a CAA Program and a Master’s Degree?",
+    answer: "A CAA Postgraduate Diploma is an intensive, 6-month, skills-focused professional program designed to make learners immediately deployable in next-generation tech roles. It emphasizes hands-on training, industry tools, real-world projects, and job readiness whereas a Master’s Degree, in contrast, is a longer academic program (1–2 years) focused on research, theoretical depth, and broader scholastic outcomes.",
+  },
+    {
+    question: "What is Competency Advancement Academy?",
+    answer: "Competency Advancement Academy of IIT Gandhinagar Competency Development Foundation (IITGN CDF) is uniquely positioned to address the challenge of bridging the gap between the academic knowledge and industry requirements to produce professionals with industry-relevant competencies.",
   },
 ];
 
@@ -54,12 +58,12 @@ const programFAQs = [
     answer: "English",
   },
   {
-    question: "What is the TYPICAL CLASS size?",
+    question: "What is the typical class size?",
     answer: "The typical size is 60.",
   },
   {
     question: "Will I receive an IIT Gandhinagar certificate?",
-    answer: "Yes. All learners who successfully complete the program will receive a Joint Postgraduate Diploma certificate awarded by IIT Gandhinagar and IITGN-CDF. This certification reflects IITGN’s academic oversight and CDF’s industry-aligned training framework.",
+    answer: "Yes. All learners who successfully complete the program will receive a Joint Postgraduate Diploma Certificate awarded by IIT Gandhinagar and CAA. This certification reflects IITGN’s academic oversight and CAA’s industry-aligned training framework.",
   },
   {
     question: "Are there any prerequisites I should complete before joining?",
@@ -142,7 +146,7 @@ const technicalFAQs = [
 const postProgramFAQs = [
   {
     question: "What happens after I complete the program?",
-    answer: "You receive a certificate issued by Competency Advancement Academy AND IITGN, access to executive alumni network",
+    answer: "You receive a certificate issued by Competency Advancement Academy and IITGN, access to executive alumni network",
   },
   // {
   //   question: "Can I pursue further studies after this program?",

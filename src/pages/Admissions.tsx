@@ -52,7 +52,7 @@ const steps = [
   },
   {
     icon: <FileCheck className="w-6 h-6" />,
-    title: "Step 02 · Round 1: AINPT – IIT GN",
+    title: "Step 02 · Round 1: AINPT",
     description:
       "Appear for the 120-minute All India National Proficiency Test evaluating technical aptitude and problem-solving.",
   },
@@ -272,8 +272,7 @@ const Admissions = () => {
                   Two Rounds to Evaluate Skill & Potential
                 </h2>
                 <p className="text-muted-foreground mt-4">
-                  Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with
-                  IIT faculty and industry mentors.
+                  Begin with the proctored All India National Proficiency Test (AINPT), followed by a personal interview with industry mentors.
                 </p>
                 <Button asChild size="lg" variant="cta" className="mt-8 rounded-full px-8">
                   <a href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462" target="_blank" rel="noopener noreferrer">
@@ -324,7 +323,7 @@ const Admissions = () => {
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Career Assistance & Placement Support</h2>
               <p className="text-lg text-primary-foreground/90 max-w-xl mx-auto lg:mx-0">
                 Dedicated mentors guide you through resume building, mock interviews, and partner-led placement
-                opportunities anchored by IITGN CDF&apos;s network.
+                opportunities anchored by CAA&apos;s network.
               </p>
             </div>
             <Card className="shadow-large border border-border/70 rounded-[2.25rem]">
@@ -442,12 +441,12 @@ const Admissions = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24">
+      {/* <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-gradient-hero rounded-2xl p-8 lg:p-12 text-center shadow-large animate-scale-in">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">Ready to Apply?</h2>
             <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Don&apos;t miss this opportunity to advance your career with an IIT Gandhinagar Competency Development Foundation Program.
+              Don&apos;t miss this opportunity! Apply now!
             </p>
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-large">
               <a
@@ -460,7 +459,46 @@ const Admissions = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="py-16 lg:py-24">
+  <div className="container mx-auto px-4 lg:px-8">
+    <div className="
+      rounded-2xl 
+      p-8 lg:p-12 
+      text-center 
+      shadow-large 
+      animate-scale-in
+      bg-gradient-to-br 
+from-purple-600 
+via-indigo-600 
+to-violet-600
+
+    ">
+      <h2 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
+        Ready to Apply?
+      </h2>
+
+      <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+        Don&apos;t miss this opportunity! Apply now!
+      </p>
+
+      <Button 
+        asChild 
+        size="lg" 
+        className="bg-white text-primary hover:bg-white/90 shadow-large"
+      >
+        <a
+          href="https://admission.futurense.com/?program=IITGPGD&gmid=KN462"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Start Your Application
+        </a>
+      </Button>
+    </div>
+  </div>
+</section>
+
 
       <Footer />
     </div>

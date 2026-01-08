@@ -86,7 +86,7 @@ const advantageHighlights = [
     icon: <Award className="w-6 h-6 text-primary" />,
     title: "IIT Credential",
     description:
-      "Postgraduate Diploma jointly awarded by IIT Gandhinagar and IITGN CDF with Executive Alumni Status.",
+      "Post graduate Diploma jointly awarded by IIT Gandhinagar and CAA with Executive Alumni Status",
   },
   {
     icon: <Building2 className="w-6 h-6 text-primary" />,
@@ -149,14 +149,6 @@ const About = () => {
             <CardContent className="p-8 lg:p-12">
               <div className="space-y-6 text-base lg:text-lg leading-relaxed text-muted-foreground">
                 <p>
-<<<<<<< HEAD
-                  The IIT Gandhinagar Competency Development Foundation (IITGN CDF) is a Section 8 company established under
-                  the aegis of the Indian Institute of Technology Gandhinagar to strengthen the bridge between academic excellence and industry application.
-                </p>
-                <p>
-                  IITGN CDF is envisioned as IIT Gandhinagar’s dedicated platform for advancing professional and technical competencies through innovative, hands-on, and industry-aligned programs.
-                  These programs by IITGN CDF and run by Competency Advancement Academy at IIT Gandhinagar, bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
-=======
                 The IIT Gandhinagar Competency Development Foundation (IITGN CDF) is a Section 8 company established under
                  the aegis of the Indian Institute of Technology Gandhinagar to strengthen the bridge between academic excellence and industry application.
                 </p>
@@ -164,12 +156,12 @@ const About = () => {
                 IITGN CDF is envisioned as IIT Gandhinagar’s dedicated platform for advancing professional and technical competencies through innovative, hands-on, and industry-aligned programs. 
                 These programs,
                  pioneered by IITGN CDF and run by IITGN Competency Advancement Academy (CAA), bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
->>>>>>> d4fd29ea692dd235493a8db80518f9535690aba9
                 </p>
                 <p>
-                  By offering intensive, residential, and application-driven programs in cutting-edge technology domains such as Artificial Intelligence,
-                  Data Science, Cloud Computing, Cybersecurity, Robotics, and Semiconductor Manufacturing, IITGN CDF aims to equip learners with the practical skills, depth of knowledge,
-                  and confidence to meet the evolving needs of modern industries. Guided by IIT Gandhinagar’s values of integrity, innovation, and impact, IITGN CDF is committed to shaping the next generation of skilled professionals who can contribute effectively to India’s technological advancement and global competitiveness.
+                By offering intensive, residential, and application-driven programs in cutting-edge technology domains such as Artificial Intelligence, 
+                Data Science, Cloud Computing, Cybersecurity, Robotics, and Semiconductor Manufacturing, CDF aims to equip learners with the practical skills, depth of knowledge,
+                 and confidence to meet the evolving needs of modern industries. Guided by IIT Gandhinagar’s values of integrity, innovation, and impact, CDF is committed to shaping the next generation of skilled professionals who can contribute effectively to India’s technological advancement and global competitiveness.
+
                 </p>
               </div>
             </CardContent>
@@ -361,9 +353,9 @@ const About = () => {
               Why Us
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Why Choose{" "}
+              Why Choose CAA at{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                IITGN CDF?
+                IITGN?
               </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

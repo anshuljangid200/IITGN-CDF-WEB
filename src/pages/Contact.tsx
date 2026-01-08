@@ -277,9 +277,18 @@ const Contact = () => {
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap justify-center gap-4 mt-2">
-              <Button asChild size="lg" variant="cta" className="rounded-full px-6">
-                <a href="mailto:cdf@iitgn.ac.in">Email IITGN CDF</a>
-              </Button>
+            <Button
+  size="lg"
+  variant="cta"
+  className="rounded-full px-6"
+  onClick={() => {
+    window.location.href = "mailto:admission.caa@iitgn.ac.in";
+  }}
+>
+  Email IITGN CDF
+</Button>
+
+
 
               <Button asChild size="lg" variant="ctaOutline" className="rounded-full px-6">
                 <Link to="/faq">Browse FAQs</Link>
@@ -315,7 +324,7 @@ const Contact = () => {
                 title="Email"
                 content={[
                   "Info: cdf@iitgn.ac.in",
-                  "Admission: admission.cdf@iitgn.ac.in",
+                  "Admission: admission.caa@iitgn.ac.in",
                 ]}
               />
               <ContactCard
