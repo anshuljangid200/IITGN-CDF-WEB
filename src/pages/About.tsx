@@ -155,7 +155,7 @@ const About = () => {
                 <p>
                 IITGN CDF is envisioned as IIT Gandhinagar’s dedicated platform for advancing professional and technical competencies through innovative, hands-on, and industry-aligned programs. 
                 These programs,
-                 pioneered by IITGN CDF and run by IITGN Competency Advancement Academy (CAA), bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
+                 pioneered by IITGN CDF and run by Competency Advancement Academy (CAA), bring together the institute’s academic rigor, research expertise, and a strong network of industry collaborators to create meaningful pathways for upskilling and talent development.
                 </p>
                 <p>
                 By offering intensive, residential, and application-driven programs in cutting-edge technology domains such as Artificial Intelligence, 
