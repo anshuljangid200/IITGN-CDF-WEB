@@ -97,7 +97,7 @@ const Placements = () => {
     if (isSubmittingPartnerForm) return;
 
     // 1. Validation
-    if (GOOGLE_SCRIPT_URL === "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE") {
+    if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxS4wicIl7V0uDe-nDWHv4kyJOZ5-ol1LY7unZ2Ev9fWAzEuBHGIMOUjDny-V-5Qbz1UA/exec") {
       toast({
         title: "Configuration Error",
         description: "Please configure the Google Script URL in the code.",
@@ -349,7 +349,7 @@ const Placements = () => {
                     <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-1">
                       <span className="text-xs font-bold">•</span>
                     </div>
-                    <p className="text-foreground font-medium">95%+ Attendance Consistent attendance required</p>
+                    <p className="text-foreground font-medium">Throughout 90%+ Attendance</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 mt-1">

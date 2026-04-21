@@ -62,11 +62,11 @@ const Index = () => {
 
           <div className="mt-2 text-center">
             <p className="text-base lg:text-lg font-semibold text-foreground mb-1">
-              Program Start Date: <span className="text-primary">23rd February 2026</span>
+              Program Start Date: <span className="text-primary">24th August 2026 (Tentatively)</span>
             </p>
             <p className="text-sm lg:text-base text-muted-foreground">
               Students will be expected to be available on campus from{" "}
-              <span className="font-medium">22nd February 2026</span> onwards
+              <span className="font-medium">23rd August 2026</span> onwards
             </p>
             <p className="text-sm lg:text-base text-muted-foreground">M/s. Futurense Technologies Pvt. Ltd. is the Admissions, Industry and Hospitality Partner for the IITGN CDF PG Diploma Programs.</p>
           </div>
